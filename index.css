@@ -5,10 +5,18 @@
     margin: 0;
     font-family: 'Noto Sans JP', sans-serif;
 }
+.myapps {
+    text-align: center;
+    height: 300px;
+}
 
-.twitter-com{
+.applinks {
     display: flex;
     justify-content: center;
+}
+
+.twitter-com{
+    text-align: center;
     padding: 2vh;
     height: 660px;
 }
