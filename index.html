@@ -29,6 +29,47 @@
 
         <header>
             <h1 class="headertext">Nknight AMAMIYA - about me</h1>
+            <nav id="nav">
+                <ul>
+
+                    <div class="maintext">
+                        Links
+                    </div>
+                    <li>
+                        <a href="https://youtube.com/@ama_p213" class="linktext">
+                            Youtube
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nknighta" class="linktext">
+                            GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://misskey.io/@nknighta" class="linktext">
+                            Misskey.io
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/nknighta?tab=repositories" class="linktext">
+                            Repositories
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/ama_dev_1" class="linktext">
+                            Twitter
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="hamburger">
+                <!-- 1番上の線 -->
+                <span class="inner_line1" id="line1"></span>
+                <!-- 真ん中の線 -->
+                <span class="inner_line2" id="line2"></span>
+                <!-- 1番下の線 -->
+                <span class="inner_line3" id="line3"></span>
+            </div>
         </header>
 
         <div class="container-main">
@@ -49,10 +90,6 @@
                 <div class="swiper-wrapper">
                     <!-- Slides -->
 
-                    <div class="swiper-slide">
-                        <img src="https://media.varius.technology/api/og?title=About+me&description=https://nknighta.github.io/"
-                            alt="bg x image">
-                    </div>
                     <div class="swiper-slide">
                         <img src="img/realtyX-1.png" alt="realtyX logo">
                     </div>
@@ -120,20 +157,6 @@
                 </a>
             </div>
 
-            <div class="links">
-                <a href="https://misskey.io/@nknighta" class="linktext">
-                    Misskey.io
-                </a>
-            </div>
-            <div class="links">
-                <a href="https://github.com/nknighta?tab=repositories" class="linktext">
-                    Repositories
-                </a>
-            </div>
-            <div class="links">
-                <a href="https://twitter.com/ama_dev_1" class="linktext">
-                    Twitter
-                </a>
             </div>
             <footer>
                 <div class="footer">
@@ -165,6 +188,16 @@
         scrollbar: {
             el: '.swiper-scrollbar',
         },
+    });
+
+    function hamburger() {
+        document.getElementById('line1').classList.toggle('line_1');
+        document.getElementById('line2').classList.toggle('line_2');
+        document.getElementById('line3').classList.toggle('line_3');
+        document.getElementById('nav').classList.toggle('in');
+    }
+    document.getElementById('hamburger').addEventListener('click', function () {
+        hamburger();
     });
 </script>
 
