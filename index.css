@@ -8,6 +8,8 @@
 
 body {
     background: #000021;
+    background: linear-gradient(to left, #8f94fb, #4e54c8);
+    width: 100%;
 }
 
 
@@ -114,7 +116,7 @@ header h1 {
     /*０.7秒かけてナビメニューがスライドする*/
     transition: .38s;
 }
-
+@media screen and (max-width: 768px){
     #nav {
         position: absolute;
         top: 0;
@@ -127,8 +129,8 @@ header h1 {
         /*０.7秒かけてナビメニューがスライドする*/
         transition: .38s;
     }
-
-
+}
+    
 #nav ul {
     padding-top: 80px;
 }
@@ -213,9 +215,8 @@ header h1 {
 .context {
     width: 100%;
     position: absolute;
+    background-color: #000021;
 }
-
-
 
 
 .container-main-left-img {
@@ -259,6 +260,16 @@ header h1 {
     text-align: center;
     text-decoration: none;
     color: #7856ff;
+}
+
+.share {
+    font-size: 20px;
+    padding: 2vh;
+    color: #fff;
+}
+.linktext:hover {
+    color: #fff;
+    transition: all 0.5s;
 }
 
 .area {
