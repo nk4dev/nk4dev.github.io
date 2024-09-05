@@ -19,16 +19,17 @@ header {
     justify-content: flex-start;
     width: 100%;
     height: 50px;
-    background: transparent;
-    z-index: 0;
+    background: #000021;
 }
-.nineteen-text{
+
+.nineteen-text {
     display: flex;
     align-items: center;
     transform: rotate(-90deg) translateX(-60%) translateY(calc(50% - 80px));
     padding: 5px;
     margin-top: 60px;
 }
+
 header h1 {
     color: #7856ff;
     font-size: 22px;
@@ -120,7 +121,8 @@ header h1 {
     /*０.7秒かけてナビメニューがスライドする*/
     transition: .38s;
 }
-@media screen and (max-width: 768px){
+
+@media screen and (max-width: 768px) {
     #nav {
         position: absolute;
         top: 0;
@@ -134,7 +136,7 @@ header h1 {
         transition: .38s;
     }
 }
-    
+
 #nav ul {
     padding-top: 80px;
 }
@@ -185,35 +187,22 @@ header h1 {
 .container-main {
     color: #fff;
     padding: 10px;
-    z-index: 10;
 }
 
-.swiper {
-    width: 100%;
-    height: 400px;
-}
-
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
+/* 水平スクロール */
+.section {
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
 }
 
-.swiper-slide img {
-    height: 300px;
-    max-width: 100%;
-    z-index: 0;
+.section__item {
+    scroll-snap-align: center;
+    flex: 0 0 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .context {
@@ -243,6 +232,30 @@ header h1 {
     font-size: 25px;
     padding: 2vh;
     text-align: center;
+    opacity:0;
+}
+
+.maintext-anime {
+    transition: all 0.5s;
+    animation-name: fade-in;
+    animation-duration: 1.4s;
+    animation-iteration-count: 1;
+    animation-delay: 0.23s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+/* アニメーション */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .links {
@@ -271,6 +284,7 @@ header h1 {
     padding: 2vh;
     color: #fff;
 }
+
 .linktext:hover {
     color: #fff;
     transition: all 0.5s;
@@ -281,6 +295,7 @@ header h1 {
     background: linear-gradient(to left, #8f94fb, #4e54c8);
     width: 100%;
 }
+
 .footer {
     text-align: center;
     padding: 2vh;
