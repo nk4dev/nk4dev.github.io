@@ -17,7 +17,8 @@
     <meta property="twitter:image" content="https://nknighta.github.io/img/icon.jpg">
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@ama_dev_1">
-    <link rel="icon" href="https://media.varius.technology/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/img/icon.jpg" type="image/x-icon" />
+    <link rel="icon" href="/img/icon.jpg" type="image/jpeg">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
@@ -72,12 +73,11 @@
             <div class="container-main-left-img">
                 <img src="img/icon.jpg" alt="my photo">
             </div>
-
-            <div class=" maintext-anime maintext ">
+            <strong id="introduction">
                 i &apos;m technical college Student in Japan.<br>
                 studying about web development.<br>
                 using javascript, typescript, sass, React and NextJS.
-            </div>
+            </strong>
         </div>
         <div class="maintext">
             my apps
@@ -125,28 +125,6 @@
 </body>
 
 <script>
-    const swiper = new Swiper('.swiper', {
-        // Optional parameters
-        direction: 'horizontal',
-        loop: true,
-
-        // If we need pagination
-        pagination: {
-            el: '.swiper-pagination',
-        },
-
-        // Navigation arrows
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-
-        // And if we need scrollbar
-        scrollbar: {
-            el: '.swiper-scrollbar',
-        },
-    });
-
     function hamburger() {
         document.getElementById('line1').classList.toggle('line_1');
         document.getElementById('line2').classList.toggle('line_2');

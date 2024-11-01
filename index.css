@@ -228,36 +228,6 @@ header h1 {
     height: 300px
 }
 
-.maintext {
-    font-size: 25px;
-    padding: 2vh;
-    text-align: center;
-    opacity:0;
-}
-
-.maintext-anime {
-    transition: all 0.5s;
-    animation-name: fade-in;
-    animation-duration: 1.4s;
-    animation-iteration-count: 1;
-    animation-delay: 0.23s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in-out;
-}
-
-/* アニメーション */
-@keyframes fade-in {
-    0% {
-        opacity: 0;
-        transform: translateY(60px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .links {
     display: flex;
     justify-content: center;
@@ -301,4 +271,18 @@ header h1 {
     padding: 2vh;
     color: #fff;
     background-color: #000;
+}
+.maintext {
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+}
+#introduction {
+    color: #bbaaff;
+    text-align: center;
+    padding: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
 }
