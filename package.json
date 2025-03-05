@@ -1,0 +1,23 @@
+{
+  "name": "nknighta-blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "panda codegen",
+    "dev": "next dev",
+    "build": "yarn prepare && next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@pandacss/dev": "^0.53.0",
+    "@types/node": "22.13.8",
+    "@types/react": "19.0.10",
+    "typescript": "5.8.2"
+  }
+}
