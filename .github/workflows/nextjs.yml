@@ -4,7 +4,7 @@
 #
 name: Deploy Next.js site to Pages
 #env:
-  #CMS_API_KEY: ${{ secrets.CMS_API_KEY }}
+#CMS_API_KEY: ${{ secrets.CMS_API_KEY }}
 on:
   # Runs on pushes targeting the default branch
   push:
@@ -77,9 +77,8 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
-        with:
-          env:
-            CMS_API_KEY: ${{ secrets.CMS_API_KEY }}
+        env:
+          CMS_API_KEY: ${{ secrets.CMS_API_KEY }}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
