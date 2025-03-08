@@ -79,7 +79,7 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} build
         env:
-          NEXT_PUBLIC_API_KEY: ${{ CMS_API_KEY }}
+          NEXT_PUBLIC_API_KEY: ${{ secret.CMS_API_KEY }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
