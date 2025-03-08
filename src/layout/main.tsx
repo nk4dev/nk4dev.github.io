@@ -1,7 +1,7 @@
 import { css } from "../../styled-system/css"
 import Link from "next/link";
 
-export default function Layout({ children }) {
+export default function BlogLayout({ children }) {
     return (
         <div className={css({
             background: "#050021",
@@ -22,6 +22,28 @@ export default function Layout({ children }) {
                 })}>
                     Nknight AMAMIYA
                 </Link>
+            </div>
+
+            <div className={css({
+                display: "flex",
+                justifyContent: "center",
+                padding: "10px",
+                borderBottom: "1px solid #f0d0ff",
+            })}>
+                <Link href={"/blog"} className={css({
+                    textShadow: "0 10px 30px #aa00ff",
+                    borderRadius: "5px",
+                    color: "#f0d0ff",
+                })}>
+                    Blog
+                </Link>
+            </div>
+            <div className={css({
+                display: "flex",
+                justifyContent: "center",
+                padding: "10px",
+            })}>
+                The blog is now open for testing.
             </div>
             <main>
                 {children}
