@@ -5,7 +5,7 @@ on:
     branches:
       - main
   repository_dispatch:
-    types: [update]
+    types: [update-posts]
 
 jobs:
   build-and-deploy:
