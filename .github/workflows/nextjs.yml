@@ -78,7 +78,6 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         with:
-          # Pass the CMS_API_KEY to the build script
           env:
             CMS_API_KEY: ${{ secrets.CMS_API_KEY }}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
