@@ -33,7 +33,7 @@ export default function Index() {
                 <div>
                     <ProfileHead>Skills</ProfileHead>
                     <ProfileBody>
-                        <p className={css({ fontSize: "20px" })}>javascript, typescript, c#</p>
+                        <p className={css({ fontSize: "20px" })}>javascript, typescript, c#, Nextjs and React</p>
                     </ProfileBody>
 
                     <ProfileHead>Repos</ProfileHead>

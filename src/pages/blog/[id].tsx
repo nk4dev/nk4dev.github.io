@@ -2,8 +2,15 @@ import client from "../../utils/cms";
 import BlogLayout from "../../layout/bloglayout";
 import Link from "next/link";
 import { css } from "../../../styled-system/css";
+import { useState } from "react";
 
 export default function BlogId({ blog }) {
+    const persedIsoDate = new Date(blog.publishedAt);
+    const year = persedIsoDate.getFullYear();
+    const month = persedIsoDate.getMonth() + 1;
+    const day = persedIsoDate.getDate();
+    const hour = persedIsoDate.getHours();
+    const milute = persedIsoDate.getMinutes();
     return (
         <BlogLayout>
             <div className={css({
@@ -12,7 +19,7 @@ export default function BlogId({ blog }) {
                 borderBottom: "1px solid #f0d0ff",
             })}>
                 {blog.title}
-                <p>{blog.publishedAt}</p>
+                <p>{`${year} / ${month} / ${day} - ${hour} : ${milute}`}</p>
             </div>
             <div
                 className={css({

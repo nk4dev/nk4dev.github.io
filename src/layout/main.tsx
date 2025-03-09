@@ -38,13 +38,6 @@ export default function BlogLayout({ children }) {
                     Blog
                 </Link>
             </div>
-            <div className={css({
-                display: "flex",
-                justifyContent: "center",
-                padding: "10px",
-            })}>
-                The blog is now open for testing.
-            </div>
             <main>
                 {children}
             </main>
