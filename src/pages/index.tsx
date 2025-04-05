@@ -5,8 +5,22 @@ import Layout from "../layout/main";
 import Image from "next/image";
 import Link from "next/link";
 import { ProfileHead, ProfileBody, ProfileContactLink, ProfileCenter } from "../components/profile";
+import { useState, useEffect } from "react";
 
-export default function Index() {
+
+export default function Index({ data }) {
+    const [repos, setRepos] = useState(null);
+    useEffect(() => {
+        const githubrepos = async () => {
+            const res = await fetch("https://api.github.com/repos/nknighta/vx");
+            const data = await res.json();
+            return data;
+        }
+        const data = githubrepos();
+        data.then(data =>
+            setRepos(data)
+        )
+    }, [data]);
     return (
         <Layout>
             <HMeta pageTitle="Profile" />
@@ -41,15 +55,32 @@ export default function Index() {
                         <ProfileContactLink href={"https://github.com/nknighta/vx"}>
                             <p>VX</p>
                         </ProfileContactLink>
-
+                        <ProfileBody>
+                            <p>
+                                Default branch
+                                {repos && " : " + repos.default_branch}
+                            </p>
+                            <p>
+                                Latest commit
+                                <span>{repos && " : " +  repos.pushed_at}</span>
+                            </p>
+                            
+                            <p>
+                                Watchers
+                                <span>{repos && " : " +  repos.watchers}</span>
+                            </p>
+                        </ProfileBody>
                         <ProfileContactLink href={"https://nknighta.github.io/oss-map-weather/"}>
                             <p>OSS-WEATHER</p>
                         </ProfileContactLink>
 
-
                         <ProfileContactLink href={"https://github.com/nknighta/grove-player"}>
                             <p>Grove Player</p>
                         </ProfileContactLink>
+
+                        <Link href={"/repos"} className={css({ color: "#f0d0ff", fontSize: "20px" })}>
+                            and more ...
+                        </Link>
                     </ProfileBody>
 
                     <ProfileHead>Contact</ProfileHead>
@@ -76,7 +107,7 @@ export default function Index() {
                                 height={200}
                                 alt="header"
                             />
-                            
+
                             <Image
                                 src={"https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/31d6d24b062c4eb494a6567795f84e3e/home.png"}
                                 width={500}
@@ -86,6 +117,7 @@ export default function Index() {
                         </ProfileCenter>
                     </ProfileBody>
                 </div>
+
             </div>
         </Layout>
     )

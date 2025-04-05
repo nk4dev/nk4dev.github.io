@@ -1,10 +1,11 @@
 import client from "../../utils/cms";
-import BlogLayout from "../../layout/bloglayout";
+import Layout from "../../layout/main";
 import Link from "next/link";
 import { css } from "../../../styled-system/css";
-import { useState } from "react";
+import HMeta from "../../components/headermeta";
 
 export default function BlogId({ blog }) {
+    // get blog published date
     const persedIsoDate = new Date(blog.publishedAt);
     const year = persedIsoDate.getFullYear();
     const month = persedIsoDate.getMonth() + 1;
@@ -12,7 +13,19 @@ export default function BlogId({ blog }) {
     const hour = persedIsoDate.getHours();
     const milute = persedIsoDate.getMinutes();
     return (
-        <BlogLayout>
+        <Layout>
+            <HMeta
+                pageTitle={blog.title}
+                pageDescription="Nknight AMAMIYA'S Blog"
+                pagePath={`blog/${blog.id}`}
+            />
+            <div className={css({
+                display: "flex",
+                justifyContent: "center",
+                padding: "10px",
+            })}>
+                The blog is now open for testing.
+            </div>
             <div className={css({
                 fontSize: "30px",
                 padding: "40px",
@@ -33,7 +46,7 @@ export default function BlogId({ blog }) {
                 />
                 <Link href="/blog">Back to blog</Link>
             </div>
-        </BlogLayout>
+        </Layout>
     );
 }
 

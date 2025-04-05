@@ -23,6 +23,7 @@ const HMeta: React.FC<MetaProps> = ({
 }) => {
   const defaultTitle = 'nknighta'
   const defaultDescription = 'Web3 development'
+  const basedUrl = 'https://nknighta.github.io/'
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle
   const description = pageDescription ? pageDescription : defaultDescription
   const url = `https://nknighta.github.io/${pagePath == undefined ? '/' : pagePath}`
@@ -46,7 +47,7 @@ const HMeta: React.FC<MetaProps> = ({
       <meta property="og:type" content="website" />
       <meta
         property="og:image"
-        content={`https://varius.technology/api/og?title=${title}&description=${description}`}
+        content={`${basedUrl}api/og?title=${title}&description=${description}`}
       />
       <meta property="og:image:width" content={String(imgWidth)} />
       <meta property="og:image:height" content={String(imgHeight)} />
@@ -54,7 +55,7 @@ const HMeta: React.FC<MetaProps> = ({
       <meta property="twitter:description" content="VARIUS development" />
       <meta
         name="twitter:image"
-        content={`https://varius.technology/api/og?title=${title}&description=${description}`}
+        content={`${basedUrl}api/og?title=${title}&description=${description}`}
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@ama_dev_1" />

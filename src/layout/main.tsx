@@ -34,8 +34,17 @@ export default function BlogLayout({ children }) {
                     textShadow: "0 10px 30px #aa00ff",
                     borderRadius: "5px",
                     color: "#f0d0ff",
+                    margin: "0 5px"
                 })}>
                     Blog
+                </Link>
+                <Link href={"/repos"} className={css({
+                    textShadow: "0 10px 30px #aa00ff",
+                    borderRadius: "5px",
+                    color: "#f0d0ff",
+                    margin: "0 5px"
+                })}>
+                    Repositories
                 </Link>
             </div>
             <main>

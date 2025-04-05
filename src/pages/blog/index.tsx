@@ -1,11 +1,10 @@
 import client from '../../utils/cms';
 //BlogLayout
-
-import BlogLayout from '../../layout/bloglayout';
+import HMeta from '../../components/headermeta';
+import Layout from '../../layout/main';
 import { css } from '../../../styled-system/css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
 
 export const getStaticProps = async () => {
     const data = await client.get({ endpoint: 'blogs' });
@@ -18,9 +17,21 @@ export const getStaticProps = async () => {
 };
 
 const Blog = ({ blog }) => {
-    const router = useRouter();
     return (
-        <BlogLayout>
+        <Layout>
+            
+            <HMeta
+                pageTitle="Blog"
+                pageDescription="Nknight AMAMIYA'S Blog"
+                pagePath="/blog"
+            />
+            <div className={css({
+                display: "flex",
+                justifyContent: "center",
+                padding: "10px",
+            })}>
+                The blog is now open for testing.
+            </div>
             <div className={css({ minHeight: '100vh', p: 4 })}>
                 {blog.map((blog) => (
                     <div key={blog.id}>
@@ -30,7 +41,7 @@ const Blog = ({ blog }) => {
                     </div>
                 ))}
             </div>
-        </BlogLayout>
+        </Layout>
     );
 };
 
