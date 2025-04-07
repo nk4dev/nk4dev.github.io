@@ -1,4 +1,5 @@
 import React from "next";
+import client from "../utils/cms";
 import { css } from '../../styled-system/css';
 import HMeta from "../components/headermeta";
 import Layout from "../layout/main";
@@ -10,6 +11,7 @@ import { useState, useEffect } from "react";
 
 export default function Index({ data }) {
     const [repos, setRepos] = useState(null);
+    
     useEffect(() => {
         const githubrepos = async () => {
             const res = await fetch("https://api.github.com/repos/nknighta/vx");
@@ -31,10 +33,9 @@ export default function Index({ data }) {
                 textAlign: "center",
             })}>
                 <ProfileCenter>
-
                     <Image
                         className={css({ borderRadius: "50%", background: "#c1d0ff", m: 10 })}
-                        src="https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?fit=crop&w=200&h=200" width={200} height={200} alt="icon" />
+                        src="https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?w=170&h=170&q=50&fm=webp" width={200} height={200} alt="icon" />
 
                     <div className={css({
                         fontSize: "30px",
@@ -62,12 +63,12 @@ export default function Index({ data }) {
                             </p>
                             <p>
                                 Latest commit
-                                <span>{repos && " : " +  repos.pushed_at}</span>
+                                <span>{repos && " : " + repos.pushed_at}</span>
                             </p>
-                            
+
                             <p>
                                 Watchers
-                                <span>{repos && " : " +  repos.watchers}</span>
+                                <span>{repos && " : " + repos.watchers}</span>
                             </p>
                         </ProfileBody>
                         <ProfileContactLink href={"https://nknighta.github.io/oss-map-weather/"}>
@@ -76,6 +77,10 @@ export default function Index({ data }) {
 
                         <ProfileContactLink href={"https://github.com/nknighta/grove-player"}>
                             <p>Grove Player</p>
+                        </ProfileContactLink>
+
+                        <ProfileContactLink href={"https://github.com/nknighta/IndexLanguage"}>
+                            <p>IndexLanguage</p>
                         </ProfileContactLink>
 
                         <Link href={"/repos"} className={css({ color: "#f0d0ff", fontSize: "20px" })}>

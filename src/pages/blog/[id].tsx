@@ -3,9 +3,11 @@ import Layout from "../../layout/main";
 import Link from "next/link";
 import { css } from "../../../styled-system/css";
 import HMeta from "../../components/headermeta";
+import Image from "next/image";
 
 export default function BlogId({ blog }) {
     // get blog published date
+    //blog.content = blog.content.replace(/<img[^>]*>/g, (match) => {
     const persedIsoDate = new Date(blog.publishedAt);
     const year = persedIsoDate.getFullYear();
     const month = persedIsoDate.getMonth() + 1;
@@ -18,6 +20,7 @@ export default function BlogId({ blog }) {
                 pageTitle={blog.title}
                 pageDescription="Nknight AMAMIYA'S Blog"
                 pagePath={`blog/${blog.id}`}
+
             />
             <div className={css({
                 display: "flex",
@@ -26,6 +29,7 @@ export default function BlogId({ blog }) {
             })}>
                 The blog is now open for testing.
             </div>
+            <Image alt="blog eyecatch image" src={blog.eyecatch == null ? "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?fit=crop&w=200&h=200" : blog.eyecatch.url} width={500} height={300}/>
             <div className={css({
                 fontSize: "30px",
                 padding: "40px",
@@ -36,10 +40,15 @@ export default function BlogId({ blog }) {
             </div>
             <div
                 className={css({
-                    minHeight: "90vh",
                     p: 4,
                 })}>
-                <div
+                <div className={css({
+                    gap: "14px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    paddingY: "10px",
+                })}
                     dangerouslySetInnerHTML={{
                         __html: `${blog.content}`,
                     }}

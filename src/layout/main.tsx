@@ -38,14 +38,6 @@ export default function BlogLayout({ children }) {
                 })}>
                     Blog
                 </Link>
-                <Link href={"/repos"} className={css({
-                    textShadow: "0 10px 30px #aa00ff",
-                    borderRadius: "5px",
-                    color: "#f0d0ff",
-                    margin: "0 5px"
-                })}>
-                    Repositories
-                </Link>
             </div>
             <main>
                 {children}
@@ -54,10 +46,30 @@ export default function BlogLayout({ children }) {
                 <div className={css({
                     display: "flex",
                     justifyContent: "center",
-                    padding: "20px",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    padding: "7vh",
                     borderTop: "1px solid #f0d0ff",
+                    background: "#000",
                 })}>
-                    (c)nknighta 2021
+                    <div>
+                        (c) Nknight AMAMIYA 2021
+                    </div>
+                    <Link href={"https://varius.technology/"} className={css({
+                        borderRadius: "5px",
+                        padding: "10px 40px",
+                        color: "#f0d0ff",
+                    })}>
+                        varius.technology
+                    </Link>
+                    
+                    <Link href={"https://nknighta.github.io"} className={css({
+                        borderRadius: "5px",                        
+                        padding: "10px 40px",
+                        color: "#f0d0ff",
+                    })}>
+                        nknighta.github.io
+                    </Link>
                 </div>
             </footer>
         </div>
