@@ -21,6 +21,7 @@ const HMeta: React.FC<MetaProps> = ({
   pageImgHeight,
   defaultfavicon
 }) => {
+  const defaultPageImg = pageImg ? pageImg : '/images/og.png'
   const defaultTitle = 'nknighta'
   const defaultDescription = 'Web3 development'
   const basedUrl = 'https://nknighta.github.io/'
@@ -47,7 +48,7 @@ const HMeta: React.FC<MetaProps> = ({
       <meta property="og:type" content="website" />
       <meta
         property="og:image"
-        content={`${basedUrl}api/og?title=${title}&description=${description}`}
+        content={`${defaultPageImg}`}
       />
       <meta property="og:image:width" content={String(imgWidth)} />
       <meta property="og:image:height" content={String(imgHeight)} />
@@ -55,7 +56,7 @@ const HMeta: React.FC<MetaProps> = ({
       <meta property="twitter:description" content="VARIUS development" />
       <meta
         name="twitter:image"
-        content={`${basedUrl}api/og?title=${title}&description=${description}`}
+        content={`${defaultPageImg}`}
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@ama_dev_1" />
