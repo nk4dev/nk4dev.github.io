@@ -107,14 +107,14 @@ export default function Index({ data }) {
                     <ProfileBody>
                         <ProfileCenter>
                             <Image
-                                src={"https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b52fcd2616084cd6b453d512e8591d7a/header.png"}
+                                src={"https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b52fcd2616084cd6b453d512e8591d7a/header.png?fm=webp"}
                                 width={500}
                                 height={200}
                                 alt="header"
                             />
 
                             <Image
-                                src={"https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/31d6d24b062c4eb494a6567795f84e3e/home.png"}
+                                src={"https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/31d6d24b062c4eb494a6567795f84e3e/home.png?fm=webp"}
                                 width={500}
                                 height={200}
                                 alt="header"
