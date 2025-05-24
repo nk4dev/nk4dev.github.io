@@ -24,7 +24,7 @@ const HMeta: React.FC<MetaProps> = ({
   const defaultPageImg = pageImg ? pageImg : '/images/og.png'
   const defaultTitle = 'nknighta'
   const defaultDescription = 'Web3 development'
-  const basedUrl = 'https://nknighta.github.io/'
+  const basedUrl = 'https://nknighta.github.io'
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle
   const description = pageDescription ? pageDescription : defaultDescription
   const url = `https://nknighta.github.io/${pagePath == undefined ? '/' : pagePath}`
