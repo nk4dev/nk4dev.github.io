@@ -122,7 +122,6 @@ export default function Index({ data }) {
                         </ProfileCenter>
                     </ProfileBody>
                 </div>
-
             </div>
         </Layout>
     )

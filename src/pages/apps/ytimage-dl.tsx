@@ -21,6 +21,7 @@ export default function YTImageDL() {
       /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]+)/,
       /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]+)/,
       /(?:https?:\/\/)?(?:www\.)?youtube\.com\/v\/([a-zA-Z0-9_-]+)/,
+      /(?:https?:\/\/)?(?:www\.)?youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/,
     ];
 
     for (const pattern of patterns) {
@@ -130,27 +131,65 @@ export default function YTImageDL() {
           Get Thumbnails
         </button>
       </form>
+      <button
+        onClick={() => {
+          const thumbnailContainer = document.getElementById("thumbnail");
+          if (!thumbnailContainer) return;
+          const images = thumbnailContainer.getElementsByTagName("img");
+          if (images.length === 0) {
+            alert("No thumbnails to download");
+            return;
+          }
+          const videoId = extractVideoId(
+            (document.querySelector("input[name='url']") as HTMLInputElement)
+              .value
+          );
+          if (videoId === "error") {
+            alert("Invalid YouTube URL");
+            return;
+          }
+          const link = document.createElement("a");
+          link.href = images[0].src; // Download the first image
+          link.download = `thumbnail-${videoId}.jpg`; // Set the download filename
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }}
+        style={{
+          display: "block",
+          margin: "20px auto",
+          padding: "10px 20px",
+          backgroundColor: "#2196F3",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        Download Most Hight Quality Thumbnail
+      </button>
       <div style={{ padding: "20px" }}>
         <h2>Thumbnail Preview</h2>
-        <div className={css({
+        <div
+          className={css({
             display: "flex",
-            flexWrap: "wrap",
             justifyContent: "center",
             alignItems: "center",
             gap: "10px",
-            padding: "10px",
+            height: "600px",
             backgroundColor: "#f0f0f0",
             borderRadius: "10px",
             boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-        })}>
+          })}
+        >
           <div
             id="thumbnail"
             style={{
               display: "flex",
-              justifyContent: "center",
+              flexDirection: "column",
               alignItems: "center",
-              maxHeight: "800px",
-              overflow: "hidden",
+              maxHeight: "600px",
+              overflow: "scroll",
             }}
           ></div>
         </div>
