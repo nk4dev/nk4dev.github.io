@@ -21,13 +21,14 @@ const HMeta: React.FC<MetaProps> = ({
   pageImgHeight,
   defaultfavicon
 }) => {
-  const defaultPageImg = pageImg ? pageImg : '/images/og.png'
+  const basedUrl = 'https://nknighta.github.io'
+
+  const defaultPageImg = pageImg ? basedUrl + pageImg : 'https://nknighta.github.io/images/og.png'
   const defaultTitle = 'nknighta'
   const defaultDescription = 'Web3 development'
-  const basedUrl = 'https://nknighta.github.io'
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle
   const description = pageDescription ? pageDescription : defaultDescription
-  const url = `https://nknighta.github.io/${pagePath == undefined ? '/' : pagePath}`
+  const url = `https://nknighta.github.io${pagePath == undefined ? '/' : pagePath}`
   const imgWidth = pageImgWidth ? pageImgWidth : 1280
   const imgHeight = pageImgHeight ? pageImgHeight : 640
   const favicon = defaultfavicon ? defaultfavicon : '/favicon.ico'
