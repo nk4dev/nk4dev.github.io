@@ -1,5 +1,6 @@
 import Layout from "../../layout/main";
 import { css } from "../../../styled-system/css";
+import HMeta from "../../components/headermeta";
 
 export default function YTImageDL() {
   function extractVideoId(url: string): string {
@@ -35,6 +36,7 @@ export default function YTImageDL() {
   }
   return (
     <Layout>
+      <HMeta pageTitle="YTImageDL" />
       <h1
         className={css({
           textAlign: "center",
