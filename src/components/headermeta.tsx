@@ -1,6 +1,5 @@
 import Head from "next/head";
-import Script from "next/script";
-import { GoogleAnalytics } from "@next/third-parties/google";
+
 
 interface MetaProps {
   pageTitle?: string;
@@ -12,7 +11,7 @@ interface MetaProps {
   defaultfavicon?: string;
 }
 
-export const metaDataImage = async () => {};
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || "";
 
 const HMeta: React.FC<MetaProps> = ({
   pageTitle,
@@ -40,11 +39,6 @@ const HMeta: React.FC<MetaProps> = ({
   return (
     <Head>
       <title>{title}</title>
-      <meta
-        name="google-site-verification"
-        content="Qjxxvj1jYae_WgPQU3DLHEhDgH_DlomNupTymcKRHUc"
-      />
-      <GoogleAnalytics gaId="G-9TG7JEDDCX" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="description" content={description} />
       <meta property="og:url" content={url} />
@@ -63,6 +57,22 @@ const HMeta: React.FC<MetaProps> = ({
       <meta name="twitter:title" content={title} />
       <link rel="icon" href={favicon} sizes="any" />
       <link rel="canonical" href={url} />
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
     </Head>
   );
 };
