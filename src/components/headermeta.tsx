@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+import Script from "next/script";
 
 interface MetaProps {
   pageTitle?: string;
@@ -50,29 +50,14 @@ const HMeta: React.FC<MetaProps> = ({
       <meta property="og:image:width" content={String(imgWidth)} />
       <meta property="og:image:height" content={String(imgHeight)} />
 
-      <meta property="twitter:description" content="VARIUS development" />
+      <meta property="twitter:description" content="NknightA blog" />
       <meta name="twitter:image" content={`${defaultPageImg}`} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@ama_dev_1" />
       <meta name="twitter:title" content={title} />
       <link rel="icon" href={favicon} sizes="any" />
       <link rel="canonical" href={url} />
-      <script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-      />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
+      
     </Head>
   );
 };
