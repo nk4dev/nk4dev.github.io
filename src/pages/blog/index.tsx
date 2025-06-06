@@ -8,15 +8,17 @@ import Image from 'next/image';
 
 export const getStaticProps = async () => {
     const data = await client.get({ endpoint: 'blogs' });
+    const categories = await client.get({ endpoint: 'categories' });
     //console.log(data.contents[2]);
     return {
         props: {
             blog: data.contents,
+            categories: categories.contents,
         },
     };
 };
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, categories }) => {
     return (
         <Layout>
             <HMeta
@@ -31,6 +33,35 @@ const Blog = ({ blog }) => {
             })}>
                 The blog is now open for testing.
             </div>
+            {categories && (
+                <div className={css({
+                    display: 'flex',
+                    justifyContent: 'center',
+                    padding: '10px',
+                    gap: '10px',
+                })}>
+                    {categories.map((category) => (
+                        <Link
+                            key={category.id}
+                            href={`/blog/category/${category.id}`}
+                            className={css({
+                                textShadow: '0 10px 30px #aa00ff',
+                                borderRadius: '5px',
+                                color: '#f0d0ff',
+                                padding: '5px 10px',
+                                backgroundColor: '#050021',
+                                transition: 'background-color 0.3s ease-in-out',
+                                '&:hover': {
+                                    backgroundColor: '#aa00ff',
+                                    color: '#050021',
+                                },
+                            })}
+                        >
+                            {category.name}
+                        </Link>
+                    ))}
+                </div>
+            )}
             <div className={css({ 
                  p: 4,
                 display: 'flex',
@@ -38,7 +69,7 @@ const Blog = ({ blog }) => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: '14px',})}>
-                {blog.map((blog, index) => (
+                {blog.map((blog, category) => (
                     <div key={blog.id}>
                         <Link href={`/blog/${blog.id}`}>
                         <Image
@@ -62,6 +93,15 @@ const Blog = ({ blog }) => {
                             />
                             <h1>{blog.title}</h1>
                             <p>{`${blog.publishedAt.slice(0, 10)} - ${blog.publishedAt.slice(11, 16)}`}</p>
+                            {blog.category ? (
+                                <p className={css({ color: '#f0d0ff' })}>
+                                    Category: {blog.category.name}
+                                </p>
+                            ) : (
+                                <p className={css({ color: '#f0d0ff' })}>
+                                    No Category
+                                </p>
+                            )}
                         </Link>
                     </div>
                 ))}
