@@ -1,2 +1,6 @@
 @layer reset, base, tokens, recipes, utilities; 
 
+::selection {
+    background-color: #f0d0ff;
+    color: #050021;
+}
