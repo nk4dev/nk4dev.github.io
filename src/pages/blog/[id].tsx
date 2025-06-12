@@ -31,7 +31,7 @@ export default function BlogId({ blog }) {
       <HMeta
         pageTitle={blog.title}
         pageDescription="Nknight AMAMIYA'S Blog"
-        pagePath={`blog/${blog.id}`}
+        pagePath={`/blog/${blog.id}`}
       />
       <div
         className={css({
