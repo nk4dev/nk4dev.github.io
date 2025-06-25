@@ -5,8 +5,11 @@ import Layout from "../../../layout/main";
 import { css } from "../../../../styled-system/css";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
-const Blog = ({ blog, categories }) => {
+const Blog = ({ blog, categories, context }) => {
+  const router = useRouter();
+  const { id } = router.query;
   return (
     <Layout>
       <HMeta
@@ -14,15 +17,6 @@ const Blog = ({ blog, categories }) => {
         pageDescription="Nknight AMAMIYA'S Blog"
         pagePath="/blog"
       />
-      <div
-        className={css({
-          display: "flex",
-          justifyContent: "center",
-          padding: "10px",
-        })}
-      >
-        The blog is now open for testing.
-      </div>
       <div
         className={css({
           p: 4,
@@ -33,6 +27,37 @@ const Blog = ({ blog, categories }) => {
           gap: "14px",
         })}
       >
+        {categories && (
+          <div
+            className={css({
+              display: "flex",
+              justifyContent: "center",
+              padding: "10px",
+              gap: "10px",
+            })}
+          >
+            {categories.map((category) => (
+              <Link
+                key={category.id}
+                href={`/blog/category/${category.id}`}
+                className={css({
+                  textShadow: "0 10px 30px #aa00ff",
+                  borderRadius: "5px",
+                  color: "#f0d0ff",
+                  padding: "5px 10px",
+                  backgroundColor: category.id === id ? "#aa00ff" : "#050021",
+                  transition: "background-color 0.3s ease-in-out",
+                  "&:hover": {
+                    backgroundColor: "#aa00ff",
+                    color: "#050021",
+                  },
+                })}
+              >
+                {category.name}
+              </Link>
+            ))}
+          </div>
+        )}
         {blog.map((blog) => (
           <div key={blog.id}>
             <Link href={`/blog/${blog.id}`}>
@@ -70,11 +95,14 @@ export const getStaticProps = async (context) => {
   const id = context.params.id;
   const blog = await client.get({ endpoint: "blogs" });
   const categories = await client.get({ endpoint: "categories" });
-  const data = blog.contents.filter((item) => item.category && item.category.id === id );
+  const data = blog.contents.filter(
+    (item) => item.category && item.category.id === id
+  );
 
   return {
     props: {
       blog: data,
+      categories: categories.contents,
     },
   };
 };
