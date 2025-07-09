@@ -54,16 +54,16 @@ const HMeta: React.FC<MetaProps> = ({
       <meta property="og:image:height" content={String(imgHeight)} />
       <meta property="og:image:alt" content={img_alt} />
       <meta property="og:locale" charSet="UTF-8" content="en_US" />
-      
       <meta property="twitter:description" content="NknightA blog" />
       <meta name="twitter:image" content={`${defaultPageImg}`} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content="@ama_dev_1" />
+      <meta name="twitter:creator:id" content="ama_dev_1" />
+      <meta name="twitter:description" content="Nknight AMAMIYA's Twittwe"/>
       <meta name="twitter:site" content="@ama_dev_1" />
       <meta name="twitter:title" content={title} />
       <link rel="icon" href={favicon} sizes="any" />
       <link rel="canonical" href={url} />
-      
     </Head>
   );
 };
