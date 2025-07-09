@@ -11,7 +11,6 @@ interface MetaProps {
   defaultfavicon?: string;
 }
 
-const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || "";
 
 const HMeta: React.FC<MetaProps> = ({
   pageTitle,
@@ -31,14 +30,18 @@ const HMeta: React.FC<MetaProps> = ({
   const defaultDescription = "Web3 development";
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
   const description = pageDescription ? pageDescription : defaultDescription;
-  const url = `https://nknighta.github.io${pagePath == undefined ? "/" : pagePath}`;
+  const url = `https://nknighta.me${pagePath == undefined ? "/" : pagePath}`;
   const imgWidth = pageImgWidth ? pageImgWidth : 1280;
   const imgHeight = pageImgHeight ? pageImgHeight : 640;
   const favicon = defaultfavicon ? defaultfavicon : "/favicon.ico";
+  const img_alt = pageImg
+    ? pageImg.replace(/.*\//, "").replace(/\.\w+$/, "")
+    : "nknighta";
   //const imgx = require("/images/favicon.ico");
   return (
     <Head>
       <title>{title}</title>
+      <meta name="google-site-verification" content="FadhJDiAEFAdginv7Ttd1S3Ord4FWPtK3dnlKRAKeJo" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="description" content={description} />
       <meta property="og:url" content={url} />
@@ -49,10 +52,13 @@ const HMeta: React.FC<MetaProps> = ({
       <meta property="og:image" content={`${defaultPageImg}`} />
       <meta property="og:image:width" content={String(imgWidth)} />
       <meta property="og:image:height" content={String(imgHeight)} />
-
+      <meta property="og:image:alt" content={img_alt} />
+      <meta property="og:locale" charSet="UTF-8" content="en_US" />
+      
       <meta property="twitter:description" content="NknightA blog" />
       <meta name="twitter:image" content={`${defaultPageImg}`} />
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content="@ama_dev_1" />
       <meta name="twitter:site" content="@ama_dev_1" />
       <meta name="twitter:title" content={title} />
       <link rel="icon" href={favicon} sizes="any" />
