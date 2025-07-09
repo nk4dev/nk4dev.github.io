@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://nknighta.me/sitemap.xml
+Sitemap: https://nknighta.me/api/sitemap
+
+# Disallow unnecessary paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
