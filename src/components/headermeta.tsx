@@ -21,11 +21,11 @@ const HMeta: React.FC<MetaProps> = ({
   pageImgHeight,
   defaultfavicon,
 }) => {
-  const basedUrl = "https://nknighta.github.io";
+  const basedUrl = "https://nknighta.me";
 
   const defaultPageImg = pageImg
     ? basedUrl + pageImg
-    : "https://nknighta.github.io/images/og.png";
+    : "https://nknighta.me/images/og.png";
   const defaultTitle = "nknighta";
   const defaultDescription = "nknighta portfolio and blog";
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
