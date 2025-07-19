@@ -89,14 +89,14 @@ export default function BlogLayout({ children }) {
           </Link>
 
           <Link
-            href={"https://nknighta.github.io"}
+            href={"https://nknighta.me"}
             className={css({
               borderRadius: "5px",
               padding: "10px 40px",
               color: "#f0d0ff",
             })}
           >
-            nknighta.github.io
+            nknighta.me
           </Link>
           <div
             className={css({

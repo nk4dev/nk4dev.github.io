@@ -1,5 +1,8 @@
 @layer reset, base, tokens, recipes, utilities; 
 
+* {
+    cursor: url('/images/cursor.png'), auto;
+}
 ::selection {
     background-color: #f0d0ff;
     color: #050021;
