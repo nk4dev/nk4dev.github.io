@@ -1,129 +1,132 @@
 import { css } from "../../styled-system/css";
 import Link from "next/link";
+import ClickSpark from "../components/ClickSpark/ClickSpark";
 
 export default function BlogLayout({ children }) {
   return (
-    <div
-      className={css({
-        background: "#050021",
-        color: "#f0d0ff",
-      })}
-    >
+    <ClickSpark>
       <div
         className={css({
-          display: "flex",
-          justifyContent: "center",
-          fontSize: "30px",
-          padding: "40px",
-          borderBottom: "1px solid #f0d0ff",
+          background: "#050021",
+          color: "#f0d0ff",
         })}
       >
-        <Link
-          href={"/"}
-          className={css({
-            textShadow: "0 10px 30px #aa00ff",
-            borderRadius: "5px",
-            padding: "10px",
-            color: "#f0d0ff",
-          })}
-        >
-          Nknight AMAMIYA
-        </Link>
-      </div>
-
-      <div
-        className={css({
-          display: "flex",
-          justifyContent: "center",
-          padding: "10px",
-          borderBottom: "1px solid #f0d0ff",
-        })}
-      >
-        <Link
-          href={"/blog"}
-          className={css({
-            textShadow: "0 10px 30px #aa00ff",
-            borderRadius: "5px",
-            color: "#f0d0ff",
-            margin: "0 5px",
-          })}
-        >
-          Blog
-        </Link>
-        
-        <Link
-          href={"/apps"}
-          className={css({
-            textShadow: "0 10px 30px #aa00ff",
-            borderRadius: "5px",
-            color: "#f0d0ff",
-            margin: "0 5px",
-          })}
-        >
-          Apps
-        </Link>
-      </div>
-      <main>{children}</main>
-      <footer>
         <div
           className={css({
             display: "flex",
             justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-            padding: "7vh",
-            borderTop: "1px solid #f0d0ff",
-            background: "#000",
+            fontSize: "30px",
+            padding: "40px",
+            borderBottom: "1px solid #f0d0ff",
           })}
         >
-          <div>(c) Nknight AMAMIYA 2021</div>
           <Link
-            href={"https://varius.technology/"}
+            href={"/"}
             className={css({
+              textShadow: "0 10px 30px #aa00ff",
               borderRadius: "5px",
-              padding: "10px 40px",
+              padding: "10px",
               color: "#f0d0ff",
             })}
           >
-            varius.technology
+            Nknight AMAMIYA
+          </Link>
+        </div>
+
+        <div
+          className={css({
+            display: "flex",
+            justifyContent: "center",
+            padding: "10px",
+            borderBottom: "1px solid #f0d0ff",
+          })}
+        >
+          <Link
+            href={"/blog"}
+            className={css({
+              textShadow: "0 10px 30px #aa00ff",
+              borderRadius: "5px",
+              color: "#f0d0ff",
+              margin: "0 5px",
+            })}
+          >
+            Blog
           </Link>
 
           <Link
-            href={"https://nknighta.me"}
+            href={"/apps"}
             className={css({
+              textShadow: "0 10px 30px #aa00ff",
               borderRadius: "5px",
-              padding: "10px 40px",
               color: "#f0d0ff",
+              margin: "0 5px",
             })}
           >
-            nknighta.me
+            Apps
           </Link>
+        </div>
+        <main>{children}</main>
+        <footer>
           <div
             className={css({
               display: "flex",
               justifyContent: "center",
               flexDirection: "column",
               alignItems: "center",
-              borderRadius: "5px",
-              padding: "10px 40px",
-              color: "#f0d0ff",
+              padding: "7vh",
+              borderTop: "1px solid #f0d0ff",
+              background: "#000",
             })}
           >
-            - Mail -
+            <div>(c) Nknight AMAMIYA 2021</div>
             <Link
-              href={"mailto:nknighta@varius.technology"}
-              aria-label="Open email app"
+              href={"https://varius.technology/"}
               className={css({
                 borderRadius: "5px",
                 padding: "10px 40px",
                 color: "#f0d0ff",
               })}
             >
-              nknighta@varius.technology
+              varius.technology
             </Link>
+
+            <Link
+              href={"https://nknighta.me"}
+              className={css({
+                borderRadius: "5px",
+                padding: "10px 40px",
+                color: "#f0d0ff",
+              })}
+            >
+              nknighta.me
+            </Link>
+            <div
+              className={css({
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+                borderRadius: "5px",
+                padding: "10px 40px",
+                color: "#f0d0ff",
+              })}
+            >
+              - Mail -
+              <Link
+                href={"mailto:nknighta@varius.technology"}
+                aria-label="Open email app"
+                className={css({
+                  borderRadius: "5px",
+                  padding: "10px 40px",
+                  color: "#f0d0ff",
+                })}
+              >
+                nknighta@varius.technology
+              </Link>
+            </div>
           </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </ClickSpark>
   );
 }

@@ -1,5 +1,4 @@
 import React from "next";
-import client from "../utils/cms";
 import { css } from "../../styled-system/css";
 import HMeta from "../components/headermeta";
 import Layout from "../layout/main";
@@ -12,10 +11,14 @@ import {
   ProfileCenter,
 } from "../components/profile";
 import { useState, useEffect } from "react";
+import SplitText from "../components/animations/SplitText/SplitText";
+import AnimatedContent from "../components/AnimatedContent/AnimatedContent";
+import TextType from "../components/animations/TextType/TextType";
+import CurvedLoop from "../components/animations/CurvedLoop/CurvedLoop";
 
 export default function Index({ data }) {
   const [repos, setRepos] = useState(null);
-
+  const based_duration = 0.6;
   useEffect(() => {
     const githubrepos = async () => {
       const res = await fetch("https://api.github.com/repos/nknighta/vx");
@@ -37,26 +40,61 @@ export default function Index({ data }) {
         })}
       >
         <ProfileCenter>
-          <Image
-            className={css({
-              borderRadius: "50%",
-              background: "#c1d0ff",
-              m: 10,
-            })}
-            src="https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?w=170&h=170&q=50&fm=webp"
-            width={200}
-            height={200}
-            alt="icon"
-          />
+          <AnimatedContent
+            direction="vertical"
+            duration={based_duration}
+            ease="ease.in"
+            initialOpacity={0}
+            animateOpacity
+            threshold={0.2}
+            delay={0.3}
+          >
+            <Image
+              className={css({
+                borderRadius: "50%",
+                background: "#c1d0ff",
+                m: 10,
+              })}
+              src="https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?w=170&h=170&q=50&fm=webp"
+              width={200}
+              height={200}
+              alt="icon"
+            />
+          </AnimatedContent>
 
           <div
             className={css({
               fontSize: "30px",
               padding: "20px",
+              display: "flex",
+              textAlign: "center",
+              flexDirection: "column",
             })}
           >
-            Hello! I'm Nknight AMAMIYA.
+            <AnimatedContent
+              direction="vertical"
+              duration={based_duration + 0.2}
+              ease="ease.in"
+              initialOpacity={0}
+              animateOpacity
+              threshold={0.2}
+              delay={0.3}
+            >
+              <SplitText text="Hello!" duration={0.5} />
+            </AnimatedContent>
+
+            <AnimatedContent
+              direction="vertical"
+              ease="ease.in"
+              initialOpacity={0}
+              animateOpacity
+              threshold={0.2}
+              delay={0.3}
+            >
+              <SplitText text="I'm Nknight AMAMIYA." duration={1} />
+            </AnimatedContent>
           </div>
+
           <Link
             href={"/whoareyou?im=amamiya"}
             className={css({
@@ -65,98 +103,139 @@ export default function Index({ data }) {
               textDecoration: "underline",
             })}
           >
-            Who are you?
+            <AnimatedContent
+              direction="vertical"
+              ease="ease.in"
+              initialOpacity={0}
+              animateOpacity
+              threshold={0.2}
+              delay={0.3}
+            >
+              
+              Who are you?
+            </AnimatedContent>
           </Link>
         </ProfileCenter>
         <div>
-          <ProfileHead>Skills</ProfileHead>
+          <AnimatedContent
+            direction="vertical"
+            ease="ease.in"
+            initialOpacity={0}
+            animateOpacity
+            threshold={0.2}
+            delay={0.3}
+          >
+            <ProfileHead>
+              <SplitText text="Skills" duration={1} />
+              
+            </ProfileHead>
+          </AnimatedContent>
+
           <ProfileBody>
-            <p className={css({ fontSize: "20px" })}>
-              javascript, typescript, c#, Nextjs and React
-            </p>
+            <AnimatedContent
+              direction="vertical"
+              ease="ease.in"
+              initialOpacity={0}
+              animateOpacity
+              threshold={0.2}
+              delay={0.3}
+            >
+              <p className={css({ fontSize: "20px" })}>
+                <SplitText duration={1} delay={30} text="javascript, typescript, c#, Nextjs and React" />
+              </p>
+            </AnimatedContent>
           </ProfileBody>
 
-          <ProfileHead>Repos</ProfileHead>
-          <ProfileBody>
-            <ProfileContactLink href={"https://github.com/nknighta/vx"}>
-              <p>VX</p>
-            </ProfileContactLink>
+          <div className={css({ paddingTop: "30vh" })}>
+            <ProfileHead>Repos</ProfileHead>
             <ProfileBody>
-              <p>
-                Default branch
-                {repos && " : " + repos.default_branch}
-              </p>
-              <p>
-                Latest commit
-                <span>{repos && " : " + repos.pushed_at}</span>
-              </p>
+              <ProfileContactLink href={"https://github.com/nknighta/vx"}>
+                VX
+              </ProfileContactLink>
+              <ProfileBody>
+                <p>
+                  Default branch
+                  {repos && " : " + repos.default_branch}
+                </p>
+                <p>
+                  Latest commit
+                  <span>{repos && " : " + repos.pushed_at}</span>
+                </p>
 
-              <p>
-                Watchers
-                <span>{repos && " : " + repos.watchers}</span>
-              </p>
+                <p>
+                  Watchers
+                  <span>{repos && " : " + repos.watchers}</span>
+                </p>
+              </ProfileBody>
+              <ProfileContactLink
+                href={"https://nknighta.github.io/oss-map-weather/"}
+              >
+                <p>OSS-WEATHER</p>
+              </ProfileContactLink>
+
+              <ProfileContactLink
+                href={"https://github.com/nknighta/grove-player"}
+              >
+                <p>Grove Player</p>
+              </ProfileContactLink>
+
+              <ProfileContactLink
+                href={"https://github.com/nknighta/IndexLanguage"}
+              >
+                <p>IndexLanguage</p>
+              </ProfileContactLink>
+
+              <Link
+                href={"/repos"}
+                className={css({ color: "#f0d0ff", fontSize: "20px" })}
+              >
+                and more ...
+              </Link>
             </ProfileBody>
-            <ProfileContactLink
-              href={"https://nknighta.github.io/oss-map-weather/"}
-            >
-              <p>OSS-WEATHER</p>
-            </ProfileContactLink>
 
-            <ProfileContactLink
-              href={"https://github.com/nknighta/grove-player"}
-            >
-              <p>Grove Player</p>
-            </ProfileContactLink>
+            <ProfileHead>Contact</ProfileHead>
+            <ProfileBody>
+              <ProfileContactLink href={"/x"}>
+                Twitter @ama_dev_1
+              </ProfileContactLink>
 
-            <ProfileContactLink
-              href={"https://github.com/nknighta/IndexLanguage"}
-            >
-              <p>IndexLanguage</p>
-            </ProfileContactLink>
+              <ProfileContactLink href={"/g"}>
+                GitHub @nknighta
+              </ProfileContactLink>
 
-            <Link
-              href={"/repos"}
-              className={css({ color: "#f0d0ff", fontSize: "20px" })}
-            >
-              and more ...
-            </Link>
-          </ProfileBody>
+              <ProfileContactLink href={"/i"}>
+                Instagram @ama_p0627
+              </ProfileContactLink>
 
-          <ProfileHead>Contact</ProfileHead>
-          <ProfileBody>
-            <ProfileContactLink href={"https://twitter.com/ama_dev_1"}>
-              Twitter @ama_dev_1
-            </ProfileContactLink>
-
-            <ProfileContactLink href={"https://github.com/nknighta"}>
-              GitHub @nknighta
-            </ProfileContactLink>
-
-            <ProfileContactLink href={"https://instagram.com/ama_p0627"}>
-              Instagram @ama_p0627
-            </ProfileContactLink>
-          </ProfileBody>
+              <ProfileContactLink href={"/q"}>
+                Qiita @amamiya_dev
+              </ProfileContactLink>
+            </ProfileBody>
+          </div>
 
           <ProfileHead>Images</ProfileHead>
           <ProfileBody>
             <ProfileCenter>
-              <Image
-                src={
-                  "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b52fcd2616084cd6b453d512e8591d7a/header.png?fm=webp&w=500&h=300&q=90"
-                }
-                width={500}
-                height={300}
-                alt="header"
-              />
-
-              <Image
-                src={
-                  "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/31d6d24b062c4eb494a6567795f84e3e/home.png?fm=webp&w=500&h=300&q=90"
-                }
-                width={500}
-                height={300}
-                alt="header"
-              />
+              <AnimatedContent delay={0.2}>
+                <Image
+                  src={
+                    "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b52fcd2616084cd6b453d512e8591d7a/header.png?fm=webp&w=500&h=300&q=90"
+                  }
+                  width={500}
+                  height={300}
+                  alt="header"
+                />
+              </AnimatedContent>
+              <AnimatedContent delay={0.4}>
+                <Image
+                  src={
+                    "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/31d6d24b062c4eb494a6567795f84e3e/home.png?fm=webp&w=500&h=300&q=90"
+                  }
+                  width={500}
+                  height={300}
+                  alt="header"
+                />
+              </AnimatedContent>
             </ProfileCenter>
           </ProfileBody>
         </div>

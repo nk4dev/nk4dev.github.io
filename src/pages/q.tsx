@@ -6,17 +6,17 @@ import { useEffect } from "react";
 export default function LinkPage() {
   const router = useRouter();
   useEffect(() => {
-    router.push("https://instagram.com/ama_p0627");
+    router.push("https://qiita.com/amamiya_dev");
   }, []);
   return (
     <Layout>
       <div style={{ textAlign: "center", marginTop: "50px", height: "100vh" }}>
-        <h1>Redirect to Instagram...</h1>
+        <h1>Redirect to Qiita...</h1>
         <p>
           If you are not redirected automatically, please click the link below.
         </p>
         <Link
-          href="https://instagram.com/ama_p0627"
+          href="https://qiita.com/amamiya_dev"
           style={{ color: "blue", textDecoration: "underline" }}
         >
           Go to VX
