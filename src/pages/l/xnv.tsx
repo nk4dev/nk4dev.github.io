@@ -6,12 +6,12 @@ import { useEffect } from "react";
 export default function LinkPage() {
   const router = useRouter();
   useEffect(() => {
-    router.push("https://github.com/nknighta/vx/pkgs/npm/vx");
+    router.push("https://github.com/nknighta/xnv");
   }, []);
   return (
     <Layout>
       <div style={{ textAlign: "center", marginTop: "50px", height: "100vh" }}>
-        <h1>Redirect to VX...</h1>
+        <h1>Redirecting...</h1>
         <p>
           If you are not redirected automatically, please click the link below.
         </p>
@@ -19,7 +19,7 @@ export default function LinkPage() {
           href="https://github.com/nknighta/xnv"
           style={{ color: "blue", textDecoration: "underline" }}
         >
-          Go to VX
+          Go to XNV
         </Link>
       </div>
     </Layout>

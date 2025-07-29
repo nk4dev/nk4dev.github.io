@@ -11,7 +11,7 @@ export default function LinkPage() {
   return (
     <Layout>
       <div style={{ textAlign: "center", marginTop: "50px", height: "100vh" }}>
-        <h1>Redirect to VX...</h1>
+        <h1>Redirecting...</h1>
         <p>
           If you are not redirected automatically, please click the link below.
         </p>
