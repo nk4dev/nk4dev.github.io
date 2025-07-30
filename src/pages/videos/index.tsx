@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 export default function Index({ data }) {
   return (
     <Layout>
-      <HMeta pageTitle="Apps" />
+      <HMeta pageTitle="Videos" />
       <div>
         <ProfileCenter>
           <div className={css({ paddingY: "40px" })}>
