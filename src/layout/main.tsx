@@ -64,6 +64,18 @@ export default function BlogLayout({ children }) {
           >
             Apps
           </Link>
+          
+          <Link
+            href={"/videos"}
+            className={css({
+              textShadow: "0 10px 30px #aa00ff",
+              borderRadius: "5px",
+              color: "#f0d0ff",
+              margin: "0 5px",
+            })}
+          >
+            Videos
+          </Link>
         </div>
         <main>{children}</main>
         <footer>

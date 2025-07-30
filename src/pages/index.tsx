@@ -127,7 +127,6 @@ export default function Index({ data }) {
           >
             <ProfileHead>
               <SplitText text="Skills" duration={1} />
-              
             </ProfileHead>
           </AnimatedContent>
 
@@ -140,9 +139,9 @@ export default function Index({ data }) {
               threshold={0.2}
               delay={0.3}
             >
-              <p className={css({ fontSize: "20px" })}>
+              <div className={css({ fontSize: "20px" })}>
                 <SplitText duration={1} delay={30} text="javascript, typescript, c#, Nextjs and React" />
-              </p>
+              </div>
             </AnimatedContent>
           </ProfileBody>
 
