@@ -13,15 +13,13 @@ import {
 import { useState, useEffect } from "react";
 import SplitText from "../components/animations/SplitText/SplitText";
 import AnimatedContent from "../components/AnimatedContent/AnimatedContent";
-import TextType from "../components/animations/TextType/TextType";
-import CurvedLoop from "../components/animations/CurvedLoop/CurvedLoop";
 
 export default function Index({ data }) {
   const [repos, setRepos] = useState(null);
   const based_duration = 0.6;
   useEffect(() => {
     const githubrepos = async () => {
-      const res = await fetch("https://api.github.com/repos/nknighta/vx");
+      const res = await fetch("https://api.github.com/repos/nknighta/xnv");
       const data = await res.json();
       return data;
     };
@@ -148,8 +146,8 @@ export default function Index({ data }) {
           <div className={css({ paddingTop: "30vh" })}>
             <ProfileHead>Repos</ProfileHead>
             <ProfileBody>
-              <ProfileContactLink href={"https://github.com/nknighta/vx"}>
-                VX
+              <ProfileContactLink href={"https://github.com/nknighta/xnv"}>
+                XNV <br/> Web3 tool for developers
               </ProfileContactLink>
               <ProfileBody>
                 <p>
