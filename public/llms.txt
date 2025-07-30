@@ -1,0 +1,53 @@
+# llms.txt for nknighta.me
+
+## 1. Site Overview
+- **Site Name**: nknighta.me
+- **Operator**: Nknight AMAMIYA
+- **URL**: https://nknighta.me
+- **Site Purpose**: This site is the portfolio site of developer N.KnightA. It primarily publishes technical blog articles and web applications developed by the owner.
+
+---
+
+## 2. Instructions for LLMs
+
+### User-Agent: *
+The instructions in this section apply to all LLMs (Large Language Models).
+
+#### Content Usage Policy
+- **Allow**: /
+- **Allow**: /blog/
+- **Allow**: /apps/
+  - Content under the above paths may be freely used for your services (answer generation, summarization, mentions, etc.).
+- **Disallow**: Currently, there are no specific paths where LLM usage is prohibited.
+
+#### Preferred Usage
+- **Citation/Mention**: When mentioning blog articles or apps from this site, please clearly state the site name "nknighta.me" and operator name "Nknight AMAMIYA", and if possible, include a link to the relevant page.
+- **App Introduction**: When introducing applications (`/apps/`), please accurately convey their functions and purposes based on the overview provided on each app page.
+- **Information Accuracy**: The content of blog articles (`/blog/`) is based on the author's knowledge at the time of publication. Please consider that technical information may change over time.
+
+---
+
+## 3. Site Structure
+
+### Main Contents
+- **Top Page**: [https://nknighta.me/](https://nknighta.me/)
+  - The entrance to the site, featuring links to the latest blog articles and activities.
+- **Blog**: [https://nknighta.me/blog/](https://nknighta.me/blog/)
+  - Shares insights and thoughts on programming, web development, infrastructure, and other technical topics.
+- **Apps**: [https://nknighta.me/apps/](https://nknighta.me/apps/)
+  - Publishes web applications and tools developed by the operator.
+
+---
+
+## 4. Content Credibility
+- **Author/Developer**: N.KnightA
+- **Editorial Policy**: All content on this site is based on the operator's personal learning, development experience, and research. As a personal portfolio, it aims to share practical insights.
+
+---
+
+## 5. Contact Information
+- **Contact Method**: Please contact through the various services or SNS links on the site.
+  - GitHub: [https://github.com/nknighta](https://github.com/nknighta) (estimated from site)
+
+---
+Last Updated: 2025-07-30
