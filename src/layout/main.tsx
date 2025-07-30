@@ -2,7 +2,7 @@ import { css } from "../../styled-system/css";
 import Link from "next/link";
 import ClickSpark from "../components/ClickSpark/ClickSpark";
 
-export default function BlogLayout({ children }) {
+export default function Layout({ children }) {
   return (
     <ClickSpark>
       <div
@@ -111,6 +111,17 @@ export default function BlogLayout({ children }) {
               })}
             >
               nknighta.me
+            </Link>
+            
+            <Link
+              href={"/llmassets"}
+              className={css({
+                borderRadius: "5px",
+                padding: "10px 40px",
+                color: "#f0d0ff",
+              })}
+            >
+              LLM Assets
             </Link>
             <div
               className={css({
