@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export default function LinkPage() {
   const router = useRouter();
   useEffect(() => {
-    router.push("https://qiita.com/amamiya_dev");
+    router.push("https://qiita.com/nk4dev");
   }, []);
   return (
     <Layout>
@@ -16,7 +16,7 @@ export default function LinkPage() {
           If you are not redirected automatically, please click the link below.
         </p>
         <Link
-          href="https://qiita.com/amamiya_dev"
+          href="https://qiita.com/nk4dev"
           style={{ color: "blue", textDecoration: "underline" }}
         >
           Go to VX

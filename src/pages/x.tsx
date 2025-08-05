@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export default function LinkPage() {
   const router = useRouter();
   useEffect(() => {
-    router.push("https://x.com/ama_dev_1");
+    router.push("https://x.com/nk4dev");
   }, []);
   return (
     <Layout>
@@ -16,7 +16,7 @@ export default function LinkPage() {
           If you are not redirected automatically, please click the link below.
         </p>
         <Link
-          href="https://x.com/ama_dev_1"
+          href="https://x.com/nk4dev"
           style={{ color: "blue", textDecoration: "underline" }}
         >
           Go to VX
