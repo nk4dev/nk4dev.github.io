@@ -23,9 +23,6 @@ const HMeta: React.FC<MetaProps> = ({
 }) => {
   const basedUrl = "https://nknighta.me";
 
-  const defaultPageImg = pageImg
-    ? basedUrl + pageImg
-    : "https://nknighta.me/images/og.png";
   const defaultTitle = "nknighta";
   const defaultDescription = "nknighta portfolio and blog";
   const title = pageTitle ? `${pageTitle} | ${defaultTitle}` : defaultTitle;
@@ -38,6 +35,7 @@ const HMeta: React.FC<MetaProps> = ({
     ? pageImg.replace(/.*\//, "").replace(/\.\w+$/, "")
     : "nknighta";
   //const imgx = require("/images/favicon.ico");
+  const defaultPageImg = `https://ogp-img-gen.vercel.app/api/img-gen?text=${title}`;
   return (
     <Head>
       <title>{title}</title>
