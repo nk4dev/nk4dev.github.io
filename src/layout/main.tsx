@@ -1,6 +1,7 @@
 import { css } from "../../styled-system/css";
 import Link from "next/link";
 import ClickSpark from "../components/ClickSpark/ClickSpark";
+import ShareButton from "../components/AnimatedContent/shrebtn";
 
 export default function Layout({ children }) {
   return (
@@ -64,7 +65,7 @@ export default function Layout({ children }) {
           >
             Apps
           </Link>
-          
+
           <Link
             href={"/videos"}
             className={css({
@@ -90,6 +91,13 @@ export default function Layout({ children }) {
               background: "#000",
             })}
           >
+
+            <div className={css({ marginBottom: "20px" })}>
+              <p>Share this page:</p>
+              <div className={css({ display: "flex", justifyContent: "center" })}>
+                <ShareButton />
+              </div>
+            </div>
             <div>(c) Nknight AMAMIYA 2021</div>
             <Link
               href={"https://varius.technology/"}
@@ -112,7 +120,7 @@ export default function Layout({ children }) {
             >
               nknighta.me
             </Link>
-            
+
             <Link
               href={"/llmassets"}
               className={css({
