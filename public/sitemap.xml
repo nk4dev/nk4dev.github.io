@@ -51,4 +51,30 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <url>
+    <loc>https://nknighta.me/g</loc>
+    <lastmod>2025-08-19T21:00:00.021Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://nknighta.me/x</loc>
+    <lastmod>2025-08-19T21:00:00.021Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://nknighta.me/i</loc>
+    <lastmod>2025-08-19T21:00:00.021Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  
+  <url>
+    <loc>https://nknighta.me/q</loc>
+    <lastmod>2025-08-19T21:00:00.021Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
 </urlset>
