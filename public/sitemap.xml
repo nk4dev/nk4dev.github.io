@@ -23,6 +23,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  
+  <url>
+    <loc>https://nknighta.me/images</loc>
+    <lastmod>2025-07-12T15:02:24.021Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
 
   <url>
     <loc>https://nknighta.me/whoareyou</loc>

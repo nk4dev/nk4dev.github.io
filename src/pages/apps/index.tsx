@@ -42,8 +42,35 @@ export default function Index({ data }) {
               <ProfileContactLink href="/apps/ytimage-dl">
                 <p>App</p>
               </ProfileContactLink>
+
               <ProfileContactLink href="https://github.com/nknighta/ytimage-dl">
                 <p>Repository (HTML version)</p>
+              </ProfileContactLink>
+
+              <ProfileCenter>
+                <ProfileHead>Grove Player</ProfileHead>
+              </ProfileCenter>
+              <ProfileContactLink href="/apps/grove">
+                <p>App Link (web application)</p>
+              </ProfileContactLink>
+
+              <ProfileCenter>
+                <ProfileHead>Examples and Playground</ProfileHead>
+              </ProfileCenter>
+              <ProfileContactLink href="/playground/mdxloadtest">
+                <p>mdx load test</p>
+              </ProfileContactLink>
+
+            <ProfileCenter>
+              <Image
+                src="/images/css.png"
+                alt="Apps Image"
+                width={300}
+                height={300}
+              />
+            </ProfileCenter>
+              <ProfileContactLink href="/awesome-css-website">
+                <p>Awesome CSS Website</p>
               </ProfileContactLink>
             </div>
           </ProfileBody>

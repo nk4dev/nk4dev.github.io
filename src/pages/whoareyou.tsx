@@ -15,7 +15,7 @@ export default function Index() {
           thanks for visit <Link className={css({_hover: { textDecoration: "underline" }})} href="https://mastodon.social/@nknighta">my social network profile</Link> <br />
         </div>
       )}
-      <HMeta pageTitle="Who are you?" />
+      <HMeta pageTitle="Who are you?" pageDescription="who ami I?"/>
       <div className={css({ paddingY: "5vh" })}>
         <div>
           <h1 className={css({ fontSize: "25px", textAlign: "center" })}>

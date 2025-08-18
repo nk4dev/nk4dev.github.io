@@ -28,7 +28,7 @@ export default function Index({ data }) {
   }, [data]);
   return (
     <Layout>
-      <HMeta pageTitle="Profile" />
+      <HMeta pageTitle="Profile" pageDescription="Profile of Nknight AMAMIYA(nk4dev)" />
       <div
         className={css({
           display: "flex",
