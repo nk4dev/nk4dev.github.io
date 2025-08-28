@@ -5,6 +5,7 @@ import Layout from "../../layout/main";
 import { css } from "../../../styled-system/css";
 import Link from "next/link";
 import Image from "next/image";
+import BlogLayout from "../../layout/bloglayout";
 
 export const getStaticProps = async () => {
   const data = await client.get({ endpoint: "blogs" });
@@ -20,21 +21,12 @@ export const getStaticProps = async () => {
 
 const Blog = ({ blog, categories }) => {
   return (
-    <Layout>
+    <BlogLayout>
       <HMeta
         pageTitle="Blog"
         pageDescription="Nknight AMAMIYA'S Blog"
         pagePath="/blog"
       />
-      <div
-        className={css({
-          display: "flex",
-          justifyContent: "center",
-          padding: "10px",
-        })}
-      >
-        The blog is now open for testing.
-      </div>
       {categories && (
         <div
           className={css({
@@ -112,7 +104,7 @@ const Blog = ({ blog, categories }) => {
           </div>
         ))}
       </div>
-    </Layout>
+    </BlogLayout>
   );
 };
 

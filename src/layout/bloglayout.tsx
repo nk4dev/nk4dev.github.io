@@ -69,7 +69,7 @@ export default function BlogLayout({ children }) {
           padding: "10px",
         })}
       >
-        The blog is now open for testing.
+        new blog is here! {"=> "}<Link className={css({_hover: { textDecoration: "underline" }})} href="https://blog.nknighta.me">blog.nknighta.me</Link>
       </div>
       <main>{children}</main>
       <footer>
