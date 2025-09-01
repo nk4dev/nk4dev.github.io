@@ -49,5 +49,7 @@ The instructions in this section apply to all LLMs (Large Language Models).
 - **Contact Method**: Please contact through the various services or SNS links on the site.
   - GitHub: [https://github.com/nknighta](https://github.com/nknighta) (estimated from site)
 
+## 6. My Assets (My Icon, markdown etc.)
+- **My Icon**: ![My Icon](https://nknighta.me/assets/img/myicon.jpeg)
 ---
 Last Updated: 2025-07-30
