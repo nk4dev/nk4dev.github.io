@@ -5,3 +5,5 @@ styled-system
 styled-system-studio
 .env
 yarn.lock
+
+.idea/
