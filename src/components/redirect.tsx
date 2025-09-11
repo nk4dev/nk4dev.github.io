@@ -1,4 +1,3 @@
-import Layout from "../layout/main";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -9,7 +8,7 @@ export default function LinkPage({url, text}: {url: string, text: string}) {
     router.push(url);
   }, []);
   return (
-    <Layout>
+    <>
       <div style={{ textAlign: "center", marginTop: "50px", height: "100vh" }}>
         <h1>Redirect to {text}...</h1>
         <p>
@@ -22,6 +21,6 @@ export default function LinkPage({url, text}: {url: string, text: string}) {
           {text}
         </Link>
       </div>
-    </Layout>
+    </>
   );
 }
