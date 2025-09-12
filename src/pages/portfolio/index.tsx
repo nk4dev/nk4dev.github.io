@@ -36,7 +36,6 @@ function QueryPage({ id, lang}: { id?: string | string[]; lang?: string}) {
                     {lang == "ja" ? "日本語" : "English"}
                 </button>
             </Link>
-            {lang == "ja" ? <div>public/static/vx3ja.mdx</div> : <div>public/static/vx3en.mdx</div>}
             {!id ? (
                 <div>
                     <Link href={lang == "ja" ? "/portfolio?id=vx3&lang=ja" : "/portfolio?id=vx3&lang=en"} style={{ color: "white", textDecoration: "underline" }}>
