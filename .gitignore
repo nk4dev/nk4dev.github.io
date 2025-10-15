@@ -8,3 +8,7 @@ yarn.lock
 
 .idea/
 .vscode/
+
+yarn.lock
+package-lock.json
+bun.lock

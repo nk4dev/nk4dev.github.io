@@ -13,9 +13,12 @@ import {
 import { useState, useEffect } from "react";
 import SplitText from "../components/animations/SplitText/SplitText";
 import AnimatedContent from "../components/AnimatedContent/AnimatedContent";
+import Script from "next/script";
+import Popup from "../components/Popup";
 
 export default function Index({ data }) {
   const [repos, setRepos] = useState(null);
+  const [isPressClosed, setIsPressClosed] = useState(true);
   const based_duration = 0.6;
   useEffect(() => {
     const githubrepos = async () => {
@@ -29,6 +32,25 @@ export default function Index({ data }) {
   return (
     <Layout>
       <HMeta pageTitle="Profile" pageDescription="Profile of Nknight AMAMIYA(nk4dev)" />
+      <Script async src="https://platform.twitter.com/widgets.js" ></Script>
+      <div>
+        <Popup title="Follow on X">
+          <div>
+            Please follow my X (Twitter) account to stay updated.
+            <div style={{ marginTop: 8 }}>
+              <Link 
+              className={css({
+                color: "#1DA1F2",
+                textDecoration: "underline",
+                cursor: "default",
+              })}
+              target="_blank" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.x.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5Enk4dev&region=follow_link&screen_name=nk4dev">
+                @nk4dev
+              </Link>
+            </div>
+          </div>
+        </Popup>
+      </div>
       <div
         className={css({
           display: "flex",
@@ -109,7 +131,7 @@ export default function Index({ data }) {
               threshold={0.2}
               delay={0.3}
             >
-              
+
               Who are you?
             </AnimatedContent>
           </Link>
@@ -147,7 +169,7 @@ export default function Index({ data }) {
             <ProfileHead>Repos</ProfileHead>
             <ProfileBody>
               <ProfileContactLink href={"https://github.com/nknighta/xnv"}>
-                XNV <br/> Web3 tool for developers
+                XNV <br /> Web3 tool for developers
               </ProfileContactLink>
               <ProfileBody>
                 <p>

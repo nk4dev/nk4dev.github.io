@@ -89,9 +89,9 @@ export default function Layout({ children }) {
               padding: "7vh",
               borderTop: "1px solid #f0d0ff",
               background: "#000",
+              paddingBottom: "15vh",
             })}
           >
-
             <div className={css({ marginBottom: "20px" })}>
               <p>Share this page:</p>
               <div className={css({ display: "flex", justifyContent: "center" })}>
