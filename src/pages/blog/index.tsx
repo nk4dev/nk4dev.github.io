@@ -5,7 +5,7 @@ import Layout from "../../layout/main";
 import { css } from "../../../styled-system/css";
 import Link from "next/link";
 import Image from "next/image";
-import BlogLayout from "../../layout/bloglayout";
+import BLayout from "../../layout/main";
 
 export const getStaticProps = async () => {
   const data = await client.get({ endpoint: "blogs" });
@@ -21,7 +21,7 @@ export const getStaticProps = async () => {
 
 const Blog = ({ blog, categories }) => {
   return (
-    <BlogLayout>
+    <Layout>
       <HMeta
         pageTitle="Blog"
         pageDescription="Nknight AMAMIYA'S Blog"
@@ -104,9 +104,8 @@ const Blog = ({ blog, categories }) => {
           </div>
         ))}
       </div>
-    </BlogLayout>
+    </Layout>
   );
 };
-
 
 export default Blog;

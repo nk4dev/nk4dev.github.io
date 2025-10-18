@@ -22,7 +22,7 @@ export default function Index({ data }) {
   const based_duration = 0.6;
   useEffect(() => {
     const githubrepos = async () => {
-      const res = await fetch("https://api.github.com/repos/nknighta/xnv");
+      const res = await fetch("https://api.github.com/repos/nk4dev/vx3");
       const data = await res.json();
       return data;
     };
@@ -31,20 +31,25 @@ export default function Index({ data }) {
   }, [data]);
   return (
     <Layout>
-      <HMeta pageTitle="Profile" pageDescription="Profile of Nknight AMAMIYA(nk4dev)" />
-      <Script async src="https://platform.twitter.com/widgets.js" ></Script>
+      <HMeta
+        pageTitle="Profile"
+        pageDescription="Profile of Nknight AMAMIYA(nk4dev)"
+      />
+      <Script async src="https://platform.twitter.com/widgets.js"></Script>
       <div>
         <Popup title="Follow on X">
           <div>
             Please follow my X (Twitter) account to stay updated.
             <div style={{ marginTop: 8 }}>
-              <Link 
-              className={css({
-                color: "#1DA1F2",
-                textDecoration: "underline",
-                cursor: "default",
-              })}
-              target="_blank" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.x.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5Enk4dev&region=follow_link&screen_name=nk4dev">
+              <Link
+                className={css({
+                  color: "#1DA1F2",
+                  textDecoration: "underline",
+                  cursor: "default",
+                })}
+                target="_blank"
+                href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.x.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5Enk4dev&region=follow_link&screen_name=nk4dev"
+              >
                 @nk4dev
               </Link>
             </div>
@@ -131,7 +136,6 @@ export default function Index({ data }) {
               threshold={0.2}
               delay={0.3}
             >
-
               Who are you?
             </AnimatedContent>
           </Link>
@@ -160,7 +164,11 @@ export default function Index({ data }) {
               delay={0.3}
             >
               <div className={css({ fontSize: "20px" })}>
-                <SplitText duration={1} delay={30} text="javascript, typescript, c#, Nextjs and React" />
+                <SplitText
+                  duration={1}
+                  delay={30}
+                  text="javascript, typescript, c#, Nextjs and React"
+                />
               </div>
             </AnimatedContent>
           </ProfileBody>
@@ -168,8 +176,8 @@ export default function Index({ data }) {
           <div className={css({ paddingTop: "30vh" })}>
             <ProfileHead>Repos</ProfileHead>
             <ProfileBody>
-              <ProfileContactLink href={"https://github.com/nknighta/xnv"}>
-                XNV <br /> Web3 tool for developers
+              <ProfileContactLink href={"https://github.com/nk4dev/vx3"}>
+                VX3 <br /> Web3 tool for developers
               </ProfileContactLink>
               <ProfileBody>
                 <p>
@@ -185,31 +193,28 @@ export default function Index({ data }) {
                   Watchers
                   <span>{repos && " : " + repos.watchers}</span>
                 </p>
+                <ProfileContactLink href={"/dev/vx3-mcp"} target="_blank">
+                  VX3 MCP server (now testing)
+                </ProfileContactLink>
               </ProfileBody>
               <ProfileContactLink
-                href={"https://nknighta.github.io/oss-map-weather/"}
+                href={"https://nknighta.me/oss-map-weather/"}
               >
                 <p>OSS-WEATHER</p>
               </ProfileContactLink>
 
               <ProfileContactLink
-                href={"https://github.com/nknighta/grove-player"}
+                href={"https://github.com/nk4dev/grove-player"}
               >
                 <p>Grove Player</p>
               </ProfileContactLink>
 
               <ProfileContactLink
-                href={"https://github.com/nknighta/IndexLanguage"}
+                href={"https://github.com/nk4dev/IndexLanguage"}
               >
                 <p>IndexLanguage</p>
               </ProfileContactLink>
 
-              <Link
-                href={"/repos"}
-                className={css({ color: "#f0d0ff", fontSize: "20px" })}
-              >
-                and more ...
-              </Link>
             </ProfileBody>
 
             <ProfileHead>Contact</ProfileHead>
