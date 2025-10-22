@@ -1,10 +1,12 @@
 import Layout from '../../layout/main'
 import { css } from '../../../styled-system/css'
 import Link from 'next/link'
+import HMeta from '../../components/headermeta'
 
 export default function DevProject() {
     return (
         <Layout>
+            <HMeta pageTitle="My dev Projects" pageDescription="Development log for my projects." />
             <div className={css({ textAlign: "center" })}>
                 <h1 className={css({
                     fontSize: "40px",
