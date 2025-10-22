@@ -37,46 +37,62 @@ export default function Layout({ children }) {
         <div
           className={css({
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             padding: "10px",
             borderBottom: "1px solid #f0d0ff",
           })}
         >
-          <Link
-            href={"/blog"}
-            className={css({
-              textShadow: "0 10px 30px #aa00ff",
-              borderRadius: "5px",
-              color: "#f0d0ff",
-              margin: "0 5px",
-            })}
-          >
-            Blog
-          </Link>
+          <div className={css({ width: "100%", display: "flex", justifyContent: "center" })} >
+            <Link
+              href={"/blog"}
+              className={css({
+                textShadow: "0 10px 30px #aa00ff",
+                borderRadius: "5px",
+                color: "#f0d0ff",
+                margin: "0 5px",
+              })}
+            >
+              Blog
+            </Link>
 
-          <Link
-            href={"/apps"}
-            className={css({
-              textShadow: "0 10px 30px #aa00ff",
-              borderRadius: "5px",
-              color: "#f0d0ff",
-              margin: "0 5px",
-            })}
-          >
-            Apps
-          </Link>
+            <Link
+              href={"/dev"}
+              className={css({
+                textShadow: "0 10px 30px #aa00ff",
+                borderRadius: "5px",
+                color: "#f0d0ff",
+                margin: "0 5px",
+              })}
+            >
+              Dev Projects
+            </Link>
+          </div>
+          <div className={css({ width: "100%", display: "flex", justifyContent: "center" })} >
+            <Link
+              href={"/apps"}
+              className={css({
+                textShadow: "0 10px 30px #aa00ff",
+                borderRadius: "5px",
+                color: "#f0d0ff",
+                margin: "0 5px",
+              })}
+            >
+              Apps
+            </Link>
 
-          <Link
-            href={"/videos"}
-            className={css({
-              textShadow: "0 10px 30px #aa00ff",
-              borderRadius: "5px",
-              color: "#f0d0ff",
-              margin: "0 5px",
-            })}
-          >
-            Videos
-          </Link>
+            <Link
+              href={"/videos"}
+              className={css({
+                textShadow: "0 10px 30px #aa00ff",
+                borderRadius: "5px",
+                color: "#f0d0ff",
+                margin: "0 5px",
+              })}
+            >
+              Videos
+            </Link>
+          </div>
         </div>
         <main>{children}</main>
         <footer>
