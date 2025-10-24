@@ -23,7 +23,14 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  
+
+    <url>
+    <loc>https://nknighta.me/dev</loc>
+    <lastmod>2025-07-12T15:02:24.021Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <url>
     <loc>https://nknighta.me/images</loc>
     <lastmod>2025-07-12T15:02:24.021Z</lastmod>
@@ -39,13 +46,6 @@
   </url>
   
   <url>
-    <loc>https://nknighta.me/x</loc>
-    <lastmod>2025-07-12T15:02:24.021Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://nknighta.me/llmassets</loc>
     <lastmod>2025-07-12T15:02:24.021Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -53,28 +53,10 @@
   </url>
 
   <url>
-    <loc>https://nknighta.me/g</loc>
-    <lastmod>2025-08-19T21:00:00.021Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://nknighta.me/x</loc>
     <lastmod>2025-08-19T21:00:00.021Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
-  <url>
-    <loc>https://nknighta.me/i</loc>
-    <lastmod>2025-08-19T21:00:00.021Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
   
-  <url>
-    <loc>https://nknighta.me/q</loc>
-    <lastmod>2025-08-19T21:00:00.021Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
 </urlset>
