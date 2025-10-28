@@ -66,7 +66,7 @@ export default function BlogId({ blog }) {
           width: "100%",
           height: "5px",
           backgroundColor: "#aa00ff",
-          transformOrigin: scrollDirection === "down" ? "0% 50%" : "100% 50%",
+          transformOrigin: scrollDirection === "down" ? "0% 100%" : "0% 0%",
           zIndex: 9999,
         })}
         style={{ scaleX: scrollYProgress }} />

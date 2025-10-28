@@ -7,14 +7,22 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import "./globals.css"
 
-function LoadingText() {
+// simple spinner component shown at bottom-right during route changes
+function Spinner() {
     return (
-        <p className={css({
-            fontSize: "24px",
-            color: "#fff",
-        })}>
-            Loading...
-        </p>
+        <motion.div
+            aria-hidden
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+            className={css({
+                width: "36px",
+                height: "36px",
+                borderRadius: "50%",
+                border: "4px solid rgba(255,255,255,0.15)",
+                borderTop: "4px solid #fff",
+                boxSizing: "border-box",
+            })}
+        />
     )
 }
 function App({ Component, pageProps }: AppProps) {
@@ -42,31 +50,31 @@ function App({ Component, pageProps }: AppProps) {
     }, [router.events]);
     return (
         <div>
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
                 {isLoading && (
                     <motion.div
-                        key="page-shutter"
-                        initial={{ scaleY: 0, opacity: 0 }}
-                        animate={{ scaleY: 1, opacity: 1 }}
-                        exit={{ scaleY: 0, opacity: 0 }}
-                        transition={{ type: "spring", stiffness: 260, damping: 30 }}
+                        key="bottom-spinner"
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 12 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
                         className={css({
                             position: "fixed",
-                            top: 0,
-                            left: 0,
-                            width: "100%",
-                            height: "100%",
-                            backgroundColor: "#000",
-                            color: "#fff",
-                            zIndex: 9999,
-                            transformOrigin: "top",
+                            right: "20px",
+                            bottom: "20px",
+                            backgroundColor: "rgba(0,0,0,0.6)",
+                            padding: "8px",
+                            borderRadius: "10px",
+                            zIndex: 99999,
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
+                            boxShadow: "0 6px 18px rgba(0,0,0,0.4)",
                             willChange: "transform, opacity",
                         })}
-                    >
-                        <LoadingText />
+                    >   
+                        <p className={css({color: "#fff", padding: "10px"})}>loading...</p>
+                        <Spinner />
                     </motion.div>
                 )}
             </AnimatePresence>
