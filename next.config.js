@@ -1,4 +1,8 @@
+/** @type {import('next').NextConfig} */
 module.exports = {
+    // GitHub Pages用の静的エクスポート設定
+    output: 'export',
+    trailingSlash: true,
     
     images: {
         unoptimized: true,
@@ -10,13 +14,18 @@ module.exports = {
         ],
     },
 
-    // サイトマップのリライトルール
-    async rewrites() {
-        return [
-            {
-                source: '/sitemap.xml',
-                destination: '/api/sitemap',
-            },
-        ];
+    // styled-jsx サポート
+    experimental: {
+        styledComponents: true,
     },
+
+    // 静的エクスポート時はAPIルートとrewritesは使用できないためコメントアウト
+    // async rewrites() {
+    //     return [
+    //         {
+    //             source: '/sitemap.xml',
+    //             destination: '/api/sitemap',
+    //         },
+    //     ];
+    // },
 }

@@ -24,6 +24,7 @@ export default function DevProject() {
                 <h2 className={css({ fontSize: "30px", margin: "4vh 0" })}>Ongoing Projects</h2>
                 <ul>
                     <Devlinks href="/dev/google-img-hosts" text="Google Img Hosts" isNew />
+                    <Devlinks href="/dev/my-clicker-game" text="My Clicker Game" isNew />
                     <Devlinks href="/dev/make-a-os" text="Make OS with Rust" isNew/>
                     <Devlinks target="_blank" href="/dev/vx3-mcp" text="VX3 MCP (Open Gitmcp website)" />
                 </ul>

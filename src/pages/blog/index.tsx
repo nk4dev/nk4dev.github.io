@@ -92,7 +92,6 @@ const Blog = ({ blog, categories }) => {
                 })}
               />
               <h1>{blog.title}</h1>
-              <p>{`${blog.publishedAt.slice(0, 10)} - ${blog.publishedAt.slice(11, 16)}`}</p>
               {blog.category ? (
                 <p className={css({ color: "#f0d0ff" })}>
                   Category: {blog.category.name}

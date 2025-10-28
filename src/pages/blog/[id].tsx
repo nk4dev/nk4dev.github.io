@@ -4,7 +4,9 @@ import Link from "next/link";
 import { css } from "../../../styled-system/css";
 import HMeta from "../../components/headermeta";
 import Image from "next/image";
-import styles from "./code.module.css";
+import { useEffect, useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+//const { scrollYProgress } = useScroll();
 
 // Add a function to process blog.content and apply styles to <code> tags
 function styleCodeTags(content) {
@@ -17,8 +19,30 @@ export default function BlogId({ blog }) {
   // Process blog.content to style <code> tags
   const styledContent = styleCodeTags(blog.content);
 
-  // get blog published date
-  //blog.content = blog.content.replace(/<img[^>]*>/g, (match) => {
+  // only for devmode CMS data view
+  const [isDevmodeOpen, setIsDevmodeOpen] = useState(false);
+
+  // motion scroll progress bar script start
+  const { scrollY } = useScroll();
+  const [scrollYValue, setScrollY] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState("down")
+
+  useMotionValueEvent(scrollY, "change", (current) => {
+    const diff = current - (scrollY?.getPrevious() ?? 0)
+    setScrollDirection(diff > 0 ? "down" : "up")
+  })
+  const { scrollYProgress } = useScroll();
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY ?? window.pageYOffset ?? 0);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  // motion scroll progress bar script end
+
+
+  // get formatted date 
   const persedIsoDate = new Date(blog.publishedAt);
   const year = persedIsoDate.getFullYear();
   const month = persedIsoDate.getMonth() + 1;
@@ -33,15 +57,19 @@ export default function BlogId({ blog }) {
         pageDescription="Nknight AMAMIYA'S Blog"
         pagePath={`/blog/${blog.id}`}
       />
-      <div
+
+      <motion.div
         className={css({
-          display: "flex",
-          justifyContent: "center",
-          padding: "10px",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "5px",
+          backgroundColor: "#aa00ff",
+          transformOrigin: scrollDirection === "down" ? "0% 50%" : "100% 50%",
+          zIndex: 9999,
         })}
-      >
-        The blog is now open for testing.
-      </div>
+        style={{ scaleX: scrollYProgress }} />
       <div
         className={css({
           width: "100%",
@@ -51,7 +79,7 @@ export default function BlogId({ blog }) {
         })}
       >
         <Image
-          alt="blog eyecatch image"
+          alt={blog.eyecatch ? blog.eyecatch.alt : "eyecatch image"}
           src={
             blog.eyecatch == null
               ? "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?fit=crop&w=200&h=200"
@@ -70,6 +98,37 @@ export default function BlogId({ blog }) {
           })}
         />
       </div>
+      {process.env.NODE_ENV === "development" && (
+        <div
+          className={css({
+            position: "fixed",
+            top: 0,
+            left: 0,
+            color: "#ff0000",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            overflow: "auto",
+            zIndex: 0,
+            padding: "20px",
+          })}
+        >
+          {isDevmodeOpen ? (
+            <div>
+              dev
+              CMS Data
+              <code>
+                <pre>{JSON.stringify(blog, null, 2)}</pre>
+              </code>
+              <button onClick={() => setIsDevmodeOpen(false)}>
+                Close
+              </button>
+            </div>
+          ) : (
+            <button onClick={() => setIsDevmodeOpen(true)}>
+              Open Devmode CMS Data
+            </button>
+          )}
+        </div>
+      )}
       <div
         className={css({
           fontSize: "30px",
