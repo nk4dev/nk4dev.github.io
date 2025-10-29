@@ -20,6 +20,9 @@ export default function VX3() {
         <Link target="_blank" href="/l/vx/docs">
           VX3 SDK Docs
         </Link>
+        <Link target="_blank" href="/l/vx/searchrepo">
+          Another vx Repositories
+        </Link>
       </div>
     </Layout>
   );
