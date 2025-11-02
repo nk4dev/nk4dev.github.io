@@ -3,15 +3,16 @@ import { css } from "../../../styled-system/css";
 import HMeta from "../../components/headermeta";
 import Layout from "../../layout/main";
 import Image from "next/image";
-import Link from "next/link";
 import {
   ProfileHead,
   ProfileBody,
   ProfileContactLink,
   ProfileCenter,
 } from "../../components/profile";
+import { useRouter } from "next/router";
 
 export default function Index({ data }) {
+  
   return (
     <Layout>
       <HMeta pageTitle="Apps" />
