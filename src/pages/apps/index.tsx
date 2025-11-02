@@ -10,7 +10,6 @@ import {
   ProfileContactLink,
   ProfileCenter,
 } from "../../components/profile";
-import { useState, useEffect } from "react";
 
 export default function Index({ data }) {
   return (
