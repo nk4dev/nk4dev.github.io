@@ -9,15 +9,38 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 //const { scrollYProgress } = useScroll();
 
 // Add a function to process blog.content and apply styles to <code> tags
-function styleCodeTags(content) {
-  return content.replace(
-    /<pre(.*?)>/g,
-    '<p>code<p><pre$1 style="overflow: scroll; background: #000; padding: 10px; border-radius: 5px; color: #fff; border: 1px solid #ccc;">'
-  );
-}
 export default function BlogId({ blog }) {
   // Process blog.content to style <code> tags
-  const styledContent = styleCodeTags(blog.content);
+  const cmsstyle = `
+    <style>
+    h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+    }
+    h3 {
+        font-size: 1.3rem;
+        margin-top: 1.2rem;
+        margin-bottom: 0.7rem;
+    }
+
+    pre {
+      line-height: 1.4;
+      overflow-x: scroll;
+    }
+
+    pre::before {
+      content: "→ scroll →";
+      display: block;
+      height: 5vh;
+    }
+
+    code {
+      font-family: 'Courier New', Courier, monospace;
+    }
+    </style>
+    `;
 
   // only for devmode CMS data view
   const [isDevmodeOpen, setIsDevmodeOpen] = useState(false);
@@ -106,7 +129,7 @@ export default function BlogId({ blog }) {
             left: 0,
             color: "#ff0000",
             backgroundColor: "rgba(0, 0, 0, 0.5)",
-            overflow: "auto",
+            overflow: "scroll",
             zIndex: 0,
             padding: "20px",
           })}
@@ -158,7 +181,7 @@ export default function BlogId({ blog }) {
         >
           <div
             dangerouslySetInnerHTML={{
-              __html: `${styledContent}`,
+              __html: `${blog.content}${cmsstyle}`,
             }}
           />
           <Link href="/blog">Back to blog</Link>
