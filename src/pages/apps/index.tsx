@@ -6,7 +6,7 @@ import Image from "next/image";
 import {
   ProfileHead,
   ProfileBody,
-  ProfileContactLink,
+  ProfileLink,
   ProfileCenter,
 } from "../../components/profile";
 import { useRouter } from "next/router";
@@ -39,27 +39,27 @@ export default function Index({ data }) {
             </ProfileCenter>
             <p>get youtube thumbnail</p>
             <div>
-              <ProfileContactLink href="/apps/ytimage-dl">
+              <ProfileLink href="/apps/ytimage-dl">
                 <p>App</p>
-              </ProfileContactLink>
+              </ProfileLink>
 
-              <ProfileContactLink href="https://github.com/nknighta/ytimage-dl">
+              <ProfileLink href="https://github.com/nknighta/ytimage-dl">
                 <p>Repository (HTML version)</p>
-              </ProfileContactLink>
+              </ProfileLink>
 
               <ProfileCenter>
                 <ProfileHead>Grove Player</ProfileHead>
               </ProfileCenter>
-              <ProfileContactLink href="/apps/grove">
+              <ProfileLink href="/apps/grove">
                 <p>App Link (web application)</p>
-              </ProfileContactLink>
+              </ProfileLink>
 
               <ProfileCenter>
                 <ProfileHead>Examples and Playground</ProfileHead>
               </ProfileCenter>
-              <ProfileContactLink href="/playground/mdxloadtest">
+              <ProfileLink href="/playground/mdxloadtest">
                 <p>mdx load test</p>
-              </ProfileContactLink>
+              </ProfileLink>
 
             <ProfileCenter>
               <Image
@@ -69,9 +69,9 @@ export default function Index({ data }) {
                 height={300}
               />
             </ProfileCenter>
-              <ProfileContactLink href="/awesome-css-website">
+              <ProfileLink href="/awesome-css-website">
                 <p>Awesome CSS Website</p>
-              </ProfileContactLink>
+              </ProfileLink>
             </div>
           </ProfileBody>
         </div>

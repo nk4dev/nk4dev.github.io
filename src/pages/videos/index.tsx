@@ -7,7 +7,7 @@ import Link from "next/link";
 import {
   ProfileHead,
   ProfileBody,
-  ProfileContactLink,
+  ProfileLink,
   ProfileCenter,
 } from "../../components/profile";
 import { useState, useEffect } from "react";

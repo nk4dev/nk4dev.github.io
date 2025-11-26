@@ -21,7 +21,7 @@ export function ProfileBody({ children }) {
     )
 }
 
-export function ProfileContactLink({ href, target, children } : { href: string; target?: string; children: React.ReactNode }) {
+export function ProfileLink({ href, target, children } : { href: string; target?: string; children: React.ReactNode }) {
     return (
         <Link href={href} target={target} className={css({
             fontSize: "20px",

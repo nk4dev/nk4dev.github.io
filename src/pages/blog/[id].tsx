@@ -4,9 +4,26 @@ import Link from "next/link";
 import { css } from "../../../styled-system/css";
 import HMeta from "../../components/headermeta";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 //const { scrollYProgress } = useScroll();
+
+interface BlogDate {
+  publishedAt: {
+    year: number;
+    month: number;
+    day: number;
+    hour: number;
+    minute: number;
+  };
+  updatedAt: {
+    year: number;
+    month: number;
+    day: number;
+    hour: number;
+    minute: number;
+  }
+}
 
 // Add a function to process blog.content and apply styles to <code> tags
 export default function BlogId({ blog }) {
@@ -48,7 +65,8 @@ export default function BlogId({ blog }) {
   // motion scroll progress bar script start
   const { scrollY } = useScroll();
   const [scrollYValue, setScrollY] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState("down")
+  const [scrollDirection, setScrollDirection] = useState("down");
+  const [articleDate, setArticleDate] = useState<BlogDate>({} as BlogDate);
 
   useMotionValueEvent(scrollY, "change", (current) => {
     const diff = current - (scrollY?.getPrevious() ?? 0)
@@ -64,14 +82,28 @@ export default function BlogId({ blog }) {
   }, []);
   // motion scroll progress bar script end
 
-
   // get formatted date 
   const persedIsoDate = new Date(blog.publishedAt);
-  const year = persedIsoDate.getFullYear();
-  const month = persedIsoDate.getMonth() + 1;
-  const day = persedIsoDate.getDate();
-  const hour = persedIsoDate.getHours();
-  const milute = persedIsoDate.getMinutes();
+  const updatedIsoDate = new Date(blog.updatedAt);
+
+  useEffect(() => {
+    setArticleDate({
+      publishedAt: {
+        year: persedIsoDate.getFullYear(),
+        month: persedIsoDate.getMonth() + 1,
+        day: persedIsoDate.getDate(),
+        hour: persedIsoDate.getHours(),
+        minute: persedIsoDate.getMinutes(),
+      },
+      updatedAt: {
+        year: updatedIsoDate.getFullYear(),
+        month: updatedIsoDate.getMonth() + 1,
+        day: updatedIsoDate.getDate(),
+        hour: updatedIsoDate.getHours(),
+        minute: updatedIsoDate.getMinutes(),
+      }
+    });
+  }, []);
 
   return (
     <Layout>
@@ -160,7 +192,18 @@ export default function BlogId({ blog }) {
         })}
       >
         {blog.title}
-        <p>{`${year}/${month}/${day} - ${hour} : ${milute}`}</p>
+        <p>
+          published : {articleDate.publishedAt === undefined
+            ? "loading..."
+            :
+            articleDate.publishedAt.year + "/" + articleDate.publishedAt.month + "/" + articleDate.publishedAt.day + " " + articleDate.publishedAt.hour + ":" + articleDate.publishedAt.minute}
+        </p>
+        <p>
+          updated : {articleDate.updatedAt === undefined 
+            ? "loading..."
+            :
+            articleDate.updatedAt.year + "/" + articleDate.updatedAt.month + "/" + articleDate.updatedAt.day + " " + articleDate.updatedAt.hour + ":" + articleDate.updatedAt.minute}
+        </p>
       </div>
       <div
         className={css({

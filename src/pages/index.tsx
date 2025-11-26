@@ -7,7 +7,7 @@ import Link from "next/link";
 import {
   ProfileHead,
   ProfileBody,
-  ProfileContactLink,
+  ProfileLink,
   ProfileCenter,
 } from "../components/profile";
 import { useState, useEffect } from "react";
@@ -116,8 +116,12 @@ export default function Index({ data }) {
               threshold={0.2}
               delay={0.3}
             >
-              <SplitText text="I'm Nknight AMAMIYA." duration={1} />
+              <SplitText text="Welcome to Nknight AMAMIYA's website!" duration={1} />
             </AnimatedContent>
+          </div>
+
+          <div>
+            scroll down <br/>&#8595;
           </div>
 
           <Link
@@ -172,13 +176,28 @@ export default function Index({ data }) {
               </div>
             </AnimatedContent>
           </ProfileBody>
+          <div className={css({ paddingTop: "30vh" })}>
+            <ProfileHead>Contents</ProfileHead>
+            <ProfileBody>
+              <ProfileLink href={"/whoareyou"}>
+                About
+              </ProfileLink>
 
+              <ProfileLink href={"/whoareyou"}>
+                Blogs
+              </ProfileLink>
+              
+              <ProfileLink href={"/dev"}>
+                Dev Projects
+              </ProfileLink>
+            </ProfileBody>
+          </div>
           <div className={css({ paddingTop: "30vh" })}>
             <ProfileHead>Repos</ProfileHead>
             <ProfileBody>
-              <ProfileContactLink href={"https://github.com/nk4dev/vx3"}>
+              <ProfileLink href={"https://github.com/nk4dev/vx3"}>
                 VX3 <br /> Web3 tool for developers
-              </ProfileContactLink>
+              </ProfileLink>
               <ProfileBody>
                 <p>
                   Default branch
@@ -193,47 +212,47 @@ export default function Index({ data }) {
                   Watchers
                   <span>{repos && " : " + repos.watchers}</span>
                 </p>
-                <ProfileContactLink href={"/dev/vx3-mcp"} target="_blank">
+                <ProfileLink href={"/dev/vx3-mcp"} target="_blank">
                   VX3 MCP server (now testing)
-                </ProfileContactLink>
+                </ProfileLink>
               </ProfileBody>
-              <ProfileContactLink
+              <ProfileLink
                 href={"https://nknighta.me/oss-map-weather/"}
               >
                 <p>OSS-WEATHER</p>
-              </ProfileContactLink>
+              </ProfileLink>
 
-              <ProfileContactLink
+              <ProfileLink
                 href={"https://github.com/nk4dev/grove-player"}
               >
                 <p>Grove Player</p>
-              </ProfileContactLink>
+              </ProfileLink>
 
-              <ProfileContactLink
+              <ProfileLink
                 href={"https://github.com/nk4dev/IndexLanguage"}
               >
                 <p>IndexLanguage</p>
-              </ProfileContactLink>
+              </ProfileLink>
 
             </ProfileBody>
 
             <ProfileHead>Contact</ProfileHead>
             <ProfileBody>
-              <ProfileContactLink href={"/x"}>
+              <ProfileLink href={"/x"}>
                 Twitter @ama_dev_1
-              </ProfileContactLink>
+              </ProfileLink>
 
-              <ProfileContactLink href={"/g"}>
+              <ProfileLink href={"/g"}>
                 GitHub @nknighta
-              </ProfileContactLink>
+              </ProfileLink>
 
-              <ProfileContactLink href={"/i"}>
+              <ProfileLink href={"/i"}>
                 Instagram @ama_p0627
-              </ProfileContactLink>
+              </ProfileLink>
 
-              <ProfileContactLink href={"/q"}>
+              <ProfileLink href={"/q"}>
                 Qiita @amamiya_dev
-              </ProfileContactLink>
+              </ProfileLink>
             </ProfileBody>
           </div>
 
