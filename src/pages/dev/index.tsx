@@ -44,28 +44,37 @@ const Blog = ({ blog, categories }) => {
           gap: "14px",
         })}
       >
+        <h1
+          className={css({
+            fontSize: "36px",
+            fontWeight: "bold",
+            color: "#7856ff",
+            textTransform: "uppercase",
+            letterSpacing: "1px",
+            transition: "all 0.3s ease",
+            "&:hover": { color: "#007bff" },
+          })}
+        >
+          Dev Projects
+        </h1>
         {blog.map((blog, category) => (
           <div key={blog.id}>
-            <pre
-              className={css({
-                width: "100%",
-                maxWidth: "600px",
-                overflowX: "auto",
-                whiteSpace: "pre-wrap",
-                wordWrap: "break-word",
-                padding: "10px",
-                borderRadius: "5px",
-                backgroundColor: "#f5f5f5",
-                border: "1px solid #ddd",
-                fontSize: "14px",
-                lineHeight: "1.5",
-                fontFamily: "monospace",
-              })}
-            >
-              {JSON.stringify(blog, null, 2)}
-            </pre>
             <Link href={`/dev/${blog.id}`}>
-              <h1>{blog.name}</h1>
+              <h1
+                className={css({
+                  fontSize: "24px",
+                  fontWeight: "bold",
+                  color: "7856ff",
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    color: "#007bff",
+                  },
+                })}
+              >
+                {blog.name}
+              </h1>
             </Link>
           </div>
         ))}

@@ -5,6 +5,7 @@ styled-system
 styled-system-studio
 .env
 yarn.lock
+bun.lock
 
 .idea/
 .vscode/
