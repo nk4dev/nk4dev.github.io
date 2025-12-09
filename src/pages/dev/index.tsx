@@ -9,6 +9,11 @@ import Image from "next/image";
 export const getStaticProps = async () => {
   const data = await client.get({ endpoint: "projects" });
   //console.log(data.contents[2]);
+  if (!data.contents) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
       blog: data.contents,
