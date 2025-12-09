@@ -1,49 +1,77 @@
-import Layout from '../../layout/main'
-import { css } from '../../../styled-system/css'
-import Link from 'next/link'
-import HMeta from '../../components/headermeta'
+import client from "../../utils/cms";
+//BlogLayout
+import HMeta from "../../components/headermeta";
+import Layout from "../../layout/main";
+import { css } from "../../../styled-system/css";
+import Link from "next/link";
+import Image from "next/image";
 
-export default function DevProject() {
-    return (
-        <Layout>
-            <HMeta pageTitle="My dev Projects" pageDescription="Development log for my projects." />
-            <div className={css({ textAlign: "center" })}>
-                <h1 className={css({
-                    fontSize: "40px",
-                    margin: "4vh 0",
-                })}>
-                    Development <br />Projects
-                </h1>
-                <p>Welcome to the development projects page.</p>
-            </div>
-            <div className={css({
-                padding: "20px",
-                borderTop: "1px solid #f0d0ff",
-                textAlign: "center",
-            })}>
-                <h2 className={css({ fontSize: "30px", margin: "4vh 0" })}>Ongoing Projects</h2>
-                <ul className={css({
-                    gap: "20px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                })}>
-                    <Devlinks href="/dev/vx3" text="VX3" />
-                    <Devlinks href="/dev/google-img-hosts" text="Google Img Hosts" isNew />
-                    <Devlinks href="/dev/make-a-os" text="Make OS with Rust" isNew/>
-                    <Devlinks target="_blank" href="/dev/vx3-mcp" text="VX3 MCP (Open Gitmcp website)" />
-                </ul>
-            </div>
-        </Layout>
-    )
-}
+export const getStaticProps = async () => {
+  const data = await client.get({ endpoint: "projects" });
+  //console.log(data.contents[2]);
+  return {
+    props: {
+      blog: data.contents,
+    },
+  };
+};
 
-function Devlinks({ text, href, target, isNew }: { text: string, href: string, target?: string, isNew?: boolean }) {
-    return (
-        <Link href={href} target={target} className={css({ display: "block", margin: "10px 0", fontSize: "23px", _hover: { color: "#aa00ff" } })}>
-            {isNew && <div className={css({ width: "20vw", background: "#f0d0ff", color: "#000",margin: "0 auto", _hover: { background: "#aa00ff", color: "#fff" } })}>⚡new</div>}
-            <li>{text + " > "}</li>
-        </Link>
-    )
-}
+const Blog = ({ blog, categories }) => {
+  return (
+    <Layout>
+      <HMeta
+        pageTitle="Blog"
+        pageDescription="Nknight AMAMIYA'S Blog"
+        pagePath="/blog"
+      />
+      {categories && (
+        <div
+          className={css({
+            display: "flex",
+            justifyContent: "center",
+            padding: "10px",
+            gap: "10px",
+          })}
+        ></div>
+      )}
+      <div
+        className={css({
+          p: 4,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "14px",
+        })}
+      >
+        {blog.map((blog, category) => (
+          <div key={blog.id}>
+            <pre
+              className={css({
+                width: "100%",
+                maxWidth: "600px",
+                overflowX: "auto",
+                whiteSpace: "pre-wrap",
+                wordWrap: "break-word",
+                padding: "10px",
+                borderRadius: "5px",
+                backgroundColor: "#f5f5f5",
+                border: "1px solid #ddd",
+                fontSize: "14px",
+                lineHeight: "1.5",
+                fontFamily: "monospace",
+              })}
+            >
+              {JSON.stringify(blog, null, 2)}
+            </pre>
+            <Link href={`/dev/${blog.id}`}>
+              <h1>{blog.name}</h1>
+            </Link>
+          </div>
+        ))}
+      </div>
+    </Layout>
+  );
+};
+
+export default Blog;
