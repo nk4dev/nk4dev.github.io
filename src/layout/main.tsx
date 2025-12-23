@@ -43,7 +43,13 @@ export default function Layout({ children }) {
             borderBottom: "1px solid #f0d0ff",
           })}
         >
-          <div className={css({ width: "100%", display: "flex", justifyContent: "center" })} >
+          <div
+            className={css({
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            })}
+          >
             <Link
               href={"/blog"}
               className={css({
@@ -68,7 +74,13 @@ export default function Layout({ children }) {
               Dev Projects
             </Link>
           </div>
-          <div className={css({ width: "100%", display: "flex", justifyContent: "center" })} >
+          <div
+            className={css({
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            })}
+          >
             <Link
               href={"/apps"}
               className={css({
@@ -110,7 +122,9 @@ export default function Layout({ children }) {
           >
             <div className={css({ marginBottom: "20px" })}>
               <p>Share this page:</p>
-              <div className={css({ display: "flex", justifyContent: "center" })}>
+              <div
+                className={css({ display: "flex", justifyContent: "center" })}
+              >
                 <ShareButton />
               </div>
             </div>
@@ -146,6 +160,17 @@ export default function Layout({ children }) {
               })}
             >
               LLM Assets
+            </Link>
+            <Link
+              href={"https://nknighta.me/privacy-policy"}
+              aria-label="Privacy Policy"
+              className={css({
+                borderRadius: "5px",
+                padding: "10px 40px",
+                color: "#f0d0ff",
+              })}
+            >
+              Privacy Policy
             </Link>
             <div
               className={css({
