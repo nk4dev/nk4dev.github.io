@@ -111,6 +111,7 @@ export default function BlogId({ blog }) {
         pageTitle={blog.title}
         pageDescription="Nknight AMAMIYA'S Blog"
         pagePath={`/blog/${blog.id}`}
+        pageImg={blog.eyecatch ? blog.eyecatch.url : undefined}
       />
 
       <motion.div

@@ -33,7 +33,8 @@ const HMeta: React.FC<MetaProps> = ({
     ? pageImg.replace(/.*\//, "").replace(/\.\w+$/, "")
     : "nknighta";
   //const imgx = require("/images/favicon.ico");
-  const defaultPageImg = `https://ogp-img-gen.vercel.app/api/img-gen?text=${title}`;
+  const defaultPageImg = pageImg === undefined || pageImg === null ? `https://ogp-img-gen.vercel.app/api/img-gen?text=${title}` : pageImg;
+  process.env.NODE_ENV === "development" && console.log("Meta:", { title, description, url, defaultPageImg, "pageImg" : !pageImg ? "yes" : "no" });
   return (
     <Head>
       <title>{title}</title>
