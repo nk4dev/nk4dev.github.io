@@ -1,7 +1,7 @@
 import { css } from "../../styled-system/css";
 import Link from "next/link";
 import ClickSpark from "../components/ClickSpark/ClickSpark";
-import ShareButton from "../components/AnimatedContent/shrebtn";
+import {ShareButton, CopyButton} from "../components/AnimatedContent/shrebtn";
 
 export default function Layout({ children }) {
   return (
@@ -123,9 +123,10 @@ export default function Layout({ children }) {
             <div className={css({ marginBottom: "20px" })}>
               <p>Share this page:</p>
               <div
-                className={css({ display: "flex", justifyContent: "center" })}
+                className={css({ display: "flex", justifyContent: "center", flexDirection: "column", gap: "10px" })}
               >
                 <ShareButton />
+                <CopyButton />
               </div>
             </div>
             <div>(c) Nknight AMAMIYA 2021</div>
@@ -151,6 +152,17 @@ export default function Layout({ children }) {
               nknighta.me
             </Link>
 
+            <Link
+              href={"https://nknighta.me/vrchat"}
+              aria-label="Privacy Policy"
+              className={css({
+                borderRadius: "5px",
+                padding: "10px 40px",
+                color: "#f0d0ff",
+              })}
+            >
+              VRChat
+            </Link>
             <Link
               href={"/llmassets"}
               className={css({

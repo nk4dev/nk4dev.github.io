@@ -5,7 +5,8 @@ import Layout from "../../layout/main";
 import { css } from "../../../styled-system/css";
 import Link from "next/link";
 import Image from "next/image";
-import BLayout from "../../layout/main";
+import { useEffect, useState } from "react";
+import React from "react";
 
 export const getStaticProps = async () => {
   const data = await client.get({ endpoint: "blogs" });
@@ -20,6 +21,7 @@ export const getStaticProps = async () => {
 };
 
 const Blog = ({ blog, categories }) => {
+  const [page, setPage] = useState(1);
   return (
     <Layout>
       <HMeta
