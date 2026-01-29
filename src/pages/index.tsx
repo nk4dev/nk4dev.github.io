@@ -64,6 +64,22 @@ export default function Index({ data }) {
           textAlign: "center",
         })}
       >
+        <div className={css({ marginTop: "2vh", background: "#0d0056dd",borderBottom: "1px solid #f0d0ff", paddingBottom: "10px" })}>
+          <AnimatedContent
+            direction="vertical"
+            duration={based_duration}
+            ease="ease.in"
+            initialOpacity={0}
+            animateOpacity
+            threshold={0.2}
+            delay={0.3}
+          >
+            <Link href="/vrchat" target="_blank" rel="noopener noreferrer">
+              I started VRchat! <br />
+              Profile is here. Go to Profile(third-party website)
+              </Link>
+          </AnimatedContent>
+        </div>
         <ProfileCenter>
           <AnimatedContent
             direction="vertical"

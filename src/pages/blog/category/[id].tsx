@@ -6,10 +6,84 @@ import { css } from "../../../../styled-system/css";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
-const Blog = ({ blog, categories, context }) => {
+const Category = ({ categories, currentId }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  return (
+    <div>
+      {!isMenuOpen ? (
+        <div>
+          <button 
+          onClick={() => setIsMenuOpen(true)}
+          className={css({
+            background: "transparent",
+            border: "1px solid #f0d0ff",
+            padding: "10px 20px",
+            color: "#f0d0ff",
+          })}
+          >Categories List</button>
+        </div>
+      ) : (
+        <div>
+          <div className={
+            css(
+              {
+                position: "relative",
+                padding: "10px 20vw",
+                border: "2px solid #aa00ff",
+                borderRadius: "5px",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                "& > div": {
+                  flex: "0 1 calc(33.333% - 20px)",
+                },
+                backgroundColor: "#000014",
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
+                marginTop: "10px",
+              }
+            )}>
+            <>
+              <button onClick={() => setIsMenuOpen(false)} className={css({
+                background: "transparent",
+                border: "1px solid #f0d0ff",
+                padding: "10px 20px",
+                color: "#f0d0ff",
+              })}>Close</button>
+              {categories.map((category) => (
+                <div key={category.id}>
+                  <Link
+                    className={css({
+                      textShadow: "0 10px 30px #aa00ff",
+                      borderRadius: "5px",
+                      color: "#f0d0ff",
+                      padding: "5px 10px",
+                      backgroundColor: category.id === currentId ? "#aa00ff" : "transparent",
+                      transition: "background-color 0.3s ease-in-out",
+                      "&:hover": {
+                        backgroundColor: "#aa00ff",
+                        color: "#050021",
+                      },
+                    })}
+                    href={`/blog/category/${category.id}`}
+                  >
+                    {category.name}
+                  </Link>
+                </div>
+              ))}
+            </>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+const Blog = ({ blog, categories, currentId }) => {
   const router = useRouter();
-  const { id } = router.query;
   return (
     <Layout>
       <HMeta
@@ -27,37 +101,7 @@ const Blog = ({ blog, categories, context }) => {
           gap: "14px",
         })}
       >
-        {categories && (
-          <div
-            className={css({
-              display: "flex",
-              justifyContent: "center",
-              padding: "10px",
-              gap: "10px",
-            })}
-          >
-            {categories.map((category) => (
-              <Link
-                key={category.id}
-                href={`/blog/category/${category.id}`}
-                className={css({
-                  textShadow: "0 10px 30px #aa00ff",
-                  borderRadius: "5px",
-                  color: "#f0d0ff",
-                  padding: "5px 10px",
-                  backgroundColor: category.id === id ? "#aa00ff" : "#050021",
-                  transition: "background-color 0.3s ease-in-out",
-                  "&:hover": {
-                    backgroundColor: "#aa00ff",
-                    color: "#050021",
-                  },
-                })}
-              >
-                {category.name}
-              </Link>
-            ))}
-          </div>
-        )}
+        <Category categories={categories} currentId={currentId} />
         {blog.map((blog) => (
           <div key={blog.id}>
             <Link href={`/blog/${blog.id}`}>
@@ -103,6 +147,7 @@ export const getStaticProps = async (context) => {
     props: {
       blog: data,
       categories: categories.contents,
+      currentId: id,
     },
   };
 };
