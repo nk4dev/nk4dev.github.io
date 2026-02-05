@@ -4,7 +4,7 @@ export function ShareButton() {
     const handleShareX = () => {
         const url = window.location.href + "?utm_source=share_btn&utm_medium=x_post_link";
         const text = document.title || 'Check this out';
-        const shareUrl = `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+        const shareUrl = `https://x.com/intent/post?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=blog,nk4dev,development`;
         window.open(shareUrl, '_blank', 'noopener,noreferrer');
     }
   return (

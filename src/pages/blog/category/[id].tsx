@@ -91,6 +91,7 @@ const Blog = ({ blog, categories, currentId }) => {
         pageDescription="Nknight AMAMIYA'S Blog"
         pagePath="/blog"
       />
+      
       <div
         className={css({
           p: 4,
@@ -101,7 +102,9 @@ const Blog = ({ blog, categories, currentId }) => {
           gap: "14px",
         })}
       >
+        
         <Category categories={categories} currentId={currentId} />
+        <Link href="/blog">← Back to All Blogs</Link>
         {blog.map((blog) => (
           <div key={blog.id}>
             <Link href={`/blog/${blog.id}`}>
@@ -115,6 +118,7 @@ const Blog = ({ blog, categories, currentId }) => {
                 width={500}
                 height={300}
               />
+            
               <h1>{blog.title}</h1>
               <p>{`${blog.publishedAt.slice(0, 10)} - ${blog.publishedAt.slice(
                 11,

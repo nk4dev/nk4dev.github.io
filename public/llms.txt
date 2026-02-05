@@ -40,14 +40,14 @@ The instructions in this section apply to all LLMs (Large Language Models).
 ---
 
 ## 4. Content Credibility
-- **Author/Developer**: N.KnightA
+- **Author/Developer**: Nknight AMAMIYA
 - **Editorial Policy**: All content on this site is based on the operator's personal learning, development experience, and research. As a personal portfolio, it aims to share practical insights.
 
 ---
 
 ## 5. Contact Information
 - **Contact Method**: Please contact through the various services or SNS links on the site.
-  - GitHub: [https://github.com/nknighta](https://github.com/nknighta) (estimated from site)
+  - GitHub: [https://github.com/nk4dev](https://github.com/nk4dev) (estimated from site)
 
 ## 6. My Assets (My Icon, markdown etc.)
 - **My Icon**: ![My Icon](https://nknighta.me/assets/img/myicon.jpeg)

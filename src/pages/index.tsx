@@ -64,7 +64,7 @@ export default function Index({ data }) {
           textAlign: "center",
         })}
       >
-        <div className={css({ marginTop: "2vh", background: "#0d0056dd",borderBottom: "1px solid #f0d0ff", paddingBottom: "10px" })}>
+        <div className={css({ marginTop: "2vh", background: "#0d0056dd", borderBottom: "1px solid #f0d0ff", paddingBottom: "10px" })}>
           <AnimatedContent
             direction="vertical"
             duration={based_duration}
@@ -77,7 +77,7 @@ export default function Index({ data }) {
             <Link href="/vrchat" target="_blank" rel="noopener noreferrer">
               I started VRchat! <br />
               Profile is here. Go to Profile(third-party website)
-              </Link>
+            </Link>
           </AnimatedContent>
         </div>
         <ProfileCenter>
@@ -137,7 +137,7 @@ export default function Index({ data }) {
           </div>
 
           <div>
-            scroll down <br/>&#8595;
+            scroll down <br />&#8595;
           </div>
 
           <Link
@@ -202,7 +202,7 @@ export default function Index({ data }) {
               <ProfileLink href={"/whoareyou"}>
                 Blogs
               </ProfileLink>
-              
+
               <ProfileLink href={"/dev"}>
                 Dev Projects
               </ProfileLink>
@@ -255,11 +255,11 @@ export default function Index({ data }) {
             <ProfileHead>Contact</ProfileHead>
             <ProfileBody>
               <ProfileLink href={"/x"}>
-                Twitter @ama_dev_1
+                Twitter @nk4dev
               </ProfileLink>
 
               <ProfileLink href={"/g"}>
-                GitHub @nknighta
+                GitHub @nk4dev
               </ProfileLink>
 
               <ProfileLink href={"/i"}>
@@ -271,32 +271,6 @@ export default function Index({ data }) {
               </ProfileLink>
             </ProfileBody>
           </div>
-
-          <ProfileHead>Images</ProfileHead>
-          <ProfileBody>
-            <ProfileCenter>
-              <AnimatedContent delay={0.2}>
-                <Image
-                  src={
-                    "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b52fcd2616084cd6b453d512e8591d7a/header.png?fm=webp&w=500&h=300&q=90"
-                  }
-                  width={500}
-                  height={300}
-                  alt="header"
-                />
-              </AnimatedContent>
-              <AnimatedContent delay={0.4}>
-                <Image
-                  src={
-                    "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/31d6d24b062c4eb494a6567795f84e3e/home.png?fm=webp&w=500&h=300&q=90"
-                  }
-                  width={500}
-                  height={300}
-                  alt="header"
-                />
-              </AnimatedContent>
-            </ProfileCenter>
-          </ProfileBody>
         </div>
       </div>
     </Layout>
