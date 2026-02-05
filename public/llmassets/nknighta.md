@@ -20,13 +20,9 @@ Hello!
 
 I'm Nknight AMAMIYA.
 
-[
-Who are you?
-](https://nknighta.me/whoareyou?im=amamiya)
+[Who are you?](https://nknighta.me/whoareyou?im=amamiya)
 
-#
-
-Skills
+# Skills
 
 javascript, typescript, c#, Nextjs and React
 
@@ -40,34 +36,19 @@ Latest commit
 
 Watchers
 
-[
-OSS-WEATHER
-](https://nknighta.me/oss-map-weather/)
+[OSS-WEATHER](https://nknighta.github.io/oss-map-weather/)[Grove Player](https://github.com/nknighta/grove-player)[
 
-[
-Grove Player
-](https://github.com/nk4dev/grove-player)
-
-[
 IndexLanguage
-](https://github.com/nk4dev/IndexLanguage)
 
-[and more ...](https://nknighta.me/repos)
+](https://github.com/nknighta/IndexLanguage)[and more ...](https://nknighta.me/repos)
 
 # Contact
 
 [Twitter @ama\_dev\_1](https://nknighta.me/x)[GitHub @nknighta](https://nknighta.me/g)[Instagram @ama\_p0627](https://nknighta.me/i)[Qiita @amamiya\_dev](https://nknighta.me/q)
 
-# Images
-
-![header](https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b52fcd2616084cd6b453d512e8591d7a/header.png?fm=webp&w=500&h=300&q=90)
-
-![header](https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/31d6d24b062c4eb494a6567795f84e3e/home.png?fm=webp&w=500&h=300&q=90)
 
 (c) Nknight AMAMIYA 2021
 
 [varius.technology](https://varius.technology/)[nknighta.me](https://nknighta.me)
 
 \- Mail -[nknighta@varius.technology](mailto:nknighta@varius.technology)
-
-{"props":{"pageProps":{}},"page":"/","query":{},"buildId":"vt1aixKy0M6Kr30pECLS1","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":\[\]}
