@@ -120,10 +120,11 @@ const Blog = ({ blog, categories, currentId }) => {
               />
             
               <h1>{blog.title}</h1>
-              <p>{`${blog.publishedAt.slice(0, 10)} - ${blog.publishedAt.slice(
-                11,
-                16
-              )}`}</p>
+              <p>{
+                blog.publishedAt
+                  ? `${blog.publishedAt.slice(0, 10)} - ${blog.publishedAt.slice(11, 16)}`
+                  : 'No date'
+              }</p>
             </Link>
           </div>
         ))}
