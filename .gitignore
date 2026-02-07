@@ -12,3 +12,6 @@ bun.lock
 
 out
 .vercel
+
+.open-next
+.wrangler/
