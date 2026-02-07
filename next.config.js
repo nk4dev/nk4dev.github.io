@@ -26,7 +26,7 @@ module.exports = {
 };
 
 
-vercel 用
+vercel and cloudflare 用
 */
 module.exports = {
   images: {
@@ -39,3 +39,6 @@ module.exports = {
     ],
   },
 };
+
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+initOpenNextCloudflareForDev();
