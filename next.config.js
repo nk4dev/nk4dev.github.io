@@ -28,7 +28,7 @@ module.exports = {
 
 vercel and cloudflare 用
 */
-module.exports = {
+const nextConfig = {
   images: {
     unoptimized: false,
     remotePatterns: [
@@ -40,5 +40,6 @@ module.exports = {
   },
 };
 
+export default nextConfig;
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 initOpenNextCloudflareForDev();
