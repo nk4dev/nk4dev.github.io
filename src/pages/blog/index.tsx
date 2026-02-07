@@ -7,8 +7,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-export const getStaticProps = async ({context}) => {
-  const data = await client.get({ endpoint: "blogs", queries: { offset: 0, limit: 100 } });
+export const getServerSideProps = async ({ context }) => {
+  const data = await client.get({
+    endpoint: "blogs",
+    queries:
+    {
+      offset: 0,
+      limit: 100
+    },
+    customRequestInit: {
+      next: {
+        revalidate: 60,
+      },
+    },
+  });
   const categories = await client.get({ endpoint: "categories" });
   //console.log(data.contents[2]);
   return {
@@ -25,15 +37,15 @@ const Category = ({ categories }) => {
     <div>
       {!isMenuOpen ? (
         <div>
-          <button 
-          className={css({
-            padding: "10px",
-            border: "1px solid #f0d0ff",
-          })}
-          onClick={() => setIsMenuOpen(true)}
+          <button
+            className={css({
+              padding: "10px",
+              border: "1px solid #f0d0ff",
+            })}
+            onClick={() => setIsMenuOpen(true)}
           >
             Categories
-            </button>
+          </button>
         </div>
       ) : (
         <div>
@@ -57,12 +69,12 @@ const Category = ({ categories }) => {
               }
             )}>
             <>
-              <button 
-              className={css({
-                padding: "10px",
-                border: "1px solid #f0d0ff",
-              })}
-              onClick={() => setIsMenuOpen(false)}>
+              <button
+                className={css({
+                  padding: "10px",
+                  border: "1px solid #f0d0ff",
+                })}
+                onClick={() => setIsMenuOpen(false)}>
                 Close
               </button>
               {categories.map((category) => (

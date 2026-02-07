@@ -200,7 +200,7 @@ export default function BlogId({ blog }) {
             articleDate.publishedAt.year + "/" + articleDate.publishedAt.month + "/" + articleDate.publishedAt.day + " " + articleDate.publishedAt.hour + ":" + articleDate.publishedAt.minute}
         </p>
         <p>
-          updated : {articleDate.updatedAt === undefined 
+          updated : {articleDate.updatedAt === undefined
             ? "loading..."
             :
             articleDate.updatedAt.year + "/" + articleDate.updatedAt.month + "/" + articleDate.updatedAt.day + " " + articleDate.updatedAt.hour + ":" + articleDate.updatedAt.minute}
@@ -236,17 +236,14 @@ export default function BlogId({ blog }) {
 }
 
 // 静的生成のためのパスを指定します
-export const getStaticPaths = async () => {
-  const data = await client.get({ endpoint: "blogs" });
-
-  const paths = data.contents.map((content) => `/blog/${content.id}`);
-  return { paths, fallback: false };
-};
 
 // データをテンプレートに受け渡す部分の処理を記述します
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const id = context.params.id;
-  const data = await client.get({ endpoint: "blogs", contentId: id });
+  const data = await client.get({
+    endpoint: "blogs",
+    contentId: id,
+  });
 
   return {
     props: {

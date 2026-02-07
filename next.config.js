@@ -3,6 +3,7 @@
 /*
  GitHub Pages用
 */
+/*
 
 module.exports = {
   // GitHub Pages用の静的エクスポート設定
@@ -24,10 +25,9 @@ module.exports = {
   //},
 };
 
-/*
 
 vercel 用
-
+*/
 module.exports = {
   images: {
     unoptimized: false,
@@ -39,4 +39,3 @@ module.exports = {
     ],
   },
 };
-*/
