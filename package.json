@@ -8,13 +8,9 @@
     "prepare": "panda codegen",
     "dev": "next dev",
     "build": "next build",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "start": "next start"
   },
   "dependencies": {
-    "@opennextjs/cloudflare": "^1.16.3",
     "framer-motion": "^12.23.7",
     "gh-pages": "^6.3.0",
     "gray-matter": "^4.0.3",
@@ -25,8 +21,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "remark-gfm": "^3.0.1",
-    "styled-jsx": "^5.1.7",
-    "wrangler": "^4.63.0"
+    "styled-jsx": "^5.1.7"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.53.0",
