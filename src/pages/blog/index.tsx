@@ -7,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-export const getServerSideProps = async ({ context }) => {
+export const getStaticProps = async ({ context }) => {
   const data = await client.get({
     endpoint: "blogs",
     queries:

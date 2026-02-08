@@ -3,9 +3,8 @@
 /*
  GitHub Pages用
 */
-/*
 
-module.exports = {
+const nextConfig = {
   // GitHub Pages用の静的エクスポート設定
   output: "export",
   trailingSlash: true,
@@ -25,9 +24,9 @@ module.exports = {
   //},
 };
 
+/*
 
 vercel and cloudflare 用
-*/
 const nextConfig = {
   images: {
     unoptimized: false,
@@ -40,6 +39,6 @@ const nextConfig = {
   },
 };
 
+*/
+
 export default nextConfig;
-//import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-//initOpenNextCloudflareForDev();

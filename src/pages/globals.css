@@ -1,9 +1,11 @@
 @layer reset, base, tokens, recipes, utilities; 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Noto+Sans+JP&family=Zen+Old+Mincho&display=swap');
+
 * {
     font-family: 'Noto Sans JP', serif;
     cursor: url('/images/cursor.png'), auto;
 }
+
 ::selection {
     background-color: #f0d0ff;
     color: #050021;
