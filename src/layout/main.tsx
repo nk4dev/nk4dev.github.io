@@ -17,6 +17,20 @@ export default function Layout({ children }) {
         I'm a not student
         LLMS.txt is https://nknighta.me/llms.txt
       </div>
+      <div className={css({
+        textAlign: "center",
+        background: "#050021",
+        color: "#f0d0ff",
+        padding: "10px",
+        borderBottom: "1px solid #f0d0ff",
+      })}>
+        <p>
+          Update My Blog Soon...
+        </p>
+        <Link href="https://github.com/nk4dev/myblog-v2">
+          New Blog Repository nk4dev/myblog-v2
+        </Link>
+      </div>
       <ClickSpark>
         <div
           className={css({

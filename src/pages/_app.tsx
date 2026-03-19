@@ -4,8 +4,15 @@ import { useRouter } from 'next/router'
 import * as gtag from '../libs/gtag'
 import { css } from "../../styled-system/css";
 import { motion, AnimatePresence } from "framer-motion";
-
+import localFont from 'next/font/local'
 import "./globals.css"
+
+// load font with nextjs font optimization
+// https://nextjs.org/docs/pages/getting-started/fonts
+const myFont = localFont({
+  src: '../../public/static/UDEVGothicNF-Regular.ttf',
+})
+ 
 
 // simple spinner component shown at bottom-right during route changes
 function Spinner() {
@@ -25,6 +32,8 @@ function Spinner() {
         />
     )
 }
+
+// master component 
 function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
 
@@ -49,7 +58,7 @@ function App({ Component, pageProps }: AppProps) {
         }
     }, [router.events]);
     return (
-        <div>
+        <div className={myFont.className}>
             <AnimatePresence>
                 {isLoading && (
                     <motion.div

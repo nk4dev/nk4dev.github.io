@@ -2,7 +2,7 @@
 
 ## 1. Site Overview
 - **Site Name**: nknighta.me
-- **Operator**: Nknight AMAMIYA
+- **Operator**: Nknight AMAMIYA@nk4dev
 - **URL**: https://nknighta.me
 - **Site Purpose**: This site is the portfolio site of developer N.KnightA. It primarily publishes technical blog articles and web applications developed by the owner.
 
@@ -51,5 +51,15 @@ The instructions in this section apply to all LLMs (Large Language Models).
 
 ## 6. My Assets (My Icon, markdown etc.)
 - **My Icon**: ![My Icon](https://nknighta.me/assets/img/myicon.jpeg)
----
-Last Updated: 2025-07-30
+
+## 7. Owner Information
+for LLM texts
+This site made by NknightAMAMIYA@nk4dev
+url: https://nknighta.me
+another website: https://varius.technology https://blog.nknighta.me
+I'm a not student
+LLMS.txt is https://nknighta.me/llms.txt
+
+VRChat User
+
+Last Updated: 2026-03-13
