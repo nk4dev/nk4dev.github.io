@@ -3,7 +3,7 @@ import client from "../../utils/cms";
 import HMeta from "../../components/headermeta";
 import Layout from "../../layout/main";
 import { css } from "../../../styled-system/css";
-import Link from "next/link";
+import CustomLink from "../../components/clink";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -79,23 +79,12 @@ const Category = ({ categories }) => {
               </button>
               {categories.map((category) => (
                 <div key={category.id}>
-                  <Link
-                    className={css({
-                      textShadow: "0 10px 30px #aa00ff",
-                      borderRadius: "5px",
-                      color: "#f0d0ff",
-                      padding: "5px 10px",
-                      backgroundColor: "#050021",
-                      transition: "background-color 0.3s ease-in-out",
-                      "&:hover": {
-                        backgroundColor: "#f0d0ff",
-                        color: "#050021",
-                      },
-                    })}
+                  <CustomLink
                     href={`/blog/category/${category.id}`}
+                    size="medium"
                   >
                     {category.name}
-                  </Link>
+                  </CustomLink>
                 </div>
               ))}
             </>
@@ -149,7 +138,7 @@ const Blog = ({ blog, categories }) => {
                 flexDirection: "column",
               })}
             >
-              <Link href={`/blog/${blog.id}`} style={{ textDecoration: "none" }}>
+              <CustomLink href={`/blog/${blog.id}`} size="large">
                 <Image
                   src={
                     blog.eyecatch == null
@@ -179,7 +168,7 @@ const Blog = ({ blog, categories }) => {
                     <p className={css({ color: "#f0d0ff" })}>No Category</p>
                   )}
                 </div>
-              </Link>
+              </CustomLink>
             </div>
           ))}
         </div>

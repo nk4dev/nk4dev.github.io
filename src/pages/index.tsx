@@ -1,9 +1,9 @@
-import React from "next";
 import { css } from "../../styled-system/css";
 import HMeta from "../components/headermeta";
 import Layout from "../layout/main";
 import Image from "next/image";
 import Link from "next/link";
+import CustomLink from "../components/clink";
 import {
   ProfileHead,
   ProfileBody,
@@ -41,17 +41,9 @@ export default function Index({ data }) {
           <div>
             Please follow my X (Twitter) account to stay updated.
             <div style={{ marginTop: 8 }}>
-              <Link
-                className={css({
-                  color: "#1DA1F2",
-                  textDecoration: "underline",
-                  cursor: "default",
-                })}
-                target="_blank"
-                href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.x.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5Enk4dev&region=follow_link&screen_name=nk4dev"
-              >
+              <CustomLink href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.x.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5Enk4dev&region=follow_link&screen_name=nk4dev" target="_blank">
                 @nk4dev
-              </Link>
+              </CustomLink>
             </div>
           </div>
         </Popup>

@@ -99,6 +99,7 @@ export default function Layout({ children }) {
               >
                 Dev Projects
               </Link>
+              
             </div>
             <div
               className={css({
@@ -119,6 +120,17 @@ export default function Layout({ children }) {
                 Apps
               </Link>
 
+              <Link
+                href={"/scraps"}
+                className={css({
+                  textShadow: "0 10px 30px #aa00ff",
+                  borderRadius: "5px",
+                  color: "#f0d0ff",
+                  margin: "0 5px",
+                })}
+              >
+                Scraps
+              </Link>
             </div>
           </div>
           <main>{children}</main>
@@ -144,7 +156,7 @@ export default function Layout({ children }) {
                   <CopyButton />
                 </div>
               </div>
-              <div>(c) Nknight AMAMIYA 2021</div>
+              <div>&copy; 2021 Nknight AMAMIYA@nk4deev</div>
               <Link
                 href={"https://varius.technology/"}
                 className={css({
