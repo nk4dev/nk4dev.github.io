@@ -3,7 +3,7 @@
 /*
  GitHub Pages用
 */
-
+/*
 const nextConfig = {
   // GitHub Pages用の静的エクスポート設定
   output: "export",
@@ -24,9 +24,11 @@ const nextConfig = {
   //},
 };
 
-/*
+
 
 vercel and cloudflare 用
+
+*/
 const nextConfig = {
   images: {
     unoptimized: false,
@@ -39,6 +41,5 @@ const nextConfig = {
   },
 };
 
-*/
 
 export default nextConfig;
