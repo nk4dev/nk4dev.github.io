@@ -1,29 +1,29 @@
-// src/middleware.ts
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { draftMode } from 'next/headers';
 
-export function middleware(request: NextRequest) {
-  const acceptHeader = request.headers.get('accept') || '';
+const IGNORED_PATHS = /^\/(api|_next\/static|_next\/image|favicon\.ico)/;
 
-  // エージェント（text/markdownを要求）の場合
-  if (acceptHeader.includes('text/markdown')) {
+export async function middleware(request: NextRequest) {
+  const { pathname, searchParams } = request.nextUrl;
+
+  if (IGNORED_PATHS.test(pathname)) {
+    return NextResponse.next();
+  }
+
+  const draftKey = searchParams.get('draftKey');
+
+  // draftKey が付いてきた場合 → draft 有効化 API にリダイレクト
+  if (draftKey) {
     const url = request.nextUrl.clone();
-    
-    // /blog/123 のようなパスからIDを抽出してAPIへ転送
-    // 例: /api/blog-markdown?id=123
-    const pathParts = url.pathname.split('/');
-    const id = pathParts[pathParts.length - 1];
-
-    url.pathname = '/api/blog-markdown';
-    url.searchParams.set('id', id);
-
-    return NextResponse.rewrite(url);
+    url.pathname = '/api/draft';
+    url.searchParams.set('draftKey', draftKey);
+    url.searchParams.set('redirect', pathname);
+    return NextResponse.redirect(url);
   }
 
   return NextResponse.next();
 }
 
-// /blog/以下のパスにのみ適用
 export const config = {
-  matcher: '/blog/:id*', 
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 };

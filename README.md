@@ -12,15 +12,7 @@ Bun.sh
 MicroCMS
 
 ### CI / CD
-Cloudflare Pages
+GitHub Actions(Nextjs + Bun)
 
 ## another infomation
 LLMs.txt [https://nk4dev.github.io/llms.txt](https://nk4dev.github.io/llms.txt)
-
-### Websites
-
-home 
-- [https://nknighta.me](https://nknighta.me)
-
-web applications
-- [https://apps.nknighta.me](https://apps.nknighta.me)

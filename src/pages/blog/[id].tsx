@@ -4,10 +4,8 @@ import Link from "next/link";
 import { css } from "../../../styled-system/css";
 import HMeta from "../../components/headermeta";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-
-import { GetServerSideProps } from 'next';
 //const { scrollYProgress } = useScroll();
 
 interface BlogDate {
