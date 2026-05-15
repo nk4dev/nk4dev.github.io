@@ -17,18 +17,7 @@ import Script from "next/script";
 import Popup from "../components/Popup";
 
 export default function Index({ data }) {
-  const [repos, setRepos] = useState(null);
-  const [isPressClosed, setIsPressClosed] = useState(true);
   const based_duration = 0.6;
-  useEffect(() => {
-    const githubrepos = async () => {
-      const res = await fetch("https://api.github.com/repos/nk4dev/vx3");
-      const data = await res.json();
-      return data;
-    };
-    const data = githubrepos();
-    data.then((data) => setRepos(data));
-  }, [data]);
   return (
     <Layout>
       <HMeta
@@ -207,19 +196,6 @@ export default function Index({ data }) {
                 VX3 <br /> Web3 tool for developers
               </ProfileLink>
               <ProfileBody>
-                <p>
-                  Default branch
-                  {repos && " : " + repos.default_branch}
-                </p>
-                <p>
-                  Latest commit
-                  <span>{repos && " : " + repos.pushed_at}</span>
-                </p>
-
-                <p>
-                  Watchers
-                  <span>{repos && " : " + repos.watchers}</span>
-                </p>
                 <ProfileLink href={"/dev/vx3-mcp"} target="_blank">
                   VX3 MCP server (now testing)
                 </ProfileLink>
