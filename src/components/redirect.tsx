@@ -2,10 +2,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-export default function LinkPage({url, text}: {url: string, text: string}) {
+export default function LinkPage({url, text, rd2event}: {url: string, text: string, rd2event?: boolean}) {
   const router = useRouter();
   useEffect(() => {
-    router.push(`${url}?utm_source=redirect_url&utm_medium=link_redirect_event`);
+    !rd2event && router.push(`${url}?utm_source=redirect_url&utm_medium=link_redirect_event`)
+    rd2event === null && router.push(`${url}?utm_source=redirect_url&utm_medium=link_redirect_event`)
+    rd2event && router.push(`${url}`)
   }, []);
   return (
     <>
