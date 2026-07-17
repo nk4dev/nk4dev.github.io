@@ -240,17 +240,31 @@ export const getStaticPaths = async () => {
   const data = await client.get({ endpoint: "blogs", queries: { limit: 100 } });
 
   const paths = data.contents.map((content) => `/blog/${content.id}`);
-  return { paths, fallback: false };
+  // fallback: "blocking" -> ビルド後に公開された記事も、初回アクセス時に
+  // Worker 上でオンデマンド生成する（直リンク 404 を防ぐ）
+  return { paths, fallback: "blocking" };
 };
 
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const data = await client.get({ endpoint: "blogs", contentId: id });
 
-  return {
-    props: {
-      blog: data,
-    },
-  };
+  // 存在しない contentId では microCMS が例外を投げるため 404 に変換する
+  try {
+    const data = await client.get({ endpoint: "blogs", contentId: id });
+
+    if (!data || !data.publishedAt) {
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        blog: data,
+      },
+      // ISR: 既存記事の更新も 60 秒ごとに反映する
+      revalidate: 60,
+    };
+  } catch {
+    return { notFound: true };
+  }
 };

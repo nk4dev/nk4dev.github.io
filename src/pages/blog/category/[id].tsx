@@ -137,13 +137,20 @@ export const getStaticPaths = async () => {
   const data = await client.get({ endpoint: "categories" });
 
   const paths = data.contents.map((content) => `/blog/category/${content.id}`);
-  return { paths, fallback: false };
+  // fallback: "blocking" -> 新しく追加されたカテゴリも初回アクセス時に生成する
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
   const blog = await client.get({ endpoint: "blogs" });
   const categories = await client.get({ endpoint: "categories" });
+
+  // 存在しないカテゴリなら 404 を返す
+  if (!categories.contents.some((category) => category.id === id)) {
+    return { notFound: true };
+  }
+
   const data = blog.contents.filter(
     (item) => item.category && item.category.id === id
   );
@@ -154,6 +161,8 @@ export const getStaticProps = async (context) => {
       categories: categories.contents,
       currentId: id,
     },
+    // ISR: カテゴリ内の記事一覧を 60 秒ごとに再生成する
+    revalidate: 60,
   };
 };
 export default Blog;

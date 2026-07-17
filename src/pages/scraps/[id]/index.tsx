@@ -258,7 +258,8 @@ export const getStaticPaths = async () => {
   const paths = data.contents
     .filter((content) => content.publishedAt)
     .map((content) => `/scraps/${content.id}`);
-  return { paths, fallback: false };
+  // fallback: "blocking" -> ビルド後に公開されたスクラップも初回アクセス時に生成する
+  return { paths, fallback: "blocking" };
 };
 
 // データをテンプレートに受け渡す部分の処理を記述します
@@ -277,5 +278,7 @@ export const getStaticProps = async (context) => {
     props: {
       project: data,
     },
+    // ISR: 既存スクラップの更新も 60 秒ごとに反映する
+    revalidate: 60,
   };
 };
