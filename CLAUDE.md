@@ -46,7 +46,7 @@ All styles use the `css()` utility imported from `../../styled-system/css` (a co
 
 CMS content bodies are rendered as raw HTML via `dangerouslySetInnerHTML`. An inline `<style>` string (`cmsstyle`) is appended to handle code block formatting on detail pages.
 
-Draft preview: `src/middleware.ts` intercepts `?draftKey=` query params and redirects to `/api/draft` for draft mode activation.
+Draft preview: `src/proxy.ts` (Next 16 proxy convention, formerly `middleware.ts`) intercepts `?draftKey=` query params and redirects to `/api/draft` for draft mode activation.
 
 ### Layout & shared components
 

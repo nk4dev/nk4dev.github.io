@@ -1,4 +1,3 @@
-import React from "next";
 import { css } from "../../../styled-system/css";
 import HMeta from "../../components/headermeta";
 import Layout from "../../layout/main";

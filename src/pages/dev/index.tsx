@@ -25,9 +25,9 @@ const Blog = ({ blog, categories }) => {
   return (
     <Layout>
       <HMeta
-        pageTitle="Blog"
-        pageDescription="Nknight AMAMIYA'S Blog"
-        pagePath="/blog"
+        pageTitle="Dev Projects"
+        pageDescription="Nknight AMAMIYA'S Dev Projects"
+        pagePath="/dev"
       />
       {categories && (
         <div

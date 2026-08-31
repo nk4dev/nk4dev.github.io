@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { draftMode } from 'next/headers';
 
 const IGNORED_PATHS = /^\/(api|_next\/static|_next\/image|favicon\.ico)/;
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
   if (IGNORED_PATHS.test(pathname)) {

@@ -4,6 +4,8 @@ node_modules/
 styled-system
 styled-system-studio
 .env
+.env*.local
+.dev.vars
 yarn.lock
 bun.lock
 
@@ -15,3 +17,8 @@ out
 
 .open-next
 .wrangler/
+
+## agent-browser
+.agent-browser/
+*.agent-browser-state.json
+agent-browser-state.json
