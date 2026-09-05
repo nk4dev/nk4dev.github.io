@@ -34,3 +34,39 @@ export async function getBlog(id: string, options?: { draftKey?: string }) {
 export async function getCategories() {
   return client.get({ endpoint: 'categories' });
 }
+
+// サイトマップ用: 公開済みコンテンツを全件取得（100件ずつページングして集約）
+async function getAllPublishedContents(endpoint: string) {
+  const limit = 100;
+  let offset = 0;
+  const all: { id: string; publishedAt?: string; updatedAt?: string }[] = [];
+
+  for (;;) {
+    const data = await client.get({
+      endpoint,
+      queries: {
+        limit,
+        offset,
+        fields: "id,publishedAt,updatedAt",
+        orders: "-publishedAt",
+      },
+    });
+    all.push(...data.contents);
+    if (all.length >= data.totalCount || data.contents.length === 0) break;
+    offset += limit;
+  }
+
+  return all.filter((content) => content.publishedAt);
+}
+
+export async function getAllBlogsForSitemap() {
+  return getAllPublishedContents("blogs");
+}
+
+export async function getAllProjectsForSitemap() {
+  return getAllPublishedContents("projects");
+}
+
+export async function getAllScrapsForSitemap() {
+  return getAllPublishedContents("scraps");
+}
