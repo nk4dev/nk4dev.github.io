@@ -3,7 +3,7 @@ import Layout from "../../../layout/main";
 import Link from "next/link";
 import { css } from "../../../../styled-system/css";
 import HMeta from "../../../components/headermeta";
-import Image from "next/image";
+//import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useRouter } from "next/router";
@@ -28,17 +28,37 @@ export default function BlogId({ project }) {
 
     pre {
       line-height: 1.4;
-      overflow-x: scroll;
+      overflow-x: auto;
+      max-width: 100%;
+      overscroll-behavior: contain;
     }
 
     pre::before {
       content: "→ scroll →";
       display: block;
-      height: 5vh;
+      height: 2rem;
+      font-size: 0.8rem;
+      opacity: 0.6;
     }
 
     code {
       font-family: 'Courier New', Courier, monospace;
+    }
+
+    /* スマホでは pre をスクロールコンテナにせず折り返す。
+       overflow:auto のままだとタッチが pre に吸われてページを縦スクロールできない */
+    @media (max-width: 768px) {
+      pre, pre code {
+        white-space: pre-wrap !important;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+      }
+      pre {
+        overflow: visible !important;
+      }
+      pre::before {
+        display: none;
+      }
     }
     </style>
     `;
@@ -199,7 +219,6 @@ export default function BlogId({ project }) {
         >
           {project.id}
         </h3>
-
       </div>
       <div
         className={css({

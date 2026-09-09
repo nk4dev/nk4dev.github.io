@@ -5,6 +5,8 @@ import * as gtag from '../libs/gtag'
 import { css } from "../../styled-system/css";
 import { motion, AnimatePresence } from "framer-motion";
 import localFont from 'next/font/local'
+import { newsreader, publicSans } from '../libs/fonts'
+import { LangProvider } from '../libs/lang'
 import "../styles/globals.css"
 
 // load font with nextjs font optimization
@@ -12,7 +14,7 @@ import "../styles/globals.css"
 const myFont = localFont({
   src: '../../public/static/UDEVGothicNF-Regular.ttf',
 })
- 
+
 
 // simple spinner component shown at bottom-right during route changes
 function Spinner() {
@@ -58,53 +60,62 @@ function App({ Component, pageProps }: AppProps) {
         }
     }, [router.events]);
     return (
-        <div className={myFont.className}>
-            <AnimatePresence>
-                {isLoading && (
-                    <motion.div
-                        key="bottom-spinner"
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 12 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className={css({
-                            position: "fixed",
-                            right: "20px",
-                            bottom: "20px",
-                            backgroundColor: "rgba(0,0,0,0.6)",
-                            padding: "8px",
-                            borderRadius: "10px",
-                            zIndex: 99999,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            boxShadow: "0 6px 18px rgba(0,0,0,0.4)",
-                            willChange: "transform, opacity",
-                        })}
-                    >   
-                        <p className={css({color: "#fff", padding: "10px"})}>loading...</p>
-                        <Spinner />
-                    </motion.div>
-                )}
-            </AnimatePresence>
+        <div className={`${myFont.className} ${newsreader.variable} ${publicSans.variable}`}>
+            <LangProvider>
+                <AnimatePresence>
+                    {isLoading && (
+                        <motion.div
+                            key="bottom-spinner"
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 12 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className={css({
+                                position: "fixed",
+                                right: "20px",
+                                bottom: "20px",
+                                backgroundColor: "rgba(0,0,0,0.6)",
+                                padding: "8px",
+                                borderRadius: "10px",
+                                zIndex: 99999,
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                boxShadow: "0 6px 18px rgba(0,0,0,0.4)",
+                                willChange: "transform, opacity",
+                            })}
+                        >
+                            <p className={css({color: "#fff", padding: "10px"})}>loading...</p>
+                            <Spinner />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
-            <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${'G-9TG7JEDDCX'}`}
-            />
-            <script
-                dangerouslySetInnerHTML={{
-                    __html: `
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', '${'G-9TG7JEDDCX'}', {
-                            page_path: window.location.pathname,
-                        });
-                    `,
-                }}
-            />
-            <Component {...pageProps} />
+                {process.env.NODE_ENV === 'production' && (
+                    <>
+                        <script
+                            async
+                            src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+                        />
+                        <script
+                            dangerouslySetInnerHTML={{
+                                __html: `
+                                    window.dataLayer = window.dataLayer || [];
+                                    function gtag(){dataLayer.push(arguments);}
+                                    gtag('js', new Date());
+                                    var host = window.location.hostname;
+                                    if (host !== 'localhost' && host !== '127.0.0.1' && host !== '[::1]') {
+                                        gtag('config', '${gtag.GA_TRACKING_ID}', {
+                                            page_path: window.location.pathname,
+                                        });
+                                    }
+                                `,
+                            }}
+                        />
+                    </>
+                )}
+                <Component {...pageProps} />
+            </LangProvider>
         </div>
     )
 }

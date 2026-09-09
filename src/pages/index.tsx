@@ -3,243 +3,384 @@ import HMeta from "../components/headermeta";
 import Layout from "../layout/main";
 import Image from "next/image";
 import Link from "next/link";
-import CustomLink from "../components/clink";
-import {
-  ProfileHead,
-  ProfileBody,
-  ProfileLink,
-  ProfileCenter,
-} from "../components/profile";
-import { useState, useEffect } from "react";
-import SplitText from "../components/animations/SplitText/SplitText";
-import AnimatedContent from "../components/AnimatedContent/AnimatedContent";
-import Script from "next/script";
-import Popup from "../components/Popup";
+import client from "../utils/cms";
+import { useLang } from "../libs/lang";
+import { skills, repos, contacts } from "../data/profile";
 
-export default function Index({ data }) {
-  const based_duration = 0.6;
+const DEFAULT_EYECATCH =
+  "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?fit=fill&fill-color=000021&w=500&h=300";
+
+const homeText = {
+  ja: {
+    kicker: "Nknight AMAMIYA / @nk4dev",
+    prefix: "こんにちは、",
+    suffix: "です",
+    body: "個人開発とVRChatについて、ゆるく書いているブログ兼プレイグラウンドです。普段はJavaScript・TypeScript・C#・Next.js・React あたりを触っています。",
+    recentTitle: "最近書いた記事",
+    projectsTitle: "つくったもの",
+    connectTitle: "Connect",
+  },
+  en: {
+    kicker: "Nknight AMAMIYA / @nk4dev",
+    prefix: "Hi, I'm ",
+    suffix: "",
+    body: "A personal blog and playground about indie projects and VRChat. I mostly work with JavaScript, TypeScript, C#, Next.js and React.",
+    recentTitle: "Recent posts",
+    projectsTitle: "Things I built",
+    connectTitle: "Connect",
+  },
+};
+
+function formatDate(iso: string) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "";
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())}`;
+}
+
+export const getStaticProps = async () => {
+  const data = await client.get({
+    endpoint: "blogs",
+    queries: { limit: 3, offset: 0, orders: "-publishedAt" },
+    customRequestInit: { next: { revalidate: 60 } },
+  });
+
+  return {
+    props: { recentPosts: data.contents },
+    revalidate: 60,
+  };
+};
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2
+      className={css({
+        margin: "0 0 24px",
+        fontFamily: "portfolioSerif",
+        fontWeight: "500",
+        fontSize: "26px",
+      })}
+    >
+      <span className={css({ color: "portfolioAccent", marginRight: "10px" })}>
+        ›
+      </span>
+      {children}
+    </h2>
+  );
+}
+
+export default function Index({ recentPosts }) {
+  const { lang } = useLang();
+  const t = homeText[lang];
+
   return (
     <Layout>
       <HMeta
         pageTitle="Profile"
         pageDescription="Profile of Nknight AMAMIYA(nk4dev)"
       />
-      <Script async src="https://platform.twitter.com/widgets.js"></Script>
-      <div>
-        <Popup title="Follow on X">
-          <div>
-            Please follow my X (Twitter) account to stay updated.
-            <div style={{ marginTop: 8 }}>
-              <CustomLink href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fpublish.x.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5Enk4dev&region=follow_link&screen_name=nk4dev" target="_blank">
-                @nk4dev
-              </CustomLink>
-            </div>
-          </div>
-        </Popup>
-      </div>
-      <div
+      <Link
+        href="/vrchat"
+        target="_blank"
+        rel="noopener noreferrer"
         className={css({
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          display: "block",
           textAlign: "center",
+          padding: "10px 20px",
+          fontFamily: "portfolioSans",
+          fontSize: "13.5px",
+          color: "portfolioAccentHover",
+          background: "portfolioPillBg",
+          borderBottom: "1px solid {colors.portfolioPillBorder}",
         })}
       >
-        <div className={css({ marginTop: "2vh", background: "#0d0056dd", borderBottom: "1px solid #f0d0ff", paddingBottom: "10px" })}>
-          <AnimatedContent
-            direction="vertical"
-            duration={based_duration}
-            ease="ease.in"
-            initialOpacity={0}
-            animateOpacity
-            threshold={0.2}
-            delay={0.3}
-          >
-            <Link href="/vrchat" target="_blank" rel="noopener noreferrer">
-              I started VRchat! <br />
-              Profile is here. Go to Profile(third-party website)
-            </Link>
-          </AnimatedContent>
-        </div>
-        <ProfileCenter>
-          <AnimatedContent
-            direction="vertical"
-            duration={based_duration}
-            ease="ease.in"
-            initialOpacity={0}
-            animateOpacity
-            threshold={0.2}
-            delay={0.3}
-          >
-            <Image
-              className={css({
-                borderRadius: "50%",
-                background: "#c1d0ff",
-                m: 10,
-              })}
-              src="https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?w=170&h=170&q=50&fm=webp"
-              width={200}
-              height={200}
-              alt="icon"
-            />
-          </AnimatedContent>
+        I started VRChat! Profile is here. Go to Profile (third-party website)
+      </Link>
 
+      <div
+        className={css({
+          maxWidth: "920px",
+          margin: "0 auto",
+          padding: { base: "0 20px 80px", md: "0 32px 100px" },
+        })}
+      >
+        {/* Hero */}
+        <section
+          className={css({
+            padding: { base: "48px 0 8px", md: "72px 0 8px" },
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "22px",
+          })}
+        >
+          <Image
+            src="https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?w=170&h=170&q=50&fm=webp"
+            width={96}
+            height={96}
+            alt="icon"
+            className={css({ borderRadius: "50%", background: "#c1d0ff" })}
+          />
           <div
             className={css({
-              fontSize: "30px",
-              padding: "20px",
-              display: "flex",
-              textAlign: "center",
-              flexDirection: "column",
+              fontFamily: "portfolioSerif",
+              fontSize: "12px",
+              letterSpacing: ".14em",
+              textTransform: "uppercase",
+              color: "portfolioMutedDark",
             })}
           >
-            <AnimatedContent
-              direction="vertical"
-              duration={based_duration + 0.2}
-              ease="ease.in"
-              initialOpacity={0}
-              animateOpacity
-              threshold={0.2}
-              delay={0.3}
-            >
-              <SplitText text="Hello!" duration={0.5} />
-            </AnimatedContent>
-
-            <AnimatedContent
-              direction="vertical"
-              ease="ease.in"
-              initialOpacity={0}
-              animateOpacity
-              threshold={0.2}
-              delay={0.3}
-            >
-              <SplitText text="Welcome to Nknight AMAMIYA's website!" duration={1} />
-            </AnimatedContent>
+            // {t.kicker}
           </div>
-
-          <div>
-            scroll down <br />&#8595;
-          </div>
-
-          <Link
-            href={"/whoareyou?im=amamiya"}
+          <h1
             className={css({
-              color: "#f0d0ff",
-              fontSize: "20px",
-              textDecoration: "underline",
+              margin: 0,
+              fontFamily: "portfolioSerif",
+              fontWeight: "500",
+              fontSize: { base: "30px", md: "clamp(32px, 5vw, 46px)" },
+              lineHeight: 1.22,
             })}
           >
-            <AnimatedContent
-              direction="vertical"
-              ease="ease.in"
-              initialOpacity={0}
-              animateOpacity
-              threshold={0.2}
-              delay={0.3}
+            {t.prefix}
+            <span
+              className={css({
+                fontStyle: "italic",
+                borderBottom: "3px solid {colors.portfolioAccent}",
+              })}
             >
-              Who are you?
-            </AnimatedContent>
-          </Link>
-        </ProfileCenter>
-        <div>
-          <AnimatedContent
-            direction="vertical"
-            ease="ease.in"
-            initialOpacity={0}
-            animateOpacity
-            threshold={0.2}
-            delay={0.3}
+              Nknight AMAMIYA
+            </span>
+            {t.suffix}
+          </h1>
+          <p
+            className={css({
+              margin: 0,
+              maxWidth: "560px",
+              fontSize: "16px",
+              lineHeight: 1.75,
+              color: "portfolioBody",
+            })}
           >
-            <ProfileHead>
-              <SplitText text="Skills" duration={1} />
-            </ProfileHead>
-          </AnimatedContent>
+            {t.body}
+          </p>
+          <div
+            className={css({ display: "flex", gap: "10px", flexWrap: "wrap" })}
+          >
+            {skills.map((skill) => (
+              <span
+                key={skill}
+                className={css({
+                  fontFamily: "portfolioSans",
+                  fontSize: "12.5px",
+                  padding: "6px 14px",
+                  borderRadius: "999px",
+                  background: "portfolioPillBg",
+                  color: "portfolioAccentHover",
+                  border: "1px solid {colors.portfolioPillBorder}",
+                  whiteSpace: "nowrap",
+                })}
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </section>
 
-          <ProfileBody>
-            <AnimatedContent
-              direction="vertical"
-              ease="ease.in"
-              initialOpacity={0}
-              animateOpacity
-              threshold={0.2}
-              delay={0.3}
+        {/* Recent posts */}
+        <section className={css({ padding: "56px 0 8px" })}>
+          <div
+            className={css({
+              display: "flex",
+              alignItems: "baseline",
+              justifyContent: "space-between",
+              marginBottom: "24px",
+              gap: "12px",
+            })}
+          >
+            <SectionTitle>{t.recentTitle}</SectionTitle>
+            <Link
+              href="/blog"
+              className={css({
+                cursor: "pointer",
+                fontSize: "13px",
+                color: "portfolioMuted",
+                whiteSpace: "nowrap",
+              })}
             >
-              <div className={css({ fontSize: "20px" })}>
-                <SplitText
-                  duration={1}
-                  delay={30}
-                  text="javascript, typescript, c#, Nextjs and React"
-                />
-              </div>
-            </AnimatedContent>
-          </ProfileBody>
-          <div className={css({ paddingTop: "30vh" })}>
-            <ProfileHead>Contents</ProfileHead>
-            <ProfileBody>
-              <ProfileLink href={"/whoareyou"}>
-                About
-              </ProfileLink>
-
-              <ProfileLink href={"/whoareyou"}>
-                Blogs
-              </ProfileLink>
-
-              <ProfileLink href={"/dev"}>
-                Dev Projects
-              </ProfileLink>
-            </ProfileBody>
+              {lang === "ja" ? "すべて見る →" : "View all →"}
+            </Link>
           </div>
-          <div className={css({ paddingTop: "30vh" })}>
-            <ProfileHead>Repos</ProfileHead>
-            <ProfileBody>
-              <ProfileLink href={"https://github.com/nk4dev/vx3"}>
-                VX3 <br /> Web3 tool for developers
-              </ProfileLink>
-              <ProfileBody>
-                <ProfileLink href={"/dev/vx3-mcp"} target="_blank">
-                  VX3 MCP server (now testing)
-                </ProfileLink>
-              </ProfileBody>
-              <ProfileLink
-                href={"https://nknighta.me/oss-map-weather/"}
+          <div
+            className={css({
+              display: "grid",
+              gridTemplateColumns: {
+                base: "1fr",
+                sm: "repeat(auto-fit, minmax(240px, 1fr))",
+              },
+              gap: "22px",
+            })}
+          >
+            {recentPosts.map((post) => (
+              <Link
+                key={post.id}
+                href={`/blog/${post.id}`}
+                className={css({
+                  background: "portfolioCard",
+                  border: "1px dashed {colors.portfolioBorder}",
+                  borderRadius: "12px",
+                  cursor: "pointer",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                })}
               >
-                <p>OSS-WEATHER</p>
-              </ProfileLink>
-
-              <ProfileLink
-                href={"https://github.com/nk4dev/grove-player"}
-              >
-                <p>Grove Player</p>
-              </ProfileLink>
-
-              <ProfileLink
-                href={"https://github.com/nk4dev/IndexLanguage"}
-              >
-                <p>IndexLanguage</p>
-              </ProfileLink>
-
-            </ProfileBody>
-
-            <ProfileHead>Contact</ProfileHead>
-            <ProfileBody>
-              <ProfileLink href={"/x"}>
-                Twitter @nk4dev
-              </ProfileLink>
-
-              <ProfileLink href={"/g"}>
-                GitHub @nk4dev
-              </ProfileLink>
-
-              <ProfileLink href={"/i"}>
-                Instagram @ama_p0627
-              </ProfileLink>
-
-              <ProfileLink href={"/q"}>
-                Qiita @amamiya_dev
-              </ProfileLink>
-            </ProfileBody>
+                <div
+                  className={css({
+                    position: "relative",
+                    width: "100%",
+                    height: "130px",
+                  })}
+                >
+                  <Image
+                    src={post.eyecatch ? post.eyecatch.url : DEFAULT_EYECATCH}
+                    alt={post.eyecatch?.alt ?? post.title}
+                    fill
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div
+                  className={css({
+                    padding: "16px 18px 20px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                  })}
+                >
+                  <span
+                    className={css({
+                      fontSize: "11px",
+                      letterSpacing: ".05em",
+                      color: "portfolioMutedDark",
+                    })}
+                  >
+                    <span
+                      className={css({
+                        color: "portfolioAccent2",
+                        textTransform: "lowercase",
+                      })}
+                    >
+                      #{post.category ? post.category.name : "blog"}
+                    </span>{" "}
+                    · {formatDate(post.publishedAt)}
+                  </span>
+                  <h3
+                    className={css({
+                      margin: 0,
+                      fontFamily: "portfolioSerif",
+                      fontWeight: "500",
+                      fontSize: "16.5px",
+                      lineHeight: 1.4,
+                      color: "portfolioText",
+                    })}
+                  >
+                    {post.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
           </div>
-        </div>
+        </section>
+
+        {/* Things I built */}
+        <section className={css({ padding: "56px 0 8px" })}>
+          <SectionTitle>{t.projectsTitle}</SectionTitle>
+          <div
+            className={css({
+              display: "grid",
+              gridTemplateColumns: {
+                base: "1fr",
+                sm: "repeat(auto-fit, minmax(260px, 1fr))",
+              },
+              gap: "18px",
+            })}
+          >
+            {repos.map((repo) => (
+              <a
+                key={repo.name}
+                href={repo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={css({
+                  background: "portfolioCard",
+                  border: "1px dashed {colors.portfolioBorder}",
+                  borderRadius: "12px",
+                  textDecoration: "none",
+                  display: "block",
+                  padding: "20px 22px",
+                })}
+              >
+                <div
+                  className={css({
+                    fontFamily: "portfolioSerif",
+                    fontWeight: "500",
+                    fontSize: "17px",
+                    color: "portfolioText",
+                    marginBottom: "6px",
+                  })}
+                >
+                  {repo.name}
+                </div>
+                <div
+                  className={css({
+                    fontSize: "13.5px",
+                    lineHeight: 1.6,
+                    color: "portfolioMuted",
+                  })}
+                >
+                  {repo.desc[lang]}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* Connect */}
+        <section className={css({ padding: "56px 0 72px" })}>
+          <SectionTitle>{t.connectTitle}</SectionTitle>
+          <div
+            className={css({ display: "flex", gap: "12px", flexWrap: "wrap" })}
+          >
+            {contacts.map((contact) => (
+              <Link
+                key={contact.label}
+                href={contact.url}
+                target={
+                  contact.url.startsWith("mailto:") ? undefined : "_blank"
+                }
+                rel={
+                  contact.url.startsWith("mailto:")
+                    ? undefined
+                    : "noopener noreferrer"
+                }
+                className={css({
+                  textDecoration: "none",
+                  fontSize: "13.5px",
+                  padding: "9px 16px",
+                  borderRadius: "999px",
+                  background: "portfolioPillBg",
+                  border: "1px solid {colors.portfolioPillBorder}",
+                  color: "portfolioText",
+                })}
+              >
+                {contact.label}{" "}
+                <span className={css({ color: "portfolioMutedDark" })}>
+                  {contact.handle}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </Layout>
   );
