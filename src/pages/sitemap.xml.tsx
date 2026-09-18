@@ -6,7 +6,7 @@ import {
   getCategories,
 } from "../utils/cms";
 import { POSTS_PER_PAGE } from "../utils/blogList";
-import { SITE_URL, buildSitemapXml, SitemapEntry } from "../utils/sitemap";
+import { SITE_URL, buildSitemapXml, sanitizeSlug, SitemapEntry } from "../utils/sitemap";
 
 const STATIC_PAGES: Array<Pick<SitemapEntry, "loc" | "changefreq" | "priority">> = [
   { loc: "/", changefreq: "weekly", priority: 1 },
@@ -33,25 +33,25 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const entries: SitemapEntry[] = [
     ...STATIC_PAGES.map((page) => ({ ...page, loc: `${SITE_URL}${page.loc}`, lastmod: now })),
     ...blogs.map((post) => ({
-      loc: `${SITE_URL}/blog/${post.id}`,
+      loc: `${SITE_URL}/blog/${sanitizeSlug(post.id)}`,
       lastmod: lastmodOf(post),
       changefreq: "weekly" as const,
       priority: 0.7,
     })),
     ...projects.map((project) => ({
-      loc: `${SITE_URL}/dev/${project.id}`,
+      loc: `${SITE_URL}/dev/${sanitizeSlug(project.id)}`,
       lastmod: lastmodOf(project),
       changefreq: "monthly" as const,
       priority: 0.6,
     })),
     ...scraps.map((scrap) => ({
-      loc: `${SITE_URL}/scraps/${scrap.id}`,
+      loc: `${SITE_URL}/scraps/${sanitizeSlug(scrap.id)}`,
       lastmod: lastmodOf(scrap),
       changefreq: "weekly" as const,
       priority: 0.5,
     })),
     ...categoriesData.contents.map((category) => ({
-      loc: `${SITE_URL}/blog/category/${category.id}`,
+      loc: `${SITE_URL}/blog/category/${sanitizeSlug(category.id)}`,
       lastmod: now,
       changefreq: "weekly" as const,
       priority: 0.5,

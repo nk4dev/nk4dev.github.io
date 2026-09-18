@@ -89,7 +89,7 @@ const Blog = ({ blog, categories, currentId }) => {
       <HMeta
         pageTitle="Blog"
         pageDescription="Nknight AMAMIYA'S Blog"
-        pagePath="/blog"
+        pagePath={`/blog/category/${currentId}`}
       />
       
       <div

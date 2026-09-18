@@ -1,4 +1,10 @@
-export const SITE_URL = "https://nknighta.me";
+export const SITE_URL = "https://nknighta.me".replace(/\/$/, "");
+
+// microCMS contentId のスラッグを URL に埋め込む前にサニタイズし、
+// SITE_URL との結合で "//" が生まれるのを防ぐ
+export function sanitizeSlug(slug: string) {
+  return slug.replace(/^\/+|\/+$/g, "");
+}
 
 export type Changefreq =
   | "always"
