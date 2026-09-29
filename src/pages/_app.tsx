@@ -44,16 +44,11 @@ function App({ Component, pageProps }: AppProps) {
 
         const handleStart = () => setIsLoading(true);
         const handleComplete = () => setIsLoading(false);
-        const handleRouteChange = (url: string) => {
-            gtag.pageview(url);
-        }
-        router.events.on('routeChangeComplete', handleRouteChange);
         router.events.on('routeChangeStart', handleStart);
         router.events.on('routeChangeComplete', handleComplete);
         router.events.on('routeChangeError', handleComplete);
 
         return () => {
-            router.events.off('routeChangeComplete', handleRouteChange);
             router.events.off('routeChangeStart', handleStart);
             router.events.off('routeChangeComplete', handleComplete);
             router.events.off('routeChangeError', handleComplete);
@@ -104,10 +99,11 @@ function App({ Component, pageProps }: AppProps) {
                                     function gtag(){dataLayer.push(arguments);}
                                     gtag('js', new Date());
                                     var host = window.location.hostname;
+                                    // Client-side navigations are tracked by GA4 enhanced measurement
+                                    // (history events). Do not set page_path here: it persists on the
+                                    // config and mislabels every later SPA page_view as the landing path.
                                     if (host !== 'localhost' && host !== '127.0.0.1' && host !== '[::1]') {
-                                        gtag('config', '${gtag.GA_TRACKING_ID}', {
-                                            page_path: window.location.pathname,
-                                        });
+                                        gtag('config', '${gtag.GA_TRACKING_ID}');
                                     }
                                 `,
                             }}
