@@ -13,9 +13,9 @@ const DEFAULT_EYECATCH =
 const homeText = {
   ja: {
     kicker: "Nknight AMAMIYA / @nk4dev",
-    prefix: "こんにちは、",
+    prefix: "こんちは〜、",
     suffix: "です",
-    body: "個人開発とVRChatについて、ゆるく書いているブログ兼プレイグラウンドです。普段はJavaScript・TypeScript・C#・Next.js・React あたりを触っています。",
+    body: "エンジニア, VRchatter",
     recentTitle: "最近書いた記事",
     projectsTitle: "つくったもの",
     connectTitle: "Connect",
@@ -24,7 +24,7 @@ const homeText = {
     kicker: "Nknight AMAMIYA / @nk4dev",
     prefix: "Hi, I'm ",
     suffix: "",
-    body: "A personal blog and playground about indie projects and VRChat. I mostly work with JavaScript, TypeScript, C#, Next.js and React.",
+    body: "This is my personal website. blog blog and playground",
     recentTitle: "Recent posts",
     projectsTitle: "Things I built",
     connectTitle: "Connect",
