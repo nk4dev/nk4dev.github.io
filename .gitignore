@@ -22,3 +22,6 @@ out
 .agent-browser/
 *.agent-browser-state.json
 agent-browser-state.json
+
+# TypeScript incremental build info
+*.tsbuildinfo
