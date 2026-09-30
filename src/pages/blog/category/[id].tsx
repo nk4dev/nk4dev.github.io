@@ -84,11 +84,13 @@ const Category = ({ categories, currentId }) => {
 
 const Blog = ({ blog, categories, currentId }) => {
   const router = useRouter();
+  const categoryName =
+    categories.find((category) => category.id === currentId)?.name ?? currentId;
   return (
     <Layout>
       <HMeta
-        pageTitle="Blog"
-        pageDescription="Nknight AMAMIYA'S Blog"
+        pageTitle={`${categoryName} の記事`}
+        pageDescription={`Nknight AMAMIYA のブログから「${categoryName}」カテゴリの記事一覧です。`}
         pagePath={`/blog/category/${currentId}`}
       />
       

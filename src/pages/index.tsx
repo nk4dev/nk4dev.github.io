@@ -1,5 +1,6 @@
+import { titleThumbnail } from "../utils/thumbnail";
 import { css } from "../../styled-system/css";
-import HMeta from "../components/headermeta";
+import HMeta, { DEFAULT_DESCRIPTION, SITE_NAME } from "../components/headermeta";
 import Layout from "../layout/main";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,8 +8,6 @@ import client from "../utils/cms";
 import { useLang } from "../libs/lang";
 import { skills, repos, contacts } from "../data/profile";
 
-const DEFAULT_EYECATCH =
-  "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?fit=fill&fill-color=000021&w=500&h=300";
 
 const homeText = {
   ja: {
@@ -19,6 +18,7 @@ const homeText = {
     recentTitle: "最近書いた記事",
     projectsTitle: "つくったもの",
     connectTitle: "Connect",
+    announce: "VRChatはじめました!プロフィールはこちら →(外部サイト)",
   },
   en: {
     kicker: "Nknight AMAMIYA / @nk4dev",
@@ -28,6 +28,7 @@ const homeText = {
     recentTitle: "Recent posts",
     projectsTitle: "Things I built",
     connectTitle: "Connect",
+    announce: "I started VRChat! See my profile → (external site)",
   },
 };
 
@@ -77,11 +78,35 @@ export default function Index({ recentPosts }) {
   return (
     <Layout>
       <HMeta
-        pageTitle="Profile"
-        pageDescription="Profile of Nknight AMAMIYA(nk4dev)"
+        pageTitle="個人開発とVRChatのブログ"
+        pageDescription={DEFAULT_DESCRIPTION}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: SITE_NAME,
+            url: "https://nknighta.me/",
+            inLanguage: "ja",
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Nknight AMAMIYA",
+            alternateName: "nk4dev",
+            url: "https://nknighta.me/",
+            image:
+              "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg",
+            sameAs: [
+              "https://x.com/nk4dev",
+              "https://github.com/nk4dev",
+              "https://qiita.com/amamiya_dev",
+            ],
+          },
+        ]}
       />
       <Link
-        href="/vrchat"
+        href="https://vrchat.com/home/user/usr_3c0e5ebc-16db-4f61-bdfb-88ff8385a7d4"
+        data-ga-location="announce_bar"
         target="_blank"
         rel="noopener noreferrer"
         className={css({
@@ -95,7 +120,7 @@ export default function Index({ recentPosts }) {
           borderBottom: "1px solid {colors.portfolioPillBorder}",
         })}
       >
-        I started VRChat! Profile is here. Go to Profile (third-party website)
+        {t.announce}
       </Link>
 
       <div
@@ -119,7 +144,8 @@ export default function Index({ recentPosts }) {
             src="https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?w=170&h=170&q=50&fm=webp"
             width={96}
             height={96}
-            alt="icon"
+            alt="Nknight AMAMIYA"
+            priority
             className={css({ borderRadius: "50%", background: "#c1d0ff" })}
           />
           <div
@@ -243,7 +269,7 @@ export default function Index({ recentPosts }) {
                   })}
                 >
                   <Image
-                    src={post.eyecatch ? post.eyecatch.url : DEFAULT_EYECATCH}
+                    src={post.eyecatch ? post.eyecatch.url : titleThumbnail(post.title)}
                     alt={post.eyecatch?.alt ?? post.title}
                     fill
                     style={{ objectFit: "cover" }}
@@ -293,7 +319,7 @@ export default function Index({ recentPosts }) {
         </section>
 
         {/* Things I built */}
-        <section className={css({ padding: "56px 0 8px" })}>
+        <section data-ga-location="home_works" className={css({ padding: "56px 0 8px" })}>
           <SectionTitle>{t.projectsTitle}</SectionTitle>
           <div
             className={css({
@@ -346,7 +372,7 @@ export default function Index({ recentPosts }) {
         </section>
 
         {/* Connect */}
-        <section className={css({ padding: "56px 0 72px" })}>
+        <section data-ga-location="home_connect" className={css({ padding: "56px 0 72px" })}>
           <SectionTitle>{t.connectTitle}</SectionTitle>
           <div
             className={css({ display: "flex", gap: "12px", flexWrap: "wrap" })}

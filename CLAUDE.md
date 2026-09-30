@@ -51,7 +51,7 @@ Draft preview: `src/proxy.ts` (Next 16 proxy convention, formerly `middleware.ts
 ### Layout & shared components
 
 - `src/layout/main.tsx` — site-wide shell ("Portfolio Blog" design: dark purple dotted background, sticky header nav `Blog`/`Dev Projects`/`Apps`/`Scraps`/`About` + mobile hamburger drawer, footer), `ClickSpark` canvas overlay. The mobile drawer is rendered as a sibling of `<header>`, not a child — `backdropFilter` on an ancestor makes it the containing block for `position: fixed` descendants, which would otherwise collapse the drawer to the header's own height.
-- `src/components/headermeta.tsx` (`HMeta`) — OG/Twitter meta tags; auto-generates OG image via `ogp-img-gen.vercel.app` if no image is supplied. Untouched by the visual redesign — pass the same props as before.
+- `src/components/headermeta.tsx` (`HMeta`) — OG/Twitter meta tags + optional JSON-LD; auto-generates OG image via `ogp-img-gen.vercel.app` if no image is supplied (see *SEO meta* below).
 - `src/libs/gtag.ts` — Google Analytics (GA4 ID `G-9TG7JEDDCX`) event helper. SPA page views come from GA4 enhanced measurement (history events), not manual `config` calls — never pass `page_path` to `config`, it sticks and mislabels later navigations
 - `src/libs/fonts.ts` — `next/font/google` Newsreader (serif, headings) + Public Sans (sans, body/UI); CSS variables applied once in `_app.tsx`
 - `src/libs/lang.tsx` — `LangProvider`/`useLang()`, a ja/en toggle for hardcoded UI copy only (nav, hero/about text). **Must** be mounted in `_app.tsx` above `<Component />` — a page cannot provide its own ancestor context to itself, so mounting it inside `Layout` instead throws "must be used within a LangProvider" for every page that calls `useLang()`. microCMS content (blog/project bodies) is never translated.
@@ -74,9 +74,17 @@ All sourced from [reactbits.dev](https://reactbits.dev):
 
 Content pages use `getStaticPaths` + `getStaticProps` with `fallback: false`. Unpublished items (no `publishedAt`) are excluded from paths and return `{ notFound: true }` from `getStaticProps`.
 
-### Redirect/shortlink pages
+### Redirects & shortlinks
 
-Single-character pages (`/g`, `/i`, `/q`, `/x`) and pages under `/l/vx/*` are thin client-side redirects using `useEffect(() => { router.push(url) }, [])`.
+Shortlinks (`/g`, `/i`, `/q`, `/x`, `/vrchat`, `/l/vx/*`, `/l/xnv`, …) and the legacy `/articles/*` → `/blog/*` move are server-side redirects in `next.config.mjs` (`redirects()`), not pages — so no page renders and GA never fires for them. Add new shortlinks to the `shortLinks` map there (307); don't create `src/pages/<x>.tsx` redirect pages. Inside the site, link straight to the external URL instead of the shortlink so the click is recorded as `outbound_click`.
+
+### Analytics
+
+`src/libs/gtag.ts` holds `gtagInitScript` (inlined by `_app.tsx`): GA only runs on `PRODUCTION_HOSTS`, and `/?notrack=1` sets a localStorage flag that disables GA in that browser (`/?notrack=0` clears it). `_app.tsx` sends `outbound_click` for every external `<a>` click; set `data-ga-location="..."` on a container to label where the link sits.
+
+### SEO meta
+
+`HMeta` outputs `og:locale=ja_JP` and accepts `ogType="article"`, `publishedTime`/`modifiedTime`, `jsonLd` and `noindex`. Detail pages pass a per-page description: the microCMS `description` field when present, otherwise `excerptFromHtml(content, 110)`. `<html lang="ja">` comes from `src/pages/_document.tsx`; `LangProvider` rewrites it when the UI is switched to English.
 
 ### Devmode panel
 

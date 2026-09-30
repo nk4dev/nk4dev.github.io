@@ -49,11 +49,11 @@ export const repos = [
 ];
 
 export const contacts = [
-  { label: "X (Twitter)", handle: "@nk4dev", url: "/x" },
-  { label: "GitHub", handle: "@nk4dev", url: "/g" },
-  { label: "Instagram", handle: "@ama_p0627", url: "/i" },
-  { label: "Qiita", handle: "@amamiya_dev", url: "/q" },
-  { label: "VRChat", handle: "Nknight AMAMIYA", url: "/vrchat" },
+  { label: "X (Twitter)", handle: "@nk4dev", url: "https://x.com/nk4dev" },
+  { label: "GitHub", handle: "@nk4dev", url: "https://github.com/nk4dev" },
+  { label: "Instagram", handle: "@ama_p0627", url: "https://instagram.com/nk4dev" },
+  { label: "Qiita", handle: "@amamiya_dev", url: "https://qiita.com/amamiya_dev" },
+  { label: "VRChat", handle: "Nknight AMAMIYA", url: "https://vrchat.com/home/user/usr_3c0e5ebc-16db-4f61-bdfb-88ff8385a7d4" },
   {
     label: "Email",
     handle: "nknighta@varius.technology",

@@ -82,6 +82,11 @@ export function LangProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  // UI を英語に切り替えたときは <html lang> も合わせる(SSR 時は _document の "ja")
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   const toggleLang = () => {
     setLang((prev) => {
       const next: Lang = prev === "ja" ? "en" : "ja";

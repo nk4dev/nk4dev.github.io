@@ -384,7 +384,7 @@ function Footer() {
           { href: "https://varius.technology/", label: "varius.technology" },
           { href: "https://nknighta.me", label: "nknighta.me" },
           {
-            href: "https://nknighta.me/vrchat",
+            href: "https://vrchat.com/home/user/usr_3c0e5ebc-16db-4f61-bdfb-88ff8385a7d4",
             label: "VRChat",
             aria: "VRChat profile",
           },

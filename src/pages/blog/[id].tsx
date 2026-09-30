@@ -9,6 +9,7 @@ import Image from "next/image";
 import { use, useEffect, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useLang } from "../../libs/lang";
+import { excerptFromHtml } from "../../utils/excerpt";
 //const { scrollYProgress } = useScroll();
 
 interface BlogDate {
@@ -29,7 +30,67 @@ interface BlogDate {
 }
 
 // Add a function to process blog.content and apply styles to <code> tags
-export default function BlogId({ blog, toc }) {
+type PostLink = { id: string; title: string; publishedAt?: string };
+
+function PostNav({ related, prev, next }: { related: PostLink[]; prev: PostLink | null; next: PostLink | null }) {
+  const { lang } = useLang();
+  const t =
+    lang === "ja"
+      ? { related: "関連記事", prev: "← 前の記事", next: "次の記事 →" }
+      : { related: "Related posts", prev: "← Previous", next: "Next →" };
+  const linkBox = css({
+    display: "block",
+    padding: "14px 16px",
+    borderRadius: "10px",
+    background: "portfolioCard",
+    border: "1px dashed {colors.portfolioBorder}",
+    _hover: { borderColor: "portfolioAccent" },
+  });
+  const label = css({ display: "block", fontSize: "11.5px", color: "portfolioAccent2", marginBottom: "4px" });
+  const title = css({ fontFamily: "portfolioSerif", fontSize: "15.5px", lineHeight: 1.45, color: "portfolioText" });
+
+  if (!related.length && !prev && !next) return null;
+  return (
+    <nav aria-label={t.related} className={css({ marginTop: "40px", display: "flex", flexDirection: "column", gap: "28px" })}>
+      {related.length > 0 && (
+        <section aria-labelledby="related-posts">
+          <h2 id="related-posts" className={css({ fontFamily: "portfolioSerif", fontWeight: "500", fontSize: "20px", margin: "0 0 14px" })}>
+            {t.related}
+          </h2>
+          <ul className={css({ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "10px" })}>
+            {related.map((p) => (
+              <li key={p.id}>
+                <Link href={`/blog/${p.id}`} className={linkBox}>
+                  <span className={title}>{p.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {(prev || next) && (
+        <div className={css({ display: "grid", gridTemplateColumns: { base: "1fr", md: "1fr 1fr" }, gap: "10px" })}>
+          {prev ? (
+            <Link href={`/blog/${prev.id}`} rel="prev" className={linkBox}>
+              <span className={label}>{t.prev}</span>
+              <span className={title}>{prev.title}</span>
+            </Link>
+          ) : (
+            <span />
+          )}
+          {next && (
+            <Link href={`/blog/${next.id}`} rel="next" className={`${linkBox} ${css({ textAlign: { md: "right" } })}`}>
+              <span className={label}>{t.next}</span>
+              <span className={title}>{next.title}</span>
+            </Link>
+          )}
+        </div>
+      )}
+    </nav>
+  );
+}
+
+export default function BlogId({ blog, toc, description, related = [], prevPost = null, nextPost = null }) {
   // Process blog.content to style <code> tags
   const cmsstyle = `
     <style>
@@ -140,9 +201,33 @@ export default function BlogId({ blog, toc }) {
     <Layout>
       <HMeta
         pageTitle={blog.title}
-        pageDescription="Nknight AMAMIYA'S Blog"
+        pageDescription={description}
         pagePath={`/blog/${blog.id}`}
         pageImg={blog.eyecatch ? blog.eyecatch.url : undefined}
+        pageImgWidth={blog.eyecatch?.width}
+        pageImgHeight={blog.eyecatch?.height}
+        ogType="article"
+        publishedTime={blog.publishedAt}
+        modifiedTime={blog.updatedAt}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: blog.title,
+          description,
+          datePublished: blog.publishedAt,
+          dateModified: blog.updatedAt ?? blog.publishedAt,
+          image: blog.eyecatch
+            ? blog.eyecatch.url
+            : `https://ogp-img-gen.vercel.app/api/img-gen?text=${encodeURIComponent(`${blog.title} | nknighta`)}`,
+          inLanguage: "ja",
+          ...(blog.category ? { articleSection: blog.category.name } : {}),
+          author: {
+            "@type": "Person",
+            name: "Nknight AMAMIYA",
+            url: "https://nknighta.me/whoareyou",
+          },
+          mainEntityOfPage: `https://nknighta.me/blog/${blog.id}`,
+        }}
       />
 
       <motion.div
@@ -158,34 +243,24 @@ export default function BlogId({ blog, toc }) {
         })}
         style={{ scaleX: scrollYProgress }}
       />
-      <div
-        className={css({
-          width: "100%",
-          height: "300px",
-          position: "relative",
-          overflow: "hidden",
-        })}
-      >
-        <Image
-          alt={blog.eyecatch ? blog.eyecatch.alt : "eyecatch image"}
-          src={
-            blog.eyecatch == null
-              ? "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?fit=crop&w=200&h=200"
-              : blog.eyecatch.url
-          }
-          layout="fill"
-          objectFit="cover"
-        />
+      {blog.eyecatch && (
         <div
           className={css({
-            position: "absolute",
-            top: 0,
-            left: 0,
             width: "100%",
-            height: "100%",
+            height: { base: "180px", md: "300px" },
+            position: "relative",
+            overflow: "hidden",
           })}
-        />
-      </div>
+        >
+          <Image
+            alt={blog.eyecatch.alt ?? blog.title}
+            src={blog.eyecatch.url}
+            fill
+            priority
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+      )}
       {process.env.NODE_ENV === "development" && (
         <div
           className={css({
@@ -306,6 +381,7 @@ export default function BlogId({ blog, toc }) {
                 __html: `${blog.content}${cmsstyle}`,
               }}
             />
+            <PostNav related={related} prev={prevPost} next={nextPost} />
             <Link
               href="/blog"
               className={css({
@@ -350,6 +426,31 @@ export const getStaticPaths = async () => {
   return { paths, fallback: "blocking" };
 };
 
+// 記事末尾の導線: 同じカテゴリの記事(最大3件)と、公開日順で前後の記事
+async function getAdjacentPosts(post: { id: string; publishedAt: string; category?: { id: string } | null }) {
+  const fields = "id,title,publishedAt";
+  const safe = async (queries: Record<string, unknown>) => {
+    try {
+      const res = await client.get({ endpoint: "blogs", queries: { fields, ...queries } });
+      return res.contents as PostLink[];
+    } catch {
+      return [] as PostLink[];
+    }
+  };
+  const [related, older, newer] = await Promise.all([
+    post.category
+      ? safe({
+          filters: `category[equals]${post.category.id}[and]id[not_equals]${post.id}`,
+          orders: "-publishedAt",
+          limit: 3,
+        })
+      : Promise.resolve([] as PostLink[]),
+    safe({ filters: `publishedAt[less_than]${post.publishedAt}`, orders: "-publishedAt", limit: 1 }),
+    safe({ filters: `publishedAt[greater_than]${post.publishedAt}`, orders: "publishedAt", limit: 1 }),
+  ]);
+  return { related, prevPost: older[0] ?? null, nextPost: newer[0] ?? null };
+}
+
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async (context) => {
   const id = context.params.id;
@@ -365,10 +466,20 @@ export const getStaticProps = async (context) => {
     // 見出しに id を付与し、目次データを生成する
     const { content, toc } = buildTableOfContents(data.content ?? "");
 
+    const description =
+      (typeof data.description === "string" && data.description.trim()) ||
+      excerptFromHtml(data.content ?? "", 110);
+
+    const { related, prevPost, nextPost } = await getAdjacentPosts(data);
+
     return {
       props: {
         blog: { ...data, content },
         toc,
+        description,
+        related,
+        prevPost,
+        nextPost,
       },
       // ISR: 既存記事の更新も 60 秒ごとに反映する
       revalidate: 60,

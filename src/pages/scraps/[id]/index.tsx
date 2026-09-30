@@ -1,4 +1,5 @@
 import client from "../../../utils/cms";
+import { excerptFromHtml } from "../../../utils/excerpt";
 import Layout from "../../../layout/main";
 import Link from "next/link";
 import { css } from "../../../../styled-system/css";
@@ -9,7 +10,7 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useRouter } from "next/router";
 
 // Add a function to process blog.content and apply styles to <code> tags
-export default function BlogId({ project }) {
+export default function BlogId({ project, description }) {
   // Process blog.content to style <code> tags
   const router = useRouter();
   const cmsstyle = `
@@ -155,7 +156,7 @@ export default function BlogId({ project }) {
     <Layout>
       <HMeta
         pageTitle={project.name || project.title}
-        pageDescription="My development projects"
+        pageDescription={description}
         pagePath={`/scraps/${project.id}`}
       />
 
@@ -296,6 +297,10 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       project: data,
+      description:
+        (typeof data.description === "string" && data.description.trim()) ||
+        excerptFromHtml(data.content ?? "", 110) ||
+        "Nknight AMAMIYA のスクラップ",
     },
     // ISR: 既存スクラップの更新も 60 秒ごとに反映する
     revalidate: 60,

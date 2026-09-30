@@ -1,3 +1,4 @@
+import { titleThumbnail } from "../../utils/thumbnail";
 import HMeta from "../headermeta";
 import Layout from "../../layout/main";
 import { css } from "../../../styled-system/css";
@@ -8,8 +9,6 @@ import { useState } from "react";
 import { useLang } from "../../libs/lang";
 import Pagination from "./pagination";
 
-const DEFAULT_EYECATCH =
-  "https://images.microcms-assets.io/assets/a2939c8d25434ae5a1f853f2dc239a0f/b625a5435e8d4d18ab6c0b5499405b30/icon.jpeg?fit=fill&fill-color=000021&w=500&h=300";
 
 const blogText = {
   ja: { kicker: "Blog", title: "ブログ", subtitle: "開発やVRChatについて書いた記事の一覧です。", categories: "カテゴリー", close: "閉じる" },
@@ -118,7 +117,7 @@ export default function BlogListPage({
     <Layout>
       <HMeta
         pageTitle={currentPage > 1 ? `Blog - Page ${currentPage}` : "Blog"}
-        pageDescription="Nknight AMAMIYA'S Blog"
+        pageDescription={currentPage > 1 ? `Nknight AMAMIYA のブログ記事一覧(${currentPage}ページ目)。個人開発やVRChatについて書いています。` : "Nknight AMAMIYA のブログ記事一覧。Next.js・TypeScriptなどの個人開発やVRChatについて書いています。"}
         pagePath={pagePath}
       />
       <div className={css({ maxWidth: "1200px", margin: "0 auto", padding: { base: "0 20px 80px", md: "0 32px 100px" } })}>
@@ -165,8 +164,8 @@ export default function BlogListPage({
             >
               <div className={css({ position: "relative", width: "100%", height: "150px" })}>
                 <Image
-                  src={post.eyecatch ? `${post.eyecatch.url}?fit=fill&fill-color=000021&w=500&h=300` : DEFAULT_EYECATCH}
-                  alt={post.eyecatch ? post.eyecatch.alt ?? post.title : "blog"}
+                  src={post.eyecatch ? `${post.eyecatch.url}?fit=fill&fill-color=000021&w=500&h=300&fm=webp&q=75` : titleThumbnail(post.title)}
+                  alt={post.eyecatch?.alt ?? post.title}
                   fill
                   style={{ objectFit: "cover" }}
                 />

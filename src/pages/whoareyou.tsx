@@ -52,7 +52,7 @@ export default function WhoAreYou() {
     <Layout>
       <HMeta
         pageTitle="Who are you?"
-        pageDescription="about Nknight AMAMIYA"
+        pageDescription="Nknight AMAMIYA(@nk4dev)のプロフィール。経歴、使っている技術、つくったもの、連絡先をまとめています。"
         pagePath="/whoareyou"
       />
 

@@ -54,6 +54,27 @@ function App({ Component, pageProps }: AppProps) {
             router.events.off('routeChangeError', handleComplete);
         }
     }, [router.events]);
+
+    // 外部サイトへのリンククリックを outbound_click として送る(サイト全体で一括)
+    useEffect(() => {
+        const onClick = (e: MouseEvent) => {
+            const a = (e.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
+            if (!a) return;
+            let url: URL;
+            try {
+                url = new URL(a.href, window.location.href);
+            } catch {
+                return;
+            }
+            if (!/^https?:$/.test(url.protocol) || url.origin === window.location.origin) return;
+            const region = a.closest('[data-ga-location]')?.getAttribute('data-ga-location')
+                ?? a.closest('header, footer, nav, main')?.tagName.toLowerCase()
+                ?? 'body';
+            gtag.outboundClick(url.href, `${window.location.pathname}#${region}`);
+        };
+        document.addEventListener('click', onClick, { capture: true });
+        return () => document.removeEventListener('click', onClick, { capture: true });
+    }, []);
     return (
         <div className={`${myFont.className} ${newsreader.variable} ${publicSans.variable}`}>
             <LangProvider>
@@ -92,22 +113,7 @@ function App({ Component, pageProps }: AppProps) {
                             async
                             src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
                         />
-                        <script
-                            dangerouslySetInnerHTML={{
-                                __html: `
-                                    window.dataLayer = window.dataLayer || [];
-                                    function gtag(){dataLayer.push(arguments);}
-                                    gtag('js', new Date());
-                                    var host = window.location.hostname;
-                                    // Client-side navigations are tracked by GA4 enhanced measurement
-                                    // (history events). Do not set page_path here: it persists on the
-                                    // config and mislabels every later SPA page_view as the landing path.
-                                    if (host !== 'localhost' && host !== '127.0.0.1' && host !== '[::1]') {
-                                        gtag('config', '${gtag.GA_TRACKING_ID}');
-                                    }
-                                `,
-                            }}
-                        />
+                        <script dangerouslySetInnerHTML={{ __html: gtag.gtagInitScript }} />
                     </>
                 )}
                 <Component {...pageProps} />
