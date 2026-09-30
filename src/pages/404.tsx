@@ -23,7 +23,7 @@ export default function Custom404() {
 
   return (
     <Layout>
-      <HMeta pageTitle="ページが見つかりません" noindex />
+      <HMeta pageTitle="Page not Found" noindex />
       <div
         className={css({
           maxWidth: "640px",
