@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Pages Sites</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 16px;
+      background-color: #f6f8fa;
+      color: #24292f;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      border-bottom: 2px solid #d0d7de;
+      padding-bottom: 8px;
+    }
+
+    .site-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .site-card {
+      background: #ffffff;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color 0.15s ease;
+    }
+
+    .site-card:hover {
+      border-color: #0969da;
+    }
+
+    .site-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .site-link {
+      display: inline-block;
+      text-decoration: none;
+      background-color: #0969da;
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .site-link:hover {
+      background-color: #0757b2;
+    }
+
+    .error-msg {
+      color: #cf222e;
+      background: #ffebe9;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ff818266;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>GitHub Pages Sites</h1>
+  <ul id="site-list" class="site-list"></ul>
+
+  <script>
+    async function loadPages() {
+      const container = document.getElementById('site-list');
+
+      try {
+        const response = await fetch('./sites.json');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const sites = await response.json();
+
+        if (sites.length === 0) {
+          container.innerHTML = '<li>Pagesが設定されたリポジトリは見つかりませんでした。</li>';
+          return;
+        }
+
+        container.innerHTML = sites.map(site => `
+          <li class="site-card">
+            <span class="site-name">${escapeHtml(site.name)}</span>
+            <a class="site-link" href="${escapeHtml(site.pages_url)}" target="_blank" rel="noopener noreferrer">
+              サイトを開く
+            </a>
+          </li>
+        `).join('');
+
+      } catch (err) {
+        container.innerHTML = `<li class="error-msg">データの読み込みに失敗しました: ${escapeHtml(err.message)}</li>`;
+      }
+    }
+
+    // XSS防止用エスケープ関数
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    loadPages();
+  </script>
+</body>
+
+</html>

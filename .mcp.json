@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "agent-browser": {
-      "command": "bunx",
-      "args": ["agent-browser", "mcp", "--tools", "all"]
-    }
-  }
-}
