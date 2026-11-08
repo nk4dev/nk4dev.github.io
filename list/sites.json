@@ -1,138 +1,172 @@
 [
   {
     "name": "3d-Othello",
+    "repo_url": "https://github.com/nk4dev/3d-Othello",
     "pages_url": "http://apps.nknighta.me/3d-Othello/"
   },
   {
     "name": "assets",
+    "repo_url": "https://github.com/nk4dev/assets",
     "pages_url": "http://apps.nknighta.me/assets/"
   },
   {
     "name": "astro-blog",
+    "repo_url": "https://github.com/nk4dev/astro-blog",
     "pages_url": "http://blog.nknighta.me"
   },
   {
     "name": "awesome-css-website",
-    "pages_url": "http://nknighta.me/awesome-css-website/"
+    "repo_url": "https://github.com/nk4dev/awesome-css-website",
+    "pages_url": "http://apps.nknighta.me/awesome-css-website/"
   },
   {
     "name": "chainsearch",
-    "pages_url": "https://nknighta.me/chainsearch"
+    "repo_url": "https://github.com/nk4dev/chainsearch",
+    "pages_url": "http://apps.nknighta.me/chainsearch/"
   },
   {
     "name": "count-person",
-    "pages_url": "http://nknighta.me/count-person/"
+    "repo_url": "https://github.com/nk4dev/count-person",
+    "pages_url": "http://apps.nknighta.me/count-person/"
   },
   {
     "name": "design-example",
-    "pages_url": "http://nknighta.me/design-example/"
+    "repo_url": "https://github.com/nk4dev/design-example",
+    "pages_url": "http://apps.nknighta.me/design-example/"
   },
   {
     "name": "dynamic-style",
+    "repo_url": "https://github.com/nk4dev/dynamic-style",
     "pages_url": "https://nknighta.me/dynamic-style/"
   },
   {
     "name": "echo-show-clock",
-    "pages_url": "https://nknighta.github.io/echo-show-clock/"
+    "repo_url": "https://github.com/nk4dev/echo-show-clock",
+    "pages_url": "http://apps.nknighta.me/echo-show-clock/"
   },
   {
     "name": "eventquiz-jp",
-    "pages_url": "https://nknighta.me/eventquiz-jp/"
+    "repo_url": "https://github.com/nk4dev/eventquiz-jp",
+    "pages_url": "http://apps.nknighta.me/eventquiz-jp/"
   },
   {
     "name": "geomap-emagency-system",
-    "pages_url": "https://nknighta.github.io/geomap-emagency-system/"
+    "repo_url": "https://github.com/nk4dev/geomap-emagency-system",
+    "pages_url": "http://apps.nknighta.me/geomap-emagency-system/"
   },
   {
     "name": "get-current-location",
+    "repo_url": "https://github.com/nk4dev/get-current-location",
     "pages_url": "http://apps.nknighta.me/get-current-location/"
   },
   {
     "name": "gmap-html",
+    "repo_url": "https://github.com/nk4dev/gmap-html",
     "pages_url": "https://nknighta.github.io/gmap-html/"
   },
   {
     "name": "grove-player",
+    "repo_url": "https://github.com/nk4dev/grove-player",
     "pages_url": "https://nknighta.github.io/grove-player/"
   },
   {
     "name": "grove-player-next",
+    "repo_url": "https://github.com/nk4dev/grove-player-next",
     "pages_url": "http://apps.nknighta.me/grove-player-next/"
   },
   {
     "name": "hazy",
+    "repo_url": "https://github.com/nk4dev/hazy",
     "pages_url": "https://nknighta.me/dev/hazy"
   },
   {
     "name": "helpapp-flutter",
+    "repo_url": "https://github.com/nk4dev/helpapp-flutter",
     "pages_url": "http://nknighta.me/helpapp-flutter/"
   },
   {
     "name": "helpapp-website",
+    "repo_url": "https://github.com/nk4dev/helpapp-website",
     "pages_url": "https://helpapp-website.vercel.app"
   },
   {
     "name": "housefonttest",
+    "repo_url": "https://github.com/nk4dev/housefonttest",
     "pages_url": "http://nknighta.me/housefonttest/"
   },
   {
     "name": "html-clock",
+    "repo_url": "https://github.com/nk4dev/html-clock",
     "pages_url": "https://nknighta.me/html-clock/"
   },
   {
     "name": "html-multitab",
+    "repo_url": "https://github.com/nk4dev/html-multitab",
     "pages_url": "https://nknighta.github.io/html-multitab/"
   },
   {
     "name": "html-practice-and-reload",
+    "repo_url": "https://github.com/nk4dev/html-practice-and-reload",
     "pages_url": "https://nk4dev.github.io/html-practice-and-reload/"
   },
   {
     "name": "htmljs-calc",
+    "repo_url": "https://github.com/nk4dev/htmljs-calc",
     "pages_url": "https://nknighta.github.io/htmljs-calc/"
   },
   {
     "name": "IndexLanguage",
+    "repo_url": "https://github.com/nk4dev/IndexLanguage",
     "pages_url": "http://apps.nknighta.me/IndexLanguage/"
   },
   {
     "name": "js-create-element",
+    "repo_url": "https://github.com/nk4dev/js-create-element",
     "pages_url": "https://nk4dev.github.io/js-create-element/"
   },
   {
     "name": "keepandroidopen-jp",
+    "repo_url": "https://github.com/nk4dev/keepandroidopen-jp",
     "pages_url": "https://nknighta.me/keepandroidopen-jp/ja/"
   },
   {
     "name": "luna-console-test",
+    "repo_url": "https://github.com/nk4dev/luna-console-test",
     "pages_url": "https://nknighta.github.io/luna-console-test/"
   },
   {
     "name": "md-previewer",
+    "repo_url": "https://github.com/nk4dev/md-previewer",
     "pages_url": "http://apps.nknighta.me/md-previewer/"
   },
   {
     "name": "mini-apps",
+    "repo_url": "https://github.com/nk4dev/mini-apps",
     "pages_url": "http://apps.nknighta.me/mini-apps/"
   },
   {
     "name": "mobile-app-practice",
+    "repo_url": "https://github.com/nk4dev/mobile-app-practice",
     "pages_url": "http://nknighta.me/mobile-app-practice/"
   },
   {
     "name": "music-score-web",
+    "repo_url": "https://github.com/nk4dev/music-score-web",
     "pages_url": "http://apps.nknighta.me/music-score-web/"
   },
   {
     "name": "my-web-dev",
+    "repo_url": "https://github.com/nk4dev/my-web-dev",
     "pages_url": "http://apps.nknighta.me/my-web-dev/"
   },
   {
     "name": "my-website-redirect",
+    "repo_url": "https://github.com/nk4dev/my-website-redirect",
     "pages_url": "https://nk4dev.github.io/my-website-redirect/"
   },
   {
     "name": "next-app-router-test",
+    "repo_url": "https://github.com/nk4dev/next-app-router-test",
     "pages_url": "https://nknighta.github.io/next-app-router-test/"
   }
 ]

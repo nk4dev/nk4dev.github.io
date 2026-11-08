@@ -38,31 +38,48 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: border-color 0.15s ease;
-    }
-
-    .site-card:hover {
-      border-color: #0969da;
+      gap: 12px;
     }
 
     .site-name {
       font-weight: 600;
       font-size: 1rem;
+      word-break: break-all;
     }
 
-    .site-link {
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn {
       display: inline-block;
       text-decoration: none;
-      background-color: #0969da;
-      color: #ffffff;
       padding: 6px 12px;
       border-radius: 6px;
       font-size: 0.85rem;
       font-weight: 500;
+      transition: background-color 0.15s ease;
     }
 
-    .site-link:hover {
+    .btn-pages {
+      background-color: #0969da;
+      color: #ffffff;
+    }
+
+    .btn-pages:hover {
       background-color: #0757b2;
+    }
+
+    .btn-repo {
+      background-color: #f3f4f6;
+      color: #24292f;
+      border: 1px solid #d0d7de;
+    }
+
+    .btn-repo:hover {
+      background-color: #e5e7eb;
     }
 
     .error-msg {
@@ -100,9 +117,14 @@
         container.innerHTML = sites.map(site => `
           <li class="site-card">
             <span class="site-name">${escapeHtml(site.name)}</span>
-            <a class="site-link" href="${escapeHtml(site.pages_url)}" target="_blank" rel="noopener noreferrer">
-              サイトを開く
-            </a>
+            <div class="btn-group">
+              <a class="btn btn-repo" href="${escapeHtml(site.repo_url)}" target="_blank" rel="noopener noreferrer">
+                Repository
+              </a>
+              <a class="btn btn-pages" href="${escapeHtml(site.pages_url)}" target="_blank" rel="noopener noreferrer">
+                Visit Site
+              </a>
+            </div>
           </li>
         `).join('');
 
@@ -111,7 +133,6 @@
       }
     }
 
-    // XSS防止用エスケープ関数
     function escapeHtml(str) {
       if (!str) return '';
       return String(str)
